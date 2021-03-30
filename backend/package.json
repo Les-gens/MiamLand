@@ -1,0 +1,40 @@
+{
+  "name": "miamland-backend",
+  "version": "1.0.0",
+  "description": "Backend for our mobile app MiamLand",
+  "main": "src/index.js",
+  "scripts": {
+    "server": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Les-gens/MiamLand.git"
+  },
+  "keywords": [
+    "cooking",
+    "backend",
+    "fastify",
+    "MiamLand"
+  ],
+  "author": "Les-gens",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Les-gens/MiamLand/issues"
+  },
+  "homepage": "https://github.com/Les-gens/MiamLand#readme",
+  "dependencies": {
+    "fastify": "^3.14.1"
+  },
+  "type": "module",
+  "devDependencies": {
+    "eslint": "^7.23.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "nodemon": "^2.0.7"
+  }
+}
