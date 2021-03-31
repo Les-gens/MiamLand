@@ -3,12 +3,12 @@ import {
   Text,
   View,
 } from 'react-native';
-import {DurationIndicator, RecipeCard} from '../../components/';
+import {DurationIndicator, RecipeCard} from '../../components';
 
 import jambon from '../../assets/img/jambon.jpg'
 import styles from './styles';
 
-const App = () => {
+const Home = () => {
 
   return (
     <View style={styles.homeContainer}>
@@ -25,4 +25,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;
