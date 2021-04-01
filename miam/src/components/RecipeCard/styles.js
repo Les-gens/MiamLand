@@ -6,16 +6,22 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: '45%',
+        height: 200,
         width:  '98%',
         backgroundColor: colors.grey4,
         borderRadius:  12, 
+        marginBottom: 10,
+    },
+    informations: {
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        height: '100%',
     },
     image: {
-        marginLeft: 30,
+        marginLeft: 60,
         borderRadius: 140,
-        height: 147,
-        width: 147,
+        height: 165,
+        width: 165,
         resizeMode: 'stretch'
     },
     recipeName: {

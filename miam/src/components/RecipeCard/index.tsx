@@ -17,10 +17,12 @@ interface Props {
 const RecipeCard = ({recipeName, notation, numberNotation, duration, source}: Props) => {
     return(
         <View style = {styles.container}>
-            <View>
-                <Text style={styles.recipeName}>{capitalize(recipeName)}</Text>
-                <View style={styles.notationContainer}>
-                    <Text style={styles.notation}>{notation}</Text><Text style={styles.notationNumber}> ({numberNotation})</Text>
+            <View style={styles.informations}>
+                <View>
+                    <Text style={styles.recipeName}>{capitalize(recipeName)}</Text>
+                    <View style={styles.notationContainer}>
+                        <Text style={styles.notation}>{notation}</Text><Text style={styles.notationNumber}> ({numberNotation})</Text>
+                    </View>
                 </View>
                 <DurationIndicator duration={duration}/>
 
