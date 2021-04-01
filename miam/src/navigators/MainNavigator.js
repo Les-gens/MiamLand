@@ -29,9 +29,9 @@ export default function MainNavigator() {
           }
         }}
       >
-        <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="MyRecipes" component={MyRecipes} />
         <Tab.Screen name="NewRecipe" component={NewRecipe} />
+        <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Fridge" component={Fridge} />
         <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>

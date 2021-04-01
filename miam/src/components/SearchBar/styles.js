@@ -6,5 +6,7 @@ export default StyleSheet.create({
         backgroundColor: colors.grey4,
         width: '75%',
         borderRadius: 7,
+        borderBottomWidth: 2.5,
+        borderBottomColor: '#151515',
     },
 })

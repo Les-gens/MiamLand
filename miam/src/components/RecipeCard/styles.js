@@ -11,6 +11,8 @@ export default StyleSheet.create({
         backgroundColor: colors.grey4,
         borderRadius:  12, 
         marginBottom: 10,
+        borderBottomWidth: 2.5,
+        borderBottomColor: '#151515',
     },
     informations: {
         flexDirection: 'column',
