@@ -18,11 +18,8 @@ export default function MainNavigator() {
         tabBarOptions={{
           activeTintColor: colors.yellow1,
           inactiveTintColor: colors.textWhite,
-          activrBackgroundColor: colors.grey2,
-          inactiveBackgroundColor: colors.grey2,
           style: {
             backgroundColor: colors.grey2,
-            marginBottom: 3,
           }
         }}
       >

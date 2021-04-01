@@ -4,6 +4,8 @@ import { capitalize } from '../../helpers/stringHelpers'
 import DurationIndicator from '../DurationIndicator'
 import styles from './styles'
 
+/* this is a component that displays recipes on the home page */
+
 interface Props {
     recipeName: string
     notation: number

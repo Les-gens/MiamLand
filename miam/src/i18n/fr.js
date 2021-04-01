@@ -1,3 +1,4 @@
 export default {
-    minutes: 'min'
+    minutes: 'min',
+    research: 'Rechercher une recette',
 }
