@@ -9,7 +9,6 @@ import jambon from '../../assets/img/jambon.jpg'
 import styles from './styles';
 
 const Home = () => {
-
   return (
     <View style={styles.homeContainer}>
       <RecipeCard 
@@ -20,7 +19,6 @@ const Home = () => {
         source={jambon}
       />
       <DurationIndicator duration={'10'}/>
-      <Text>tototiti</Text>
     </View>
   );
 };

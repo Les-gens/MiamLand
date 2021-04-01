@@ -11,7 +11,7 @@ interface Props {
     notation: number
     numberNotation: number
     duration: number
-    source: string
+    source: number //typeof require image returns number
 }
 
 const RecipeCard = ({recipeName, notation, numberNotation, duration, source}: Props) => {
