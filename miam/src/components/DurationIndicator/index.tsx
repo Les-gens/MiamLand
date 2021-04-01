@@ -8,7 +8,7 @@ interface Props {
     duration: number
 }
 const DurationIndicator = ({duration}: Props) => {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
     return(
         <View style={styles.container}>
             <Text style={styles.text}>{duration} {t('minutes')}</Text>
