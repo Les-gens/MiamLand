@@ -1,0 +1,5 @@
+export {default as Home} from './Home'
+export {default as MyRecipes } from './MyRecipes'
+export {default as NewRecipe } from './NewRecipe'
+export {default as Settings } from './Settings'
+export {default as Fridge } from './Fridge'
