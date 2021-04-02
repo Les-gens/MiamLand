@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { colors } from '../../theme'
 
 export default StyleSheet.create({
     searchContainer:{
@@ -17,4 +18,5 @@ export default StyleSheet.create({
         fontSize: 17,
         marginBottom: 15,
     },
+
 })
