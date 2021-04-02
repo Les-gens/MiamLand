@@ -13,3 +13,16 @@ run `cd miam`
 then
 
 `yarn android` or `yarn ios` (only on macOs)
+
+## Credits
+
+### Authors
+
+* [@Galimede](https://github.com/Galimede) (Mathieu Degand) 
+* [@Un-dev](https://github.com/Un-dev) (François Lannoy)
+* [@Verzelea](https://github.com/Verzelea) (Arthur Verzele)
+* [@Skiadram](https://github.com/Skiadram) (Neel Coffin)
+
+### Others
+
+* Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
