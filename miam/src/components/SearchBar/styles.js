@@ -9,4 +9,8 @@ export default StyleSheet.create({
         borderBottomWidth: 2.5,
         borderBottomColor: '#151515',
     },
+    input: {
+        color: colors.textWhite,
+        marginLeft: 5,
+    },
 })

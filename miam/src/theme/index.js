@@ -8,3 +8,10 @@ export const colors = {
     yellow1: '#F5BF42',
     yellow2: '#EFE68F',
 }
+
+export const emojis = {
+    disgusted: "🤢",
+    smiling: "🙂",
+    yummy: "😋",
+    salivating: "🤤",
+}

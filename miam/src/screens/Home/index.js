@@ -32,8 +32,10 @@ const Home = () => {
         <SearchBar/>
       </View>
       <ScrollView contentContainerStyle={styles.favoritesContainer}>
-        <Heart width={20} height={20} fill={colors.textWhite} />
-        <Text style={styles.favoritesLabel}>{t('favorites')}</Text>
+        <View style={styles.favoritesLabelContainer}>
+          <Heart width={20} height={20} fill={colors.textWhite} />
+          <Text style={styles.favoritesLabel}>{t('favorites')}</Text>
+        </View>
         {list}
       </ScrollView>
     </>

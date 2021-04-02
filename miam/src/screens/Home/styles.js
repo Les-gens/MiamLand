@@ -13,10 +13,14 @@ export default StyleSheet.create({
         flexDirection: 'column',
     },
     favoritesLabel: {
-        alignSelf: 'flex-start',
-        marginLeft: 15,
+        marginLeft: 6,
         fontSize: 17,
-        marginBottom: 15,
     },
-
+    favoritesLabelContainer: {
+        flexDirection: 'row',
+        marginLeft: 15,
+        marginBottom: 15,
+        alignSelf: 'flex-start',
+        alignItems: 'center',
+    },
 })

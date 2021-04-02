@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
-import { capitalize } from '../../helpers/stringHelpers'
+import { capitalize, emojifyNotation } from '../../helpers/stringHelpers'
 import DurationIndicator from '../DurationIndicator'
 import styles from './styles'
 
@@ -21,7 +21,7 @@ const RecipeCard = ({recipeName, notation, numberNotation, duration, source}: Pr
                 <View>
                     <Text style={styles.recipeName}>{capitalize(recipeName)}</Text>
                     <View style={styles.notationContainer}>
-                        <Text style={styles.notation}>{notation}</Text><Text style={styles.notationNumber}> ({numberNotation})</Text>
+                        <Text style={styles.notation}>{`${emojifyNotation(notation)} ${notation}`}</Text><Text style={styles.notationNumber}> ({numberNotation})</Text>
                     </View>
                 </View>
                 <DurationIndicator duration={duration}/>

@@ -27,7 +27,7 @@ export default StyleSheet.create({
         resizeMode: 'stretch'
     },
     recipeName: {
-        fontSize: 20
+        fontSize: 22
     },
     notation: {
        color: colors.yellow1, 

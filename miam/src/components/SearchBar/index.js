@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { View, TextInput } from 'react-native'
 import { useTranslation } from 'react-i18next'
+
 import styles from './styles'
 
 const SearchBar = () => {
@@ -10,6 +11,7 @@ const SearchBar = () => {
     return (
         <View style={styles.searchBar}>
             <TextInput
+                style={styles.input}
                 onChangeText={onChangeResearch}
                 value={research}
             />
