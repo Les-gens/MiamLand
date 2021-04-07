@@ -10,6 +10,7 @@ import {
   MyRecipes
 } from '../screens/index'
 import { colors } from '../theme';
+import { tabIcon } from '../helpers/navigatorHelpers';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,6 +22,11 @@ export default function MainNavigator() {
         sceneContainerStyle= {{
           backgroundColor: colors.primaryGrey
         }}
+        screenOptions={({route}) =>({
+          tabBarIcon: ({focused}) => {return tabIcon(focused, route.name)}
+        })
+
+        }
         tabBarOptions={{
           activeTintColor: colors.yellow1,
           inactiveTintColor: colors.textWhite,
@@ -31,7 +37,7 @@ export default function MainNavigator() {
       >
         <Tab.Screen name="MyRecipes" component={MyRecipes} />
         <Tab.Screen name="NewRecipe" component={NewRecipe} />
-        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Search" component={Home} />
         <Tab.Screen name="Fridge" component={Fridge} />
         <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>
