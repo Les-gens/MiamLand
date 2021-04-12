@@ -1,12 +1,17 @@
-import { StyleSheet } from 'react-native'
+import {StyleSheet} from 'react-native'
 import {colors} from '../../theme'
 
 export default StyleSheet.create({
-    yellowButton: {
-        backgroundColor: colors.yellow1,
-    },
-    label: {
-        color: colors.grey3,
-    },
-    
-}) 
+  buttonContainer: {
+    backgroundColor: colors.yellow1,
+    width: '50%',
+    height: 45,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  label: {
+    fontSize: 17,
+    color: colors.grey3,
+  },
+})

@@ -1,7 +1,8 @@
 import React from 'react'
-import useNavigation, {Text, ScrollView, View, Image} from 'react-native'
+import {Text, ScrollView, View, Image} from 'react-native'
 import {useTranslation} from 'react-i18next'
 import {RecipeCard, SearchBar} from '../../components'
+import {useNavigation} from '@react-navigation/native'
 
 import Heart from '../../assets/svg/heart.svg'
 import jambon from '../../assets/img/jambon.jpg'
@@ -21,7 +22,7 @@ const Search = () => {
         numberNotation={10}
         recipeName={'jambon'}
         source={jambon}
-        onClick={() => navigation.push('Recipe')}
+        onPress={() => navigation.navigate('Recipe')}
       />,
     )
   }
