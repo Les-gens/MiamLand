@@ -8,16 +8,13 @@ export const tabIcon = (focused, routeName) => {
     
     switch (routeName){
       case 'MyRecipes':
-        icon = <Bowl width={20} height={20} fill={iconColor}/>
-        break
-      case 'NewRecipe':
-        icon = <Plus width={20} height={20} fill={iconColor}/>
+        icon = <Bowl width={20} height={21} fill={iconColor}/>
         break
       case 'Search':
         icon = <MagGlass width={20} height={20} fill={iconColor}/>
         break
       case 'Fridge':
-        icon = <Fridge width={20} height={20} fill={iconColor}/>
+        icon = <Fridge width={20} height={20} />
         break
       case 'Settings':
         icon = <Gear width={20} height={20} fill={iconColor}/>

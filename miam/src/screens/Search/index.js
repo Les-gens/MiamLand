@@ -13,7 +13,7 @@ import jambon from '../../assets/img/jambon.jpg'
 import styles from './styles';
 import { colors } from '../../theme';
 
-const Home = () => {
+const Search = () => {
   const { t, i18n } = useTranslation()
   let list = []
   
@@ -42,4 +42,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Search;

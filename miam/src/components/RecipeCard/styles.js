@@ -7,7 +7,7 @@ export default StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         height: 200,
-        width:  '98%',
+        width:  '99%',
         backgroundColor: colors.grey4,
         borderRadius:  12, 
         marginBottom: 7,
