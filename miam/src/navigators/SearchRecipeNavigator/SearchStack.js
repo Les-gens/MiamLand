@@ -1,10 +1,10 @@
-import * as React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import * as React from 'react'
+import {createStackNavigator} from '@react-navigation/stack'
 
-import {Search, Recipe} from '../../screens/index';
-import {colors} from '../../theme';
+import {Search, Recipe} from '../../screens/index'
+import {colors} from '../../theme'
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 export default function SearchStack() {
   return (
@@ -17,5 +17,5 @@ export default function SearchStack() {
       <Stack.Screen name="Recipe" component={Recipe} />
       {/* <Stack.Screen name="Step" component={StepRecipe} /> */}
     </Stack.Navigator>
-  );
+  )
 }

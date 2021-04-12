@@ -1,15 +1,14 @@
-import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import * as React from 'react'
+import {NavigationContainer} from '@react-navigation/native'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 // import { createStackNavigator } from '@react-navigation/stack';
 
-import {Home, Settings, Fridge, MyRecipes} from '../screens/index';
-import {colors} from '../theme';
-import {tabIcon} from '../helpers/navigatorHelpers';
-import Search from './SearchRecipeNavigator/SearchStack';
-import SearchStack from './SearchRecipeNavigator/SearchStack';
+import {Settings, Fridge, MyRecipes} from '../screens/index'
+import {colors} from '../theme'
+import {tabIcon} from '../helpers/navigatorHelpers'
+import SearchStack from './SearchRecipeNavigator/SearchStack'
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 export default function MainNavigator() {
   return (
@@ -20,7 +19,7 @@ export default function MainNavigator() {
         }}
         screenOptions={({route}) => ({
           tabBarIcon: ({focused}) => {
-            return tabIcon(focused, route.name);
+            return tabIcon(focused, route.name)
           },
         })}
         tabBarOptions={{
@@ -36,5 +35,5 @@ export default function MainNavigator() {
         <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>
     </NavigationContainer>
-  );
+  )
 }

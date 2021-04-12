@@ -1,35 +1,34 @@
-import React from 'react';
-import {
-  Text,
-  ScrollView,
-  View,
-  Image
-} from 'react-native';
-import { useTranslation } from 'react-i18next'
-import { RecipeCard, SearchBar } from '../../components';
+import React from 'react'
+import useNavigation, {Text, ScrollView, View, Image} from 'react-native'
+import {useTranslation} from 'react-i18next'
+import {RecipeCard, SearchBar} from '../../components'
 
 import Heart from '../../assets/svg/heart.svg'
 import jambon from '../../assets/img/jambon.jpg'
-import styles from './styles';
-import { colors } from '../../theme';
+import styles from './styles'
+import {colors} from '../../theme'
 
 const Search = () => {
-  const { t, i18n } = useTranslation()
+  const navigation = useNavigation()
+  const {t, i18n} = useTranslation()
   let list = []
-  
-  for (let i = 0; i< 5; i++){
-    list.push(<RecipeCard 
-      duration={'10'} 
-      notation={4} 
-      numberNotation={10} 
-      recipeName={'jambon'} 
-      source={jambon}
-    />)
+
+  for (let i = 0; i < 5; i++) {
+    list.push(
+      <RecipeCard
+        duration={'10'}
+        notation={4}
+        numberNotation={10}
+        recipeName={'jambon'}
+        source={jambon}
+        onClick={() => navigation.push('Recipe')}
+      />,
+    )
   }
   return (
     <>
       <View style={styles.searchContainer}>
-        <SearchBar/>
+        <SearchBar />
       </View>
       <ScrollView contentContainerStyle={styles.favoritesContainer}>
         <View style={styles.favoritesLabelContainer}>
@@ -39,7 +38,7 @@ const Search = () => {
         {list}
       </ScrollView>
     </>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search
