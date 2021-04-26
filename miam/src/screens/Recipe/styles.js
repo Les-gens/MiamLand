@@ -8,6 +8,7 @@ export default StyleSheet.create({
   },
   title: {
     fontSize: 24,
+    marginBottom: 5,
   },
   right: {
     justifyContent: 'space-around',
@@ -31,7 +32,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   startButton: {
-    marginBottom: 50,
+    // marginBottom: 60,
     justifyContent: 'center',
     height: '25%',
     width: '100%',

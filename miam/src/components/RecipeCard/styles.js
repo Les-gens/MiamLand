@@ -4,7 +4,7 @@ import {colors} from '../../theme'
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     height: 200,
     width: '99%',
@@ -20,7 +20,6 @@ export default StyleSheet.create({
     height: '100%',
   },
   image: {
-    marginLeft: 60,
     borderRadius: 140,
     height: 165,
     width: 165,

@@ -1,30 +1,26 @@
 import React from 'react'
 import {View, Text, Image, TouchableOpacity} from 'react-native'
-import {capitalize, emojifyNotation} from '../../helpers/stringHelpers'
+import {useNavigation} from '@react-navigation/native'
+
+import {capitalize} from '../../helpers/stringHelpers'
 import DurationIndicator from '../DurationIndicator'
 import styles from './styles'
 import {Notation} from '../index'
 /* this is a component that displays recipes on the home page */
 
 interface Props {
-  recipeName: string
-  notation: number
-  numberNotation: number
-  duration: number
+  recipe: Record<string, any>
   onPress: () => void
-  source: number //typeof require image returns number
 }
 
-const RecipeCard = ({
-  recipeName,
-  notation,
-  numberNotation,
-  duration,
-  onPress,
-  source,
-}: Props) => {
+const RecipeCard = ({recipe}: Props) => {
+  const {recipeName, notation, numberNotation, duration, source} = recipe
+  const navigation = useNavigation()
+
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('Recipe', {recipe: recipe})}>
       <View style={styles.informations}>
         <View>
           <Text style={styles.recipeName}>{capitalize(recipeName)}</Text>

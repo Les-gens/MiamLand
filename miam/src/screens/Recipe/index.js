@@ -17,10 +17,10 @@ const Recipe = () => {
         <View style={styles.topElements}>
           <View style={styles.left}>
             <Text style={styles.title}>{title}</Text>
+            <Notation numberNotation={150} notation={5} />
           </View>
           <View style={styles.right}>
             <DurationIndicator duration={10} />
-            <Notation numberNotation={150} notation={5} />
           </View>
         </View>
         <View style={styles.bottomElements}>
