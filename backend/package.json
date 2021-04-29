@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/Les-gens/MiamLand#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "fastify": "^3.14.1",
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.3",
