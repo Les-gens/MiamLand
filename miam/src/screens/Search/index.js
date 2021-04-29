@@ -2,7 +2,7 @@ import React from 'react'
 import {Text, ScrollView, View, Image} from 'react-native'
 import {useTranslation} from 'react-i18next'
 import {RecipeCard, SearchBar} from '../../components'
-
+import {Recipe} from '../../models/Recipe'
 import Heart from '../../assets/svg/heart.svg'
 import jambon from '../../assets/img/jambon.jpg'
 import styles from './styles'
@@ -11,13 +11,7 @@ import {colors} from '../../theme'
 const Search = () => {
   const {t, i18n} = useTranslation()
   let list = []
-  const RECIPE = {
-    duration: 10,
-    recipeName: 'Endives au jambon',
-    notation: 4,
-    numberNotation: 10,
-    source: jambon,
-  }
+  const RECIPE = new Recipe('Endives au jambon', 4, 10, 10, jambon)
   for (let i = 0; i < 5; i++) {
     list.push(<RecipeCard recipe={RECIPE} />)
   }

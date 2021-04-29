@@ -6,15 +6,15 @@ import {capitalize} from '../../helpers/stringHelpers'
 import DurationIndicator from '../DurationIndicator'
 import styles from './styles'
 import {Notation} from '../index'
+import {Recipe} from '../../models/Recipe'
 /* this is a component that displays recipes on the home page */
 
 interface Props {
-  recipe: Record<string, any>
-  onPress: () => void
+  recipe: Recipe
 }
 
 const RecipeCard = ({recipe}: Props) => {
-  const {recipeName, notation, numberNotation, duration, source} = recipe
+  const {name, notation, totalNotations, duration, image} = recipe
   const navigation = useNavigation()
 
   return (
@@ -23,12 +23,12 @@ const RecipeCard = ({recipe}: Props) => {
       onPress={() => navigation.navigate('Recipe', {recipe: recipe})}>
       <View style={styles.informations}>
         <View>
-          <Text style={styles.recipeName}>{capitalize(recipeName)}</Text>
-          <Notation numberNotation={numberNotation} notation={notation} />
+          <Text style={styles.recipeName}>{capitalize(name)}</Text>
+          <Notation numberNotation={totalNotations} notation={notation} />
         </View>
         <DurationIndicator duration={duration} />
       </View>
-      <Image style={styles.image} source={source} />
+      <Image style={styles.image} source={image} />
     </TouchableOpacity>
   )
 }
