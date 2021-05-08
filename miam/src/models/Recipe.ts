@@ -1,4 +1,4 @@
-export class Recipe {
+export default class Recipe {
   name: string
   notation: number
   image: number
