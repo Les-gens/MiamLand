@@ -13,6 +13,9 @@ const Recipe = sequelize.define('recipe', {
   },
   description: {
     type: DataTypes.STRING
+  },
+  filename: {
+    type: DataTypes.STRING(50)
   }
 }, {
   // Other model options go here
