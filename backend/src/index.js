@@ -8,7 +8,10 @@ import Recipe from "./models/Recipe.js";
 import Step from "./models/Step.js";
 import Fridge from "./models/Fridge.js";
 
+import ingredientRoutes from './routes/ingredientRoutes.js';
+import unitRoutes from './routes/unitRoutes.js';
 
+const baseRoutes = [ingredientRoutes, unitRoutes];
 const server = fastify({ logger: true });
 
 // /!\ Remove force sync when in prod
@@ -17,6 +20,10 @@ const synchronize = async () => await sequelize.sync({force:true});
 // Default route
 server.get('/', async (req, res) => {
   return { Message: 'Welcome to MiamLand API' };
+});
+
+baseRoutes.forEach((routes) => {
+  routes.forEach((route) => server.route(route));
 });
 
 // Run the server
