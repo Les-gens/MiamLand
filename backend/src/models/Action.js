@@ -7,6 +7,9 @@ const Action = sequelize.define('action', {
     type: DataTypes.STRING(50),
     allowNull: false,
     primaryKey: true
+  },
+  filename: {
+    type: DataTypes.STRING(50)
   }
 }, {
   // Other model options go here
