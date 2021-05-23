@@ -9,30 +9,30 @@ const Step = sequelize.define('step', {
     primaryKey: true
   },
   ingredientID: {
-    type: sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     references: {
-      model: 'ingredient',
+      model: 'ingredients',
       key: 'ingredientID'
     }
   },
   unitID: {
-    type: sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     references: {
-      model: 'unit',
+      model: 'units',
       key: 'unitID'
     }
   },
-  actionID: {
-    type: sequelize.INTEGER,
+  action: {
+    type: DataTypes.STRING,
     references: {
-      model: 'action',
-      key: 'actionID'
+      model: 'actions',
+      key: 'actionStep'
     }
   },
   recipeID: {
-    type: sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     references: {
-      model: 'recipe',
+      model: 'recipes',
       key: 'recipeID'
     }
   }

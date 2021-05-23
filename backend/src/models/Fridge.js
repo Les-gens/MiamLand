@@ -1,5 +1,6 @@
 import sequelize from '../config.js';
 import pkg from 'sequelize';
+import User from './User.js';
 const { DataTypes } = pkg;
 
 const Fridge = sequelize.define('fridge', {
@@ -8,24 +9,24 @@ const Fridge = sequelize.define('fridge', {
     allowNull: false,
     primaryKey: true
   },
-  userID: {
-    type: sequelize.INTEGER,
+  ID: {
+    type: DataTypes.INTEGER,
     references: {
-      model: 'user',
+      model: 'users',
       key: 'userID'
     }
   },
   ingredientID: {
-    type: sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     references: {
-      model: 'ingredient',
+      model: 'ingredients',
       key: 'ingredientID'
     }
   },
   unitID: {
-    type: sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     references: {
-      model: 'unit',
+      model: 'units',
       key: 'unitID'
     }
   }

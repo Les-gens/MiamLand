@@ -1,6 +1,13 @@
 import fastify from 'fastify';
 import sequelize from "./config.js";
+import Action from "./models/Action.js";
 import User from "./models/User.js";
+import Unit from "./models/Unit.js";
+import Ingredient from "./models/Ingredient.js";
+import Recipe from "./models/Recipe.js";
+import Step from "./models/Step.js";
+import Fridge from "./models/Fridge.js";
+
 
 const server = fastify({ logger: true });
 
