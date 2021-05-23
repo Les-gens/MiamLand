@@ -1,6 +1,6 @@
 import sequelize from '../config.js';
 import pkg from 'sequelize';
-import User from './User.js';
+
 const { DataTypes } = pkg;
 
 const Fridge = sequelize.define('fridge', {
