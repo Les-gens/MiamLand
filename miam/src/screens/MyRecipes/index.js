@@ -23,7 +23,7 @@ const MyRecipes = () => {
     return(
       <>
         <View style={styles.topContainer}>
-          <Plus onPress={()=>{}} width={25} height={25} fill={colors.textWhite} style={styles.plusButton}/> 
+          <Plus onPress={()=>{navigation.push('NewRecipe')}} width={25} height={25} fill={colors.textWhite} style={styles.plusButton}/> 
           <Text style={styles.title}>{t('my_recipes')}</Text>
         </View>
         <ScrollView>
