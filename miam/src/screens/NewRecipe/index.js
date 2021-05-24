@@ -3,9 +3,9 @@ import { View } from 'react-native'
 
 const NewRecipe = () => {
     return(
-        <View>
+      <View>
             
-        </View>
+      </View>
     )
 }
 

@@ -6,7 +6,7 @@ import {capitalize} from '../../helpers/stringHelpers'
 import DurationIndicator from '../DurationIndicator'
 import styles from './styles'
 import {Notation} from '../index'
-import {Recipe} from '../../models/Recipe'
+import {Recipe} from '../../models/'
 /* this is a component that displays recipes on the home page */
 
 interface Props {

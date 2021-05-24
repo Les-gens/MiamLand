@@ -7,8 +7,11 @@ import {Settings, Fridge, MyRecipes} from '../screens/index'
 import {colors} from '../theme'
 import {tabIcon} from '../helpers/navigatorHelpers'
 import SearchStack from './SearchRecipeNavigator/SearchStack'
+import { createStackNavigator } from '@react-navigation/stack'
+import MyRecipeStack from './MyRecipeNavigator/MyRecipeStack'
 
 const Tab = createBottomTabNavigator()
+const Stack = createStackNavigator()
 
 export default function MainNavigator() {
   return (
@@ -29,7 +32,7 @@ export default function MainNavigator() {
             backgroundColor: colors.grey2,
           },
         }}>
-        <Tab.Screen name="MyRecipes" component={MyRecipes} />
+        <Tab.Screen name="MyRecipes" component={MyRecipeStack} />
         <Tab.Screen name="Fridge" component={Fridge} />
         <Tab.Screen name="Search" component={SearchStack} />
         <Tab.Screen name="Settings" component={Settings} />
