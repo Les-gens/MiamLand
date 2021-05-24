@@ -1,4 +1,4 @@
-class Recipe {
+export default class Recipe {
   name: string
   notation: number
   image: number
@@ -14,4 +14,4 @@ class Recipe {
   }
 };
 
-export { Recipe };
+// export { Recipe };

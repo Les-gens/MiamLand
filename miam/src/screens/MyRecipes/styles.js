@@ -1,8 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  container: {
-
+  topContainer: {
+    height: '20%',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 25,
+    marginTop: '10%'
   },
   plusButton: {
     right: 10,
