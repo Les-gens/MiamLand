@@ -5,11 +5,19 @@ const { DataTypes } = pkg;
 const Ingredient = sequelize.define('ingredient', {
   ingredientID: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    autoIncrement: true,
     primaryKey: true
   },
   name: {
     type: DataTypes.STRING(50)
+  },
+  fridgeID: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    references: {
+      model: 'fridges',
+      key: 'fridgeID'
+    }
   }
 }, {
   // Other model options go here

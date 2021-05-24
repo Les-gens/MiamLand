@@ -28,7 +28,8 @@ const getSingleIngredient = async (req, res) => {
 const addNewIngredient = async (req, res) => {
   try {
     const ingredient = Ingredient.create({
-      name: req.body.name
+      name: req.body.name,
+      fridgeID: req.body?.fridgeID
     });
     return ingredient;
   } catch (err) {
@@ -38,8 +39,14 @@ const addNewIngredient = async (req, res) => {
 
 const updateIngredient = async (req, res) => {
   try {
-    const ingredient = Ingredient.update({
-      name: req.body.name
+    const ingredient = await Ingredient.update({
+      name: req.body?.name,
+      fridgeID: req.body?.fridgeID
+    },
+    {
+      where: {
+        IngredientID: req.params.id
+      }
     });
     return ingredient;
   } catch (err) {
@@ -49,7 +56,7 @@ const updateIngredient = async (req, res) => {
 
 const deleteIngredient = async (req, res) => {
   try {
-    const ingredient = Ingredient.destroy({
+    const ingredient = await Ingredient.destroy({
       IngredientID: req.params.id
     });
     return ingredient;

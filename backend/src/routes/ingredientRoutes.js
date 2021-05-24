@@ -1,4 +1,5 @@
 import { getAllIngredient, getSingleIngredient, addNewIngredient, updateIngredient, deleteIngredient } from '../controller/ingredientController.js';
+
 const routes = [
   {
     method: 'GET',
