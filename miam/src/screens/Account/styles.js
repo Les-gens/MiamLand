@@ -1,17 +1,17 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-    order:{
-      flexDirection: 'row',
-      alignItems: 'center',
+    bottomView:{
+      width: '98%',
+      height: 50,
       justifyContent: 'center',
-      marginTop: 30,
-    },
-    firstView:{
+      alignItems: 'flex-end',
       position: 'absolute',
       bottom:0,
+      margin:10,
     },
     button: {
+      bottom:0,
       alignItems: 'center',
       justifyContent: 'center',
       paddingVertical: 12,
@@ -22,6 +22,7 @@ export default StyleSheet.create({
       height: 50
     },
     text: {
+      bottom:0,
       fontSize: 16,
       lineHeight: 21,
       fontWeight: 'bold',

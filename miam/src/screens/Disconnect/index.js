@@ -8,7 +8,7 @@ const Disconnect = () => {
 
     return(
         <>
-            <View style={styles.firstView}>
+            <View style={styles.bottomView}>
                 <View>
                     <Pressable 
                     onPress={() => navigation.goBack()}
