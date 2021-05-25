@@ -4,8 +4,10 @@ import jambon from '../../assets/img/jambon.jpg'
 import styles from './styles'
 import {Ingredient} from '../../models/Ingredient'
 import {IngredientCard, SearchBar} from '../../components'
+import {useNavigation} from '@react-navigation/native'
 
 const Fridge = () => {
+    const navigation = useNavigation()
     let list = []
     const INGREDIENT = new Ingredient('jambon', jambon, 20, 'gramme')
     for (let i = 0; i < 10; i++) {
@@ -25,7 +27,8 @@ const Fridge = () => {
                             : 'grey'
                         },
                         styles.button
-                    ]}>
+                    ]}
+                    onPress = {() => {navigation.navigate('AddIngredient')}}>
                         <Text style={styles.text}>{'Add'}</Text>
                     </Pressable>
                     <Pressable style={({ pressed }) => [
