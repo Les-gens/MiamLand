@@ -14,6 +14,7 @@ export default function MyRecipeStack() {
         cardStyle: {backgroundColor: colors.primaryGrey},
       }}>
       <Stack.Screen name="MyRecipes" component={MyRecipes} />
+      <Stack.Screen name="Recipe" component={Recipe} />
 
       <Stack.Screen name="NewRecipe" component={NewRecipe}/>
       
