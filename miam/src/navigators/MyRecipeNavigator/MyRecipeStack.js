@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
 
-import {MyRecipes, NewRecipe} from '../../screens/index'
+import {MyRecipes, NewRecipe, Recipe} from '../../screens/index'
 import {colors} from '../../theme'
 
 const Stack = createStackNavigator()
