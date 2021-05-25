@@ -2,15 +2,16 @@ import {StyleSheet} from 'react-native'
 import {colors} from '../../theme'
 
 export default StyleSheet.create({
-  container: {
-    backgroundColor: colors.yellow2,
+  buttonContainer: {
+    backgroundColor: colors.yellow1,
+    width: '50%',
+    height: 45,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 95,
-    height: 43,
-    borderRadius: 10,
   },
-  text: {
+  label: {
+    fontSize: 17,
     color: colors.grey3,
   },
 })
