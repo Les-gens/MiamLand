@@ -18,8 +18,6 @@ export default function MyRecipeStack() {
       <Stack.Screen name="Recipe" component={Recipe} />
 
       <Stack.Screen name="NewRecipe" component={NewRecipe}/>
-
-      <Stack.Screen name="AddIngredient" component={AddIngredient}/>
       
     </Stack.Navigator>
   )

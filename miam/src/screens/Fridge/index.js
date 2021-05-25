@@ -38,7 +38,8 @@ const Fridge = () => {
                             : 'grey'
                         },
                         styles.button
-                    ]}>
+                    ]}
+                    onPress = {() => {navigation.navigate('RemoveIngredient')}}>
                         <Text style={styles.text}>{'Remove'}</Text>
                     </Pressable>
                 </View>
