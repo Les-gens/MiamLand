@@ -3,7 +3,7 @@ import { Pressable, Text, View } from 'react-native'
 import styles from './styles'
 import {useNavigation} from '@react-navigation/native'
 
-const Account = () => {
+const Disconnect = () => {
     const navigation = useNavigation()
 
     return(
@@ -28,4 +28,4 @@ const Account = () => {
     )
 }
 
-export default Account
+export default Disconnect

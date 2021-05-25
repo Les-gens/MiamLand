@@ -7,6 +7,7 @@ import {Settings, Fridge, MyRecipes} from '../screens/index'
 import {colors} from '../theme'
 import {tabIcon} from '../helpers/navigatorHelpers'
 import SearchStack from './SearchRecipeNavigator/SearchStack'
+import SettingStack from './SettingNavigator/SettingStack'
 import { createStackNavigator } from '@react-navigation/stack'
 import MyRecipeStack from './MyRecipeNavigator/MyRecipeStack'
 
@@ -35,7 +36,7 @@ export default function MainNavigator() {
         <Tab.Screen name="MyRecipes" component={MyRecipeStack} />
         <Tab.Screen name="Fridge" component={Fridge} />
         <Tab.Screen name="Search" component={SearchStack} />
-        <Tab.Screen name="Settings" component={Settings} />
+        <Tab.Screen name="Settings" component={SettingStack} />
       </Tab.Navigator>
     </NavigationContainer>
   )

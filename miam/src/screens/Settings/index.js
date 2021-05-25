@@ -1,14 +1,18 @@
 import React from 'react'
 import styles from './styles'
 import { Pressable, View, Alert, Text } from 'react-native';
+import {useNavigation} from '@react-navigation/native'
 
 const Settings = () => {
+    const navigation = useNavigation()
     
     return(
         <>
       <View style={styles.firstView}>
         <View style={styles.order}>
-            <Pressable style={({ pressed }) => [
+            <Pressable 
+                onPress={() => navigation.navigate('Account')}
+                style={({ pressed }) => [
                 {
                     backgroundColor: pressed
                     ? 'darkgrey'
@@ -20,7 +24,9 @@ const Settings = () => {
             </Pressable>
         </View>
         <View style={styles.order}>
-            <Pressable style={({ pressed }) => [
+            <Pressable 
+                onPress={() => navigation.navigate('Infos')}
+                style={({ pressed }) => [
                 {
                     backgroundColor: pressed
                     ? 'darkgrey'
@@ -32,7 +38,9 @@ const Settings = () => {
             </Pressable>
         </View>
         <View style={styles.order}>
-            <Pressable style={({ pressed }) => [
+            <Pressable 
+                onPress={() => navigation.navigate('Disconnect')}
+                style={({ pressed }) => [
                 {
                     backgroundColor: pressed
                     ? 'darkgrey'
