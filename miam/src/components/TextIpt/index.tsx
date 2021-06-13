@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import { TextInput } from "react-native"
 import { colors } from "../../theme"
 import styles from "./styles"
@@ -8,8 +8,10 @@ interface Props {
 }
 
 const TextIpt = ({placeholder}: Props) => {
+  const [isFocused, setIsFocused] = useState(false)
+  useEffect(()=>{}, [isFocused])
   return (
-    <TextInput placeholderTextColor={colors.grey5} placeholder={placeholder} style={styles.input}/>
+    <TextInput onFocus={()=>setIsFocused(true)} onBlur={()=>setIsFocused(false)} placeholderTextColor={colors.grey5} placeholder={placeholder} style={isFocused ? styles.input_focused: styles.input}/>
   )
 }
 

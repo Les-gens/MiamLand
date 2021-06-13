@@ -7,5 +7,11 @@ export default StyleSheet.create({
     borderBottomColor: colors.grey5,
     color: colors.textWhite,
     fontSize: 16
+  },
+  input_focused:{
+    borderBottomWidth: 1,
+    borderBottomColor: colors.textWhite,
+    color: colors.textWhite,
+    fontSize: 16
   }
 })
