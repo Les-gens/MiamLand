@@ -5,6 +5,7 @@ export default StyleSheet.create({
   container: {
     alignItems: 'center',
     height: '100%',
+    backgroundColor: colors.grey4
   },
   title: {
     fontSize: 24,
@@ -47,7 +48,6 @@ export default StyleSheet.create({
   image: {
     width: '100%',
     height: '30%',
-    resizeMode: 'stretch',
   },
   recipeContainer: {
     flexDirection: 'column',
@@ -56,8 +56,7 @@ export default StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     marginTop: '45%',
-    height: '74%',
-    width: '100%',
+
     backgroundColor: colors.grey4,
     borderColor: 'red',
   },
