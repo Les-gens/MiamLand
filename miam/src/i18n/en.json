@@ -5,5 +5,10 @@
     "stove": "To the stove !",
     "my_recipes": "My Recipes",
     "title": "Title",
-    "pumpkin_pie": "Pumpkin Pie"
+    "pumpkin_pie": "Pumpkin Pie",
+    "welcome": "Welcome !",
+    "username": "Username",
+    "password": "Password",
+    "signin": "Sign in",
+    "signup": "Sign up"
 }

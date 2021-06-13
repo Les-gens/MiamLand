@@ -5,5 +5,12 @@
     "stove": "Aux fourneaux !",
     "my_recipes": "Mes Recettes",
     "title": "Titre",
-    "pumpkin_pie": "Tarte a la citrouille"
+    "pumpkin_pie": "Tarte a la citrouille",
+    "welcome": "Bienvenue !",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "signin": "Se connecter",
+    "signup": "S'inscrire"
+
+
 }
