@@ -1,4 +1,4 @@
-import {Recipe, User} from '../models/'
+import {Recipe, User} from '../models'
 
 const getUser = (userId: number): User => {
   return new User('toto')
