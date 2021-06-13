@@ -11,20 +11,18 @@ interface Props {
 }
 
 const IngredientCard = ({ingredient}: Props) => {
-  const {name, image, weight, measure} = ingredient
+  const {name, image} = ingredient
   const navigation = useNavigation()
 
   return (
     <>
       <View style={styles.order}>
+      <View>
+          <Text style={styles.text}>{name}</Text>
+        </View>
+
         <View style={styles.container}>
           <Image style={styles.image} source={image} />
-        </View>
-        <View style={styles.container}>
-          <Text>{name}</Text>
-        </View>
-        <View style={styles.container}>
-          <Text>{weight + ' ' + measure}</Text>
         </View>
       </View>
     </>

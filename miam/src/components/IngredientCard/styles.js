@@ -6,8 +6,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    height: 90,
-    width: '20%',
+    height: 160,
+    width: 140,
     backgroundColor: colors.grey4,
     borderRadius: 12,
     marginRight: 20,
@@ -22,9 +22,18 @@ export default StyleSheet.create({
   },
   image: {
     borderRadius: 50,
-    height: 80,
-    width: 80,
+    height: 160,
+    width: 140,
     resizeMode: 'stretch',
     margin: 20
+  },
+  text: {
+    margin: 20,
+    bottom:0,
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
   },
 })

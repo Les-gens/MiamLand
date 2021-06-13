@@ -9,7 +9,7 @@ import {useNavigation} from '@react-navigation/native'
 const Fridge = () => {
     const navigation = useNavigation()
     let list = []
-    const INGREDIENT = new Ingredient('jambon', jambon, 20, 'gramme')
+    const INGREDIENT = new Ingredient('Jambon', jambon)
     for (let i = 0; i < 10; i++) {
         list.push(<IngredientCard ingredient={INGREDIENT} />)
     }
@@ -29,18 +29,7 @@ const Fridge = () => {
                         styles.button
                     ]}
                     onPress = {() => {navigation.navigate('AddIngredient')}}>
-                        <Text style={styles.text}>{'Add'}</Text>
-                    </Pressable>
-                    <Pressable style={({ pressed }) => [
-                        {
-                          backgroundColor: pressed
-                            ? 'darkgrey'
-                            : 'grey'
-                        },
-                        styles.button
-                    ]}
-                    onPress = {() => {navigation.navigate('RemoveIngredient')}}>
-                        <Text style={styles.text}>{'Remove'}</Text>
+                        <Text style={styles.text}>{'Ajout ou Retrait'}</Text>
                     </Pressable>
                 </View>
             </View>
