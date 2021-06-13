@@ -1,5 +1,5 @@
 import React from 'react'
-import useState, {View, Text, Image} from 'react-native'
+import useState, {View, Text, Image,ScrollView} from 'react-native'
 import {useTranslation} from 'react-i18next'
 import styles from './styles'
 
@@ -11,7 +11,9 @@ const Recipe = () => {
   const {t, i18n} = useTranslation()
 
   return (
-    <View style={styles.container}>
+   
+    <ScrollView contentContainerStyle={styles.container}>
+      
       <Image style={styles.image} source={jambon} />
       <View style={styles.recipeContainer}>
         <View style={styles.topElements}>
@@ -30,7 +32,8 @@ const Recipe = () => {
           </View>
         </View>
       </View>
-    </View>
+    
+    </ScrollView>
   )
 }
 
