@@ -5,7 +5,7 @@ const { DataTypes } = pkg;
 const Step = sequelize.define('step', {
   stepID: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    autoIncrement: true,
     primaryKey: true
   },
   ingredientID: {
@@ -15,19 +15,8 @@ const Step = sequelize.define('step', {
       key: 'ingredientID'
     }
   },
-  unitID: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'units',
-      key: 'unitID'
-    }
-  },
   action: {
-    type: DataTypes.STRING,
-    references: {
-      model: 'actions',
-      key: 'actionStep'
-    }
+    type: DataTypes.STRING
   },
   recipeID: {
     type: DataTypes.INTEGER,

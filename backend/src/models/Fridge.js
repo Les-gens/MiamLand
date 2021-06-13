@@ -6,28 +6,14 @@ const { DataTypes } = pkg;
 const Fridge = sequelize.define('fridge', {
   fridgeID: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    autoIncrement: true,
     primaryKey: true
   },
-  ID: {
+  userID: {
     type: DataTypes.INTEGER,
     references: {
       model: 'users',
       key: 'userID'
-    }
-  },
-  ingredientID: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'ingredients',
-      key: 'ingredientID'
-    }
-  },
-  unitID: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'units',
-      key: 'unitID'
     }
   }
 }, {

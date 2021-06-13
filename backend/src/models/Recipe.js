@@ -5,7 +5,7 @@ const { DataTypes } = pkg;
 const Recipe = sequelize.define('recipe', {
   recipeID: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    autoIncrement: true,
     primaryKey: true
   },
   name: {

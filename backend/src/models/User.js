@@ -5,7 +5,7 @@ const { DataTypes } = pkg;
 const User = sequelize.define('user', {
   userID: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    autoIncrement: true,
     primaryKey: true
   },
   firstName: {
@@ -18,6 +18,9 @@ const User = sequelize.define('user', {
     type: DataTypes.STRING(50)
   },
   password: {
+    type: DataTypes.STRING
+  },
+  email: {
     type: DataTypes.STRING
   }
 }, {
