@@ -38,6 +38,7 @@ const PORT = 8000 || process.env.PORT;
 const startServer = async () => {
   try {
     await server.listen(PORT);
+    console.log(`Server running on 127.0.0.1:${PORT}`);
   } catch (err) {
     server.log.error(err);
     process.exit(1);
