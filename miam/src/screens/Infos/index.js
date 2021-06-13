@@ -9,14 +9,14 @@ const Infos = () => {
     return(
         <>
             <View style={styles.centralView}>
-                <Text>MiamLand</Text>
-                <Text>Projet réalisé à la FGES, en cours de Ac'Lab</Text>
+                <Text style={styles.text}>MiamLand</Text>
+                <Text style={styles.text}>Projet réalisé à la FGES, en cours de Ac'Lab</Text>
                 <Text></Text>
-                <Text>Réalisé par :</Text>
-                <Text>Neel-Léo Coffin</Text>
-                <Text>Mathieu Degand</Text>
-                <Text>François Lannoy</Text>
-                <Text>Arthur Verzele</Text>
+                <Text style={styles.text}>Réalisé par :</Text>
+                <Text style={styles.text}>Neel-Léo Coffin</Text>
+                <Text style={styles.text}>Mathieu Degand</Text>
+                <Text style={styles.text}>François Lannoy</Text>
+                <Text style={styles.text}>Arthur Verzele</Text>
             </View>
             <View style={styles.bottomView}>
                 <View>
