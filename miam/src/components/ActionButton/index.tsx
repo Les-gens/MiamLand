@@ -4,13 +4,14 @@ import styles from './styles'
 
 interface Props {
   label: number
+  onpress: ()=>void
 }
-const DurationIndicator = ({label}: Props) => {
+const ActionButton = ({label, onpress}: Props) => {
   return (
-    <TouchableOpacity style={styles.buttonContainer}>
+    <TouchableOpacity onPress={onpress} style={styles.buttonContainer}>
       <Text style={styles.label}>{label}</Text>
     </TouchableOpacity>
   )
 }
 
-export default DurationIndicator
+export default ActionButton

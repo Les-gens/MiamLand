@@ -5,7 +5,7 @@ export default StyleSheet.create({
   input:{
     borderBottomWidth: 1,
     borderBottomColor: colors.grey5,
-    width: '50%',
-    
+    color: colors.textWhite,
+    fontSize: 16
   }
 })

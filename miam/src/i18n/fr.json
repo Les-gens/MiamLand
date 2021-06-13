@@ -10,7 +10,8 @@
     "username": "Nom d'utilisateur",
     "password": "Mot de passe",
     "signin": "Se connecter",
-    "signup": "S'inscrire"
-
+    "signup": "S'inscrire",
+    "cta_signin": "J'ai déjà un compte !",
+    "cta_signup": "Je n'ai pas de compte !"
 
 }
