@@ -3,18 +3,15 @@ import styles from './styles'
 import { Pressable, View, Text } from 'react-native';
 import {useNavigation} from '@react-navigation/native'
 import { clearToken } from '../../auth/token';
+import { useTranslation } from 'react-i18next';
 
 const Settings = ({route}) => {
     const navigation = useNavigation()
+    const {t} = useTranslation()
 
-    const disconnect = (e)=>{
-      console.log('disconnecting...')
-
-      
-    }
     return(
-        <>
       <View style={styles.firstView}>
+        <Text style={styles.title}>{t("Settings")}</Text>
         <View style={styles.order}>
             <Pressable 
                 onPress={() => navigation.navigate('Account')}
@@ -62,7 +59,6 @@ const Settings = ({route}) => {
             </Pressable>
         </View>
       </View>
-    </>
     )
 }
 
