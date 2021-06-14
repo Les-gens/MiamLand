@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {View, Text, Pressable} from 'react-native'
+import {View, Text, Pressable, ToastAndroid} from 'react-native'
 import { Saladier } from '../../assets/index.js'
 import styles from './styles.js'
 import { colors } from '../../theme/index.js'
@@ -36,6 +36,8 @@ const Auth = ({route}) => {
           route.params.setUserToken(res.data.token)
 
         })
+      } else {
+        ToastAndroid.show("Confirm password is not the same", ToastAndroid.SHORT)
       }
     }
   }
