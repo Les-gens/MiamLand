@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native'
+import { Colors } from 'react-native/Libraries/NewAppScreen'
 import {colors} from '../../theme'
 
 export default StyleSheet.create({
@@ -32,12 +33,25 @@ export default StyleSheet.create({
     width: '100%',
     alignItems: 'center',
   },
+  textIngredients: {
+    color: '#FFFFFF',
+    paddingBottom:20,
+  },
+  buttonStove: {
+    color: '#D8A600',
+  },
   startButton: {
     // marginBottom: 60,
     justifyContent: 'center',
-    height: '25%',
-    width: '100%',
+    width: '50%',
+    height: '70%',
     alignItems: 'center',
+    borderRadius: 10,
+  },
+  plusButton: {
+    right: 10,
+    top: 10,
+    position: 'absolute',
   },
   bottomElements: {
     width: '100%',
@@ -60,4 +74,5 @@ export default StyleSheet.create({
     backgroundColor: colors.grey4,
     borderColor: 'red',
   },
+  
 })
