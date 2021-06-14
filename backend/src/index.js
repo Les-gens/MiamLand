@@ -2,7 +2,6 @@ import fastify from 'fastify';
 import sequelize from './config.js';
 import fastifyMultipart from 'fastify-multipart';
 import fastifyJWT from 'fastify-jwt';
-import fs from 'fs';
 import path from 'path';
 import ingredientRoutes from './routes/ingredientRoutes.js';
 import userRoutes from './routes/userRoutes.js';
@@ -10,7 +9,8 @@ import fridgeRoutes from './routes/fridgeRoutes.js';
 import recipeRoutes from './routes/recipeRoutes.js';
 import stepRoutes from './routes/stepRoutes.js';
 import fastifyStatic from 'fastify-static';
-
+import fakeData from './models/fakeData.js';
+const env = process.env.NODE_ENV || 'devlopment';
 
 const baseRoutes = [ingredientRoutes, userRoutes, fridgeRoutes, recipeRoutes, stepRoutes];
 const server = fastify({ logger: true });
@@ -18,8 +18,8 @@ server.register(fastifyMultipart);
 server.register(fastifyJWT, { secret: (process.env.JWT_SECRET || 'imabanana') });
 server.register(fastifyStatic, { root: path.join(path.resolve(), 'uploads'), prefix: '/uploads/' });
 
-// /!\ Remove force sync when in prod
 const synchronize = async () => await sequelize.sync({ force: true });
+const fakeLoad = async () => await fakeData();
 
 server.decorate('authenticate', async function (req, res) {
   try {
@@ -38,11 +38,10 @@ server.get('/images/:image', async (req, res) => {
   res.sendFile(req.params.image);
 });
 
-
 baseRoutes.forEach((routes) => {
   routes.forEach((route) => {
-    if (route.url !== '/api/signup' && route.url !== '/api/login') { 
-      route.preValidation = [server.authenticate]; 
+    if (route.url !== '/api/signup' && route.url !== '/api/login') {
+      route.preValidation = [server.authenticate];
     }
     server.route(route);
   });
@@ -53,6 +52,10 @@ const PORT = 8000 || process.env.PORT;
 const startServer = async () => {
   try {
     await server.listen(PORT);
+    if (env === 'devlopment') {
+      await synchronize();
+      await fakeLoad();
+    }
     console.log(`Server running on 127.0.0.1:${PORT}`);
   } catch (err) {
     server.log.error(err);
@@ -62,5 +65,4 @@ const startServer = async () => {
 
 export default server;
 
-synchronize();
 startServer();

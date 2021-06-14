@@ -1,5 +1,6 @@
 import Fridge from '../models/Fridge.js';
 import pkg from 'boom';
+import Ingredient from '../models/Ingredient.js';
 const boom = pkg;
 
 const getAllFridge = async (req, res) => {
@@ -20,6 +21,26 @@ const getSingleFridgeByID = async (req, res) => {
       }
     });
     return fridge;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
+const getIngredientsFridge = async (req, res) => {
+  try {
+    const userID = req.user.userID;
+    console.log(userID);
+    const fridge = await Fridge.findOne({
+      where: {
+        userID
+      }
+    });
+    const ingredients = await Ingredient.findAll({
+      where: {
+        fridgeID: fridge.fridgeID
+      }
+    });
+    return ingredients;
   } catch (err) {
     throw boom.boomify(err);
   }
@@ -77,4 +98,4 @@ const deleteFridge = async (req, res) => {
   }
 };
 
-export { getAllFridge, getSingleFridgeByID, getSingleFridgeByUser, addNewFridge, updateFridge, deleteFridge };
+export { getAllFridge, getIngredientsFridge, getSingleFridgeByID, getSingleFridgeByUser, addNewFridge, updateFridge, deleteFridge };

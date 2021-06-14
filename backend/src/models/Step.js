@@ -10,6 +10,7 @@ const Step = sequelize.define('step', {
   },
   ingredientID: {
     type: DataTypes.INTEGER,
+    allowNull: true,
     references: {
       model: 'ingredients',
       key: 'ingredientID'
