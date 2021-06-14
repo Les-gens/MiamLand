@@ -3,15 +3,17 @@ import styles from './styles'
 import { Pressable, View, Alert, Text } from 'react-native';
 import {useNavigation} from '@react-navigation/native'
 import { signout } from '../../api_calls/user';
+import { clearToken } from '../../auth/token';
 
-const Settings = () => {
+const Settings = ({route}) => {
     const navigation = useNavigation()
 
     const disconnect = (e)=>{
       console.log('disconnecting...')
-      signout().then(()=>{
-        console.log('disconnected !')
-        navigation.reset({})
+
+      signout().then((res)=>{
+        route.params.setUserToken('')
+
       })
     }
     return(
