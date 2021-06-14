@@ -12,6 +12,21 @@ const AddIngredient = () => {
     const [selected, setSelected] = useState(false)
 
 
+    const getFridgeId = () => {
+        console.log("fridge id")
+    }
+
+    const sendIngredient = () => {
+        let fId = getFridgeId()
+
+        if(!isEnabled){
+            console.log("add")
+            // do post request whith fridge id
+        }else{
+            console.log("delete")
+            // do delete request with fridge id
+        }
+    }
     return(
         <>
             <View style={styles.container}>
@@ -34,6 +49,7 @@ const AddIngredient = () => {
                 </View>
 
                 <Pressable
+                onPress={ () => {sendIngredient()}}
                     style={({ pressed }) => [{
                         backgroundColor: pressed
                         ? 'darkgrey'
