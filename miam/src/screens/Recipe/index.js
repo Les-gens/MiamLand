@@ -6,9 +6,18 @@ import {useNavigation} from '@react-navigation/native'
 
 import {ActionButton, DurationIndicator, Notation} from '../../components'
 import jambon from '../../assets/img/jambon.jpg'
+
+
+/*TODO
+  récupérer id avec les props navigation const Recipe = ({route, navigation}) => ...
+  const {id} = route.params;
+
+  afficher les ingrédients de la recette
+
+  envoyer l'id aux steps
+  */
+
 const title = 'Endives au jambon'
-
-
 const Recipe = () => {
   const {t, i18n} = useTranslation()
   const navigation = useNavigation()

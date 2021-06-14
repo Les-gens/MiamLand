@@ -4,6 +4,10 @@ import styles from './styles';
 import { Saladier } from '../../assets/index.js'
 import {colors} from '../../theme'
 
+/*TODO
+fetch avec l'id déjà réucpérer en param et le stock dans le tableau tab
+*/
+
 const Step = ({route, navigation}) => {
 
   const {id} = route.params;
