@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Pressable, Text, View } from 'react-native'
+import { Pressable, Text, View, TextInput } from 'react-native'
 import styles from './styles'
 import {useNavigation} from '@react-navigation/native'
 
@@ -12,20 +12,28 @@ const Account = () => {
 
     return(
         <>
-            
-            <Text>Vous avez clique {count} fois</Text>
-            <Pressable 
-                onPress={() => setCount(count +1)}
-                style={({ pressed }) => [
-                    {
+            <View style={styles.container}>
+                <Text>Nom d'utilisateur</Text>
+                <TextInput style={styles.textInput} 
+                placeholder="Nom d'utilisateur"
+                placeholderTextColor="#f8f8f8"
+                underlineColorAndroid={'transparent'} />
+
+                <Text>Mot de passe</Text>
+                <TextInput style={styles.textInput} 
+                placeholder="Mot de passe"
+                placeholderTextColor="#f8f8f8"
+                underlineColorAndroid={'transparent'} />
+
+                <Pressable
+                    style={({ pressed }) => [{
                         backgroundColor: pressed
                         ? 'darkgrey'
                         : 'grey'
-                    },
-                    styles.button
-            ]}>
-                <Text style={styles.text}>{'Clique ici'}</Text>
-            </Pressable>
+                    }, styles.button]}>
+                    <Text style={styles.text}>{'Modifier'}</Text>
+                </Pressable>
+            </View>
 
             
             <View style={styles.bottomView}>
