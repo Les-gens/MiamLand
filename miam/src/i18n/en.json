@@ -12,5 +12,6 @@
     "signin": "Sign in",
     "signup": "Sign up",
     "cta_signin": "I already have an account !",
-    "cta_signup": "I haven’t signed up yet !"
+    "cta_signup": "I haven’t signed up yet !",
+    "confirm_password": "Confirm password"
 }

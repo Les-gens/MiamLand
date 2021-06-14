@@ -29,4 +29,19 @@ export default StyleSheet.create({
       letterSpacing: 0.25,
       color: 'white',
     },
+    container:{
+      flex: 1,
+      justifyContent: 'center',
+      paddingRight: 60,
+      paddingLeft: 60,
+      alignSelf: 'stretch',
+    },
+    textInput: {
+      alignSelf: 'stretch',
+      height: 40,
+      marginBottom: 30,
+      color: '#fff',
+      borderBottomColor: '#f8f8f8',
+      borderBottomWidth: 1,
+    },
 })

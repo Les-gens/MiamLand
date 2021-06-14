@@ -12,6 +12,7 @@
     "signin": "Se connecter",
     "signup": "S'inscrire",
     "cta_signin": "J'ai déjà un compte !",
-    "cta_signup": "Je n'ai pas de compte !"
+    "cta_signup": "Je n'ai pas de compte !",
+    "confirm_password": "Confirmer mot de passe"
 
 }

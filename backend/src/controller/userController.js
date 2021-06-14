@@ -41,11 +41,8 @@ const addNewUser = async (req, res) => {
       })
       .catch(err => console.error(err.message));
     const user = await User.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
       userName: req.body.username,
-      password: hashed,
-      email: req.body.email
+      password: hashed
     });
     const payload = { userID: user.userID };
     const token = fastify.jwt.sign(payload);
@@ -69,18 +66,12 @@ const updateUser = async (req, res) => {
         })
         .catch(err => console.error(err.message));
       userObject = {
-        firstName: req.body?.firstName,
-        lastName: req.body?.lastName,
         userName: req.body?.username,
-        password: hashed, // TODO: Change for crypt
-        email: req.body?.email
+        password: hashed // TODO: Change for crypt
       };
     } else {
       userObject = {
-        firstName: req.body?.firstName,
-        lastName: req.body?.lastName,
-        userName: req.body?.username,
-        email: req.body?.email
+        userName: req.body?.username
       };
     }
     const user = await User.update(userObject, { where: { userID: req.params.id } });
