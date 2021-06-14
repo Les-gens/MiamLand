@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const clearToken = async () => {
   try {
     await AsyncStorage.setItem('@token', '')
+    return ''
   } catch (e) {
     console.error(e)
   }
