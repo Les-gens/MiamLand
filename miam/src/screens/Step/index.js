@@ -15,16 +15,14 @@ fetch avec l'id déjà réucpérer en param et le stock dans le tableau tab
 */
 
 const Step = ({route, navigation}) => {
-  let token;
   const {id} = route.params;
-  token = getToken();
   const[tab, setTab] = useState([])
   useEffect(() => {
   
   },[tab])
 
   useEffect(() => {
-      if(token){
+
         axios.get(`http://10.0.2.2:8000/api/steps/${id}/byRecipe`)
             .then(response => {
               let tab2 = [];
@@ -36,14 +34,10 @@ const Step = ({route, navigation}) => {
           }
             )
             .catch(error => {
-              console.log("token axios ",token._W)
                 console.error('There was an error!', error);
         });
-       }else{
-         console.log("zbi")
-       }
     }
-  ,[token]) 
+  ,[]) 
   //token = token._W;
     
     
