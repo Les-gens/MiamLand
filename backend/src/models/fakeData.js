@@ -3,11 +3,23 @@ import Ingredient from './Ingredient.js';
 import Recipe from './Recipe.js';
 import Step from './Step.js';
 import User from './User.js';
+import pkg from 'bcrypt';
+const bcrypt = pkg;
 
 const fakeData = async () => {
+  const plainPassword = 'toto';
+  let hashed = '';
+  await bcrypt.genSalt(10)
+    .then(salt => {
+      return bcrypt.hash(plainPassword, salt);
+    })
+    .then(hash => {
+      hashed = hash;
+    })
+    .catch(err => console.error(err.message));
   const user = await User.create({
-    username: 'toto',
-    password: 'toto'
+    userName: 'toto',
+    password: hashed
   });
   const fridge = await Fridge.create({
     userID: user.userID
