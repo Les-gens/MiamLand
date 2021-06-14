@@ -18,10 +18,15 @@ const Stack = createStackNavigator()
 
 export default function MainNavigator() {
   const [userToken, setUserToken] = useState('')
-  useEffect(()=>{}, [userToken])
+  useEffect(()=>{
+    console.log('UserToken has changed : ',userToken)
+  }, [userToken])
   useEffect(()=>{
     console.log('rendering mainnav with token : ',getToken())
-    setUserToken(getToken())
+    getToken().then((res)=>{
+      setUserToken(res)
+
+    })
   }, [])
   const mainNav = () => {
     return (
@@ -44,7 +49,7 @@ export default function MainNavigator() {
         <Tab.Screen name="MyRecipes" component={MyRecipeStack} />
         <Tab.Screen name="Fridge" component={FridgeStack} />
         <Tab.Screen name="Search" component={SearchStack} />
-        <Tab.Screen name="Settings" component={SettingStack} />
+        <Tab.Screen name="Settings" component={SettingStack} initialParams={{ setUserToken: setUserToken }}/>
       </Tab.Navigator>
     )
   }
@@ -58,14 +63,14 @@ export default function MainNavigator() {
         }}
       >
         
-        <Stack.Screen name="Auth" component={Auth}/>
+        <Stack.Screen name="Auth" component={Auth} initialParams={{ setUserToken: setUserToken }}/>
       </Stack.Navigator>
     )
   }
 
   return (
     <NavigationContainer>
-      { userToken != '' ? mainNav() : authNav() }
+      { userToken != '' && userToken != null ? mainNav() : authNav() }
       {/* { mainNav() } */}
     </NavigationContainer>
   )

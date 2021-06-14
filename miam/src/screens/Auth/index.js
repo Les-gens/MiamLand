@@ -8,7 +8,7 @@ import { ActionButton, TextIpt } from '../../components/index'
 import {signin, signup} from '../../api_calls/user.ts'
 import { useNavigation } from '@react-navigation/native'
 
-const Auth = () => {
+const Auth = ({route}) => {
   const { t } = useTranslation()
 
   const [signingin, setSigningin] = useState(true)
@@ -21,15 +21,20 @@ const Auth = () => {
 
   const submit = (e) => {
     if (signingin){
-      signin(username, password).then(()=>{
-        navigation.reset({})
+      signin(username, password).then((res)=>{
+        console.log('res: ',res)
+
+        route.params.setUserToken(res.data.token)
       }).catch((e)=>{
         console.error(e)
       })
     }else{
       if (confirm_password == password){
-        signup(username, password).then(()=>{
-          navigation.reset({})
+        signup(username, password).then((res)=>{
+          console.log('res: ',res)
+
+          route.params.setUserToken(res.data.token)
+
         })
       }
     }
