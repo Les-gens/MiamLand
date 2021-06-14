@@ -3,25 +3,28 @@ import { colors } from '../../theme'
 
 export default StyleSheet.create({
 
-    MainContainer: {
-        
-        justifyContent: 'center',
-        alignItems: 'center',
-        
-    },
-    buttonNext: {
-        color: '#D8A600'
-    },
-    stepText: {
-        margin:10,
-        color: '#FFFFFF'
-        },
+  MainContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+  buttonNext: {
+    color: '#D8A600'
+  },
+  stepText: {
+    margin:10,
+    color: '#FFFFFF'
+  },
   buttonStep: {
     flexDirection: "row",
   },
   buttonStepBack: {
     marginRight:"20%",
-  }
-        
+  },
+  backButton: {
+    fontSize: 25,
+    // alignSelf: 'flex-start',
+    // paddingLeft: '3%'
+  }    
 
 })

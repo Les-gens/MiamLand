@@ -1,6 +1,6 @@
 import {Recipe, User} from '../models'
 import axios from 'axios'
-import { clearToken } from '../auth/token'
+import { clearToken, setToken } from '../auth/token'
 
 const base_url = 'http://10.0.2.2:8000/api'
 const config = { headers: {'Content-Type': 'application/json'} }
@@ -12,6 +12,7 @@ export const signin =async (usrname: string, pwd: string): Promise<any> => {
     username: usrname
   }, config).then((res)=>{
     token = res
+    setToken(res.data.token)
   }).catch(e=>{
     console.error(e)
   })
@@ -26,6 +27,7 @@ export const signup = async (usrname: string, pwd: string): Promise<any> => {
     username: usrname
   }, config).then((res)=>{
     token = res
+    setToken(res.data.token)
   }).catch(e=>{
     console.error(e)
   })

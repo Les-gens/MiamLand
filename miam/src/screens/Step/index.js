@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
-import {View, Text,Button} from 'react-native'
+import {View, Text,Button, Pressable} from 'react-native'
 import styles from './styles';
 import { Saladier } from '../../assets/index.js'
 import {colors} from '../../theme'
+
 import { getToken } from '../../auth/token';
 import axios from 'axios'
+
+import { useNavigation } from '@react-navigation/native';
+
 
 /*TODO
 fetch avec l'id déjà réucpérer en param et le stock dans le tableau tab
@@ -12,8 +16,11 @@ fetch avec l'id déjà réucpérer en param et le stock dans le tableau tab
 
 const Step = ({route, navigation}) => {
 
+  let token;
   const {id} = route.params;
-    axios.get('http://10.0.2.2:8000/api/steps/'+{id}+'/byRecipe', {
+  token = getToken();
+    
+    axios.get(`http://10.0.2.2:8000/api/steps/${id}/byRecipe`, {
       headers: {
         authorization: `Bearer ${getToken()}`
       }
@@ -28,10 +35,15 @@ let tab = ["fait du chocolat mamene",
   const [count, setCount] = useState(0)
   const [title, setTitle] = useState("étape suivante")
   const [disable, setDisable] = useState(true)
-
   return  (
   <View style={styles.MainContainer}>
-    
+    <Text>token</Text>
+    <Pressable
+      onPress={()=>navigation.pop()}
+      style={styles.containerBackButton}    >
+      <Text style={styles.backButton}>{'<'}</Text>
+    </Pressable>
+
     <Text style={{paddingBottom: "20%", fontSize:20, paddingTop: "10%"}}>{count+1} / {tab.length}</Text>
     <Saladier width={125} height={110} fill={colors.textWhite} style={{marginBottom:20}}/>
     <Text style={{fontSize:30, color: "#FFFFFF", paddingBottom: 20}}>Etape {count+1}</Text>
