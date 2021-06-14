@@ -29,6 +29,20 @@ const getSingleRecipeByID = async (req, res) => {
   }
 };
 
+const getRecipesFromUser = async (req, res) => {
+  try {
+    const userID = req.user.userID;
+    const recipes = await Recipe.findAll({
+      where: {
+        userID
+      }
+    });
+    return recipes;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
 const getSingleRecipeByUser = async (req, res) => {
   try {
     const recipe = await Recipe.findAll({
@@ -79,4 +93,4 @@ const deleteRecipe = async (req, res) => {
   }
 };
 
-export { getAllRecipe, getSingleRecipeByID, getSingleRecipeByUser, addNewRecipe, updateRecipe, deleteRecipe };
+export { getAllRecipe, getRecipesFromUser, getSingleRecipeByID, getSingleRecipeByUser, addNewRecipe, updateRecipe, deleteRecipe };
