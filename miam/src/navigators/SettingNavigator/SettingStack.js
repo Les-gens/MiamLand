@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
 
-import {Settings, Account, Infos, Disconnect} from '../../screens/index'
+import {Settings, Account, Infos} from '../../screens/index'
 import {colors} from '../../theme'
 
 const Stack = createStackNavigator()

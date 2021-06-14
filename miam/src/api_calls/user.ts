@@ -1,6 +1,6 @@
 import {Recipe, User} from '../models'
 import axios from 'axios'
-import { clearToken, setToken } from '../auth/token'
+import { clearToken } from '../auth/token'
 
 const base_url = 'http://10.0.2.2:8000/api'
 const config = { headers: {'Content-Type': 'application/json'} }

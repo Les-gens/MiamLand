@@ -1,8 +1,7 @@
 import React from 'react'
 import styles from './styles'
-import { Pressable, View, Alert, Text } from 'react-native';
+import { Pressable, View, Text } from 'react-native';
 import {useNavigation} from '@react-navigation/native'
-import { signout } from '../../api_calls/user';
 import { clearToken } from '../../auth/token';
 
 const Settings = ({route}) => {

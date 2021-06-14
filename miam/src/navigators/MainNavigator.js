@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 // import { createStackNavigator } from '@react-navigation/stack';
 
-import {Settings, Fridge, MyRecipes, Auth} from '../screens/index'
+import {Auth} from '../screens/index'
 import {colors} from '../theme'
 import {tabIcon} from '../helpers/navigatorHelpers'
 import SearchStack from './SearchRecipeNavigator/SearchStack'
@@ -11,7 +11,7 @@ import SettingStack from './SettingNavigator/SettingStack'
 import FridgeStack from './FridgeNavigator/FridgeStack'
 import { createStackNavigator } from '@react-navigation/stack'
 import MyRecipeStack from './MyRecipeNavigator/MyRecipeStack'
-import { clearToken, getToken } from '../auth/token'
+import { getToken } from '../auth/token'
 
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
