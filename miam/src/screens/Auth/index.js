@@ -10,9 +10,21 @@ import { signin, signup } from '../../api_calls/user'
 
 const Auth = () => {
   const { t } = useTranslation()
-  const [signingin, setSigningin] = useState(true)
 
-  useEffect(()=>{},[signingin])
+  const [signingin, setSigningin] = useState(true)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirm_password, setConfirmPassword] = useState('')
+
+  useEffect(()=>{},[signingin, username, password])
+
+  const submit = (e) => {
+    if (signingin){
+      signin(username, password)
+    }else{
+      signup(username, password)
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -21,16 +33,21 @@ const Auth = () => {
       </View>
       <Text style={styles.welcome}>{t('welcome')}</Text>
       <View style={styles.input}>
-        <TextIpt placeholder={t('username')}/>
+        <TextIpt onChange={setUsername} content={username} placeholder={t('username')}/>
       </View>
       <View style={styles.input}>
-        <TextIpt placeholder={t('password')}/>
+        <TextIpt onChange={setPassword} content={password} placeholder={t('password')}/>
       </View>
+      {signingin ? null : 
+        <View style={styles.input}>
+          <TextIpt onChange={setConfirmPassword} content={confirm_password} placeholder={t('confirm_password')}/>
+        </View>
+      }
       <Pressable style={styles.cta} onPress={signingin ? ()=>{setSigningin(false)} : ()=>{setSigningin(true)}}>
         <Text style={styles.cta_text}>{signingin ? t('cta_signup') : t('cta_signin')}</Text>
       </Pressable>
       <ActionButton 
-        onpress={signingin ? ()=>{signin()} : ()=>{signup()} } 
+        onpress={ e => submit(e) } 
         label={signingin ? t('signin') : t('signup')}
       />
     </View>
