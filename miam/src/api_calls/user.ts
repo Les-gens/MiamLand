@@ -1,4 +1,12 @@
-import {Recipe, User} from '../models/'
+import {Recipe, User} from '../models'
+
+const signin = () => {
+
+}
+
+const signup = () => {
+
+}
 
 const getUser = (userId: number): User => {
   return new User('toto')
