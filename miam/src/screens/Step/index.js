@@ -3,6 +3,8 @@ import {View, Text,Button} from 'react-native'
 import styles from './styles';
 import { Saladier } from '../../assets/index.js'
 import {colors} from '../../theme'
+import { getToken } from '../../auth/token';
+import axios from 'axios'
 
 /*TODO
 fetch avec l'id déjà réucpérer en param et le stock dans le tableau tab
@@ -11,12 +13,15 @@ fetch avec l'id déjà réucpérer en param et le stock dans le tableau tab
 const Step = ({route, navigation}) => {
 
   const {id} = route.params;
- /* const axios = require('axios').default;
-    axios.get('http://localhost:8000/api/steps/'+{id}+'/byRecipe')
+    axios.get('http://10.0.2.2:8000/api/steps/'+{id}+'/byRecipe', {
+      headers: {
+        authorization: `Bearer ${getToken()}`
+      }
+    })
         .then(response => console.log(response))
         .catch(error => {
             console.error('There was an error!', error);
-    });*/
+    });
 
 let tab = ["fait du chocolat mamene", 
 "met du lait l'artiste", "au four bg", "miam c'est prêt"];
@@ -26,6 +31,7 @@ let tab = ["fait du chocolat mamene",
 
   return  (
   <View style={styles.MainContainer}>
+    
     <Text style={{paddingBottom: "20%", fontSize:20, paddingTop: "10%"}}>{count+1} / {tab.length}</Text>
     <Saladier width={125} height={110} fill={colors.textWhite} style={{marginBottom:20}}/>
     <Text style={{fontSize:30, color: "#FFFFFF", paddingBottom: 20}}>Etape {count+1}</Text>

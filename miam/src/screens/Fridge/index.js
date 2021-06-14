@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, ScrollView, Pressable, Alert} from 'react-native'
-import jambon from '../../assets/img/jambon.jpg'
+import ingredient from '../../assets/img/ingredient.png'
 import styles from './styles'
 import {Ingredient} from '../../models/Ingredient'
 import {IngredientCard, SearchBar} from '../../components'
@@ -9,7 +9,7 @@ import {useNavigation} from '@react-navigation/native'
 const Fridge = () => {
     const navigation = useNavigation()
     let list = []
-    const INGREDIENT = new Ingredient('Jambon', jambon)
+    const INGREDIENT = new Ingredient('Jambon', ingredient)
     for (let i = 0; i < 10; i++) {
         list.push(<IngredientCard ingredient={INGREDIENT} />)
     }

@@ -15,5 +15,9 @@ export default StyleSheet.create({
   input_container: {
     width: '80%',
     marginTop: 10,
+  },
+  containerPicker: {
+    alignItems: "center",
+    flex:1,
   }
 })
