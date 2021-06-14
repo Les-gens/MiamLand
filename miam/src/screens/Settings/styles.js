@@ -20,13 +20,18 @@ export default StyleSheet.create({
         borderRadius: 4,
         elevation: 3,
         margin: 10,
-        height: 50
+        height: 50,
+        width: '40%'
       },
-      text: {
-        fontSize: 16,
-        lineHeight: 21,
-        fontWeight: 'bold',
-        letterSpacing: 0.25,
-        color: 'white',
-      },
+    text: {
+      fontSize: 16,
+      lineHeight: 21,
+      fontWeight: 'bold',
+      letterSpacing: 0.25,
+      color: 'white',
+    },
+    title: {
+      fontSize: 30,
+    }
+    
 })

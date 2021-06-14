@@ -1,34 +1,42 @@
 import {Recipe, User} from '../models'
 import axios from 'axios'
-import { clearToken, setToken } from '../auth/token'
+import { clearToken } from '../auth/token'
 
 const base_url = 'http://10.0.2.2:8000/api'
 const config = { headers: {'Content-Type': 'application/json'} }
 export const signin =async (usrname: string, pwd: string): Promise<any> => {
+  console.log('Login, posted : ',usrname, pwd)
+  let token
   await axios.post(`${base_url}/login`, {
     password: pwd,
     username: usrname
   }, config).then((res)=>{
-    setToken(res.data.token)
+    token = res
   }).catch(e=>{
     console.error(e)
   })
+  return token
 }
 
 export const signup = async (usrname: string, pwd: string): Promise<any> => {
-  console.log(usrname, pwd)
+  console.log('Signup, posted : ',usrname, pwd)
+  let token
   await axios.post(`${base_url}/signup`, {
     password: pwd,
     username: usrname
   }, config).then((res)=>{
-    setToken(res.data.token)
+    token = res
   }).catch(e=>{
     console.error(e)
   })
+  return token
+
 }
 
 export const signout = async () => {
-  await clearToken()
+  await clearToken().catch(e=>{
+    console.error(e)
+  })
   return ''
 }
 

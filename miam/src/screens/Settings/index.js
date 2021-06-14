@@ -1,22 +1,17 @@
 import React from 'react'
 import styles from './styles'
-import { Pressable, View, Alert, Text } from 'react-native';
+import { Pressable, View, Text } from 'react-native';
 import {useNavigation} from '@react-navigation/native'
-import { signout } from '../../api_calls/user';
+import { clearToken } from '../../auth/token';
+import { useTranslation } from 'react-i18next';
 
-const Settings = () => {
+const Settings = ({route}) => {
     const navigation = useNavigation()
+    const {t} = useTranslation()
 
-    const disconnect = (e)=>{
-      console.log('disconnecting...')
-      signout().then(()=>{
-        console.log('disconnected !')
-        navigation.reset({})
-      })
-    }
     return(
-        <>
       <View style={styles.firstView}>
+        <Text style={styles.title}>{t("Settings")}</Text>
         <View style={styles.order}>
             <Pressable 
                 onPress={() => navigation.navigate('Account')}
@@ -47,7 +42,11 @@ const Settings = () => {
         </View>
         <View style={styles.order}>
             <Pressable 
-                onPress={(e) => disconnect(e)}
+                onPress={(e) => {
+                  clearToken().then((res)=>{
+                    route.params.setUserToken(res)
+                  })
+                }}
                 style={({ pressed }) => [
                 {
                     backgroundColor: pressed
@@ -60,7 +59,6 @@ const Settings = () => {
             </Pressable>
         </View>
       </View>
-    </>
     )
 }
 
