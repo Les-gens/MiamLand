@@ -22,9 +22,14 @@ export default StyleSheet.create({
     marginRight:"20%",
   },
   backButton: {
-    fontSize: 25,
-    // alignSelf: 'flex-start',
-    // paddingLeft: '3%'
+    fontSize: 30,
+    
+     
+  },
+  containerBackButton: {
+    alignSelf: 'flex-start',
+     paddingLeft: '3%'
+     
   }    
 
 })

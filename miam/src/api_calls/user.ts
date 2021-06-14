@@ -13,6 +13,7 @@ export const signin =async (usrname: string, pwd: string): Promise<any> => {
   }, config).then((res)=>{
     token = res
     setToken(res.data.token)
+    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`
   }).catch(e=>{
     console.error(e)
   })
@@ -28,6 +29,7 @@ export const signup = async (usrname: string, pwd: string): Promise<any> => {
   }, config).then((res)=>{
     token = res
     setToken(res.data.token)
+    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`
   }).catch(e=>{
     console.error(e)
   })

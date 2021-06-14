@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {View, Text,Button, Pressable} from 'react-native'
 import styles from './styles';
 import { Saladier } from '../../assets/index.js'
@@ -15,23 +15,40 @@ fetch avec l'id déjà réucpérer en param et le stock dans le tableau tab
 */
 
 const Step = ({route, navigation}) => {
-
   let token;
   const {id} = route.params;
   token = getToken();
-    
-    axios.get(`http://10.0.2.2:8000/api/steps/${id}/byRecipe`, {
-      headers: {
-        authorization: `Bearer ${getToken()}`
-      }
-    })
-        .then(response => console.log(response))
-        .catch(error => {
-            console.error('There was an error!', error);
-    });
+  const[tab, setTab] = useState([])
+  useEffect(() => {
+  
+  },[tab])
 
-let tab = ["fait du chocolat mamene", 
-"met du lait l'artiste", "au four bg", "miam c'est prêt"];
+  useEffect(() => {
+      if(token){
+        axios.get(`http://10.0.2.2:8000/api/steps/${id}/byRecipe`)
+            .then(response => {
+              let tab2 = [];
+              response.data.forEach(e => {
+                console.log("e : ",e)
+                tab2.push(e.action)
+            })
+            setTab(tab2);
+          }
+            )
+            .catch(error => {
+              console.log("token axios ",token._W)
+                console.error('There was an error!', error);
+        });
+       }else{
+         console.log("zbi")
+       }
+    }
+  ,[token]) 
+  //token = token._W;
+    
+    
+
+
   const [count, setCount] = useState(0)
   const [title, setTitle] = useState("étape suivante")
   const [disable, setDisable] = useState(true)
@@ -49,7 +66,7 @@ let tab = ["fait du chocolat mamene",
     <Text style={{fontSize:30, color: "#FFFFFF", paddingBottom: 20}}>Etape {count+1}</Text>
     
     <View style = {styles.stepText}>
-      <Text style={{padding:20, backgroundColor: "#868383",borderRadius:10, marginBottom:"25%"}}>{tab[count]}</Text>
+      <Text style={{padding:20, backgroundColor: "#868383",borderRadius:10, marginBottom:"10%"}}>{tab[count]}</Text>
     </View>
     
     <View style={styles.buttonStep}>

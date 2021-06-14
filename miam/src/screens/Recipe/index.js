@@ -23,7 +23,7 @@ const Recipe = () => {
   const navigation = useNavigation()
   
   const start=()=>{
-    navigation.navigate('Step', {id:1})
+    navigation.navigate('Step', {id:2})
   }
   
   return (
