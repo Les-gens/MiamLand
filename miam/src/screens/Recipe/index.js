@@ -23,7 +23,6 @@ const RecipeScreen = ({route}) => {
   const {recipe} = route.params;
   const {t, i18n} = useTranslation()
   const navigation = useNavigation()
-  console.log("RECIPE : ",recipe);
   const start=()=>{
     navigation.navigate('Step', {id:recipe.id})
   }
