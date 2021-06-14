@@ -2,10 +2,18 @@ import React from 'react'
 import styles from './styles'
 import { Pressable, View, Alert, Text } from 'react-native';
 import {useNavigation} from '@react-navigation/native'
+import { signout } from '../../api_calls/user';
 
 const Settings = () => {
     const navigation = useNavigation()
-    
+
+    const disconnect = (e)=>{
+      console.log('disconnecting...')
+      signout().then(()=>{
+        console.log('disconnected !')
+        navigation.reset({})
+      })
+    }
     return(
         <>
       <View style={styles.firstView}>
@@ -39,7 +47,7 @@ const Settings = () => {
         </View>
         <View style={styles.order}>
             <Pressable 
-                onPress={() => navigation.navigate('Disconnect')}
+                onPress={(e) => disconnect(e)}
                 style={({ pressed }) => [
                 {
                     backgroundColor: pressed
