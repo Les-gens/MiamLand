@@ -11,21 +11,19 @@ import SettingStack from './SettingNavigator/SettingStack'
 import FridgeStack from './FridgeNavigator/FridgeStack'
 import { createStackNavigator } from '@react-navigation/stack'
 import MyRecipeStack from './MyRecipeNavigator/MyRecipeStack'
-import { getToken } from '../auth/token'
+import { clearToken, getToken } from '../auth/token'
 
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
 
 export default function MainNavigator() {
   const [userToken, setUserToken] = useState('')
-  getToken().then( (res) => {
-    setUserToken(res)
-  })
+  useEffect(()=>{}, [userToken])
   useEffect(()=>{
-    console.log(userToken)
-  }, [userToken])
-  
-  const authNav = () => {
+    console.log('rendering mainnav with token : ',getToken())
+    setUserToken(getToken())
+  }, [])
+  const mainNav = () => {
     return (
       <Tab.Navigator
         sceneContainerStyle={{
@@ -51,7 +49,7 @@ export default function MainNavigator() {
     )
   }
 
-  const mainNav = () => {
+  const authNav = () => {
     return (
       <Stack.Navigator
         headerMode= 'none'
@@ -67,7 +65,8 @@ export default function MainNavigator() {
 
   return (
     <NavigationContainer>
-      { userToken == '' ? mainNav() : authNav() }
+      { userToken != '' ? mainNav() : authNav() }
+      {/* { mainNav() } */}
     </NavigationContainer>
   )
 }

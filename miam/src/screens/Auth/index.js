@@ -5,8 +5,8 @@ import styles from './styles.js'
 import { colors } from '../../theme/index.js'
 import { useTranslation } from 'react-i18next'
 import { ActionButton, TextIpt } from '../../components/index'
-
-import { signin, signup } from '../../api_calls/user'
+import {signin, signup} from '../../api_calls/user.ts'
+import { useNavigation } from '@react-navigation/native'
 
 const Auth = () => {
   const { t } = useTranslation()
@@ -16,13 +16,22 @@ const Auth = () => {
   const [password, setPassword] = useState('')
   const [confirm_password, setConfirmPassword] = useState('')
 
+  const navigation = useNavigation()
   useEffect(()=>{},[signingin, username, password])
 
   const submit = (e) => {
     if (signingin){
-      signin(username, password)
+      signin(username, password).then(()=>{
+        navigation.reset({})
+      }).catch((e)=>{
+        console.error(e)
+      })
     }else{
-      signup(username, password)
+      if (confirm_password == password){
+        signup(username, password).then(()=>{
+          navigation.reset({})
+        })
+      }
     }
   }
 
@@ -43,7 +52,18 @@ const Auth = () => {
           <TextIpt onChange={setConfirmPassword} content={confirm_password} placeholder={t('confirm_password')}/>
         </View>
       }
-      <Pressable style={styles.cta} onPress={signingin ? ()=>{setSigningin(false)} : ()=>{setSigningin(true)}}>
+      <Pressable style={styles.cta} onPress={signingin ? 
+        ()=>{
+          setConfirmPassword('')
+          setPassword('')
+          setUsername('')
+          setSigningin(false)
+        } : ()=>{
+          setPassword('')
+          setUsername('')
+          setSigningin(true)
+        }}
+      >
         <Text style={styles.cta_text}>{signingin ? t('cta_signup') : t('cta_signin')}</Text>
       </Pressable>
       <ActionButton 

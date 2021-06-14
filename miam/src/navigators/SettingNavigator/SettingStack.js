@@ -16,8 +16,6 @@ export default function SettingStack() {
       <Stack.Screen name="SettingsScreen" component={Settings} />
       <Stack.Screen name="Account" component={Account} />
       <Stack.Screen name="Infos" component={Infos} />
-      <Stack.Screen name="Disconnect" component={Disconnect} />
-      {}
     </Stack.Navigator>
   )
 }
