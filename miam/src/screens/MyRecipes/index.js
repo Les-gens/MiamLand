@@ -17,6 +17,7 @@ const MyRecipes = () => {
   const list = []
   const RECIPE = new Recipe('Endives au jambon', 4, 10, 10, jambon)
   for (let i = 0; i < 5; i++) {
+    
     list.push(<RecipeCard recipe={RECIPE} />)
     // list.push(<View />)
   }

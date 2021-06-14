@@ -1,9 +1,8 @@
 import * as React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
 
-import {MyRecipes, NewRecipe, Recipe} from '../../screens/index'
+import {MyRecipes, NewRecipe, Recipe,Step} from '../../screens/index'
 import {colors} from '../../theme'
-import AddIngredient from '../../screens/AddIngredient'
 
 const Stack = createStackNavigator()
 
@@ -18,6 +17,7 @@ export default function MyRecipeStack() {
       <Stack.Screen name="Recipe" component={Recipe} />
 
       <Stack.Screen name="NewRecipe" component={NewRecipe}/>
+      <Stack.Screen name="Step" component={Step} />
       
     </Stack.Navigator>
   )
