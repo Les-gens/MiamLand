@@ -1,10 +1,41 @@
 import Ingredient from '../models/Ingredient.js';
 import pkg from 'boom';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const { Op } = require('sequelize');
 const boom = pkg;
 
 const getAllIngredient = async (req, res) => {
   try {
     const ingredients = await Ingredient.findAll();
+    return ingredients;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
+const getAllIngredientWithoutFridge = async (req, res) => {
+  try {
+    const ingredients = await Ingredient.findAll({
+      where: {
+        fridgeID: null
+      }
+    });
+    return ingredients;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
+const getAllIngredientFridge = async (req, res) => {
+  try {
+    const ingredients = await Ingredient.findAll({
+      where: {
+        fridgeID: {
+          [Op.not]: null
+        }
+      }
+    });
     return ingredients;
   } catch (err) {
     throw boom.boomify(err);
@@ -65,4 +96,4 @@ const deleteIngredient = async (req, res) => {
   }
 };
 
-export { getAllIngredient, getSingleIngredient, addNewIngredient, updateIngredient, deleteIngredient };
+export { getAllIngredient, getAllIngredientWithoutFridge, getAllIngredientFridge, getSingleIngredient, addNewIngredient, updateIngredient, deleteIngredient };

@@ -1,10 +1,20 @@
-import { getAllIngredient, getSingleIngredient, addNewIngredient, updateIngredient, deleteIngredient } from '../controller/ingredientController.js';
+import { getAllIngredient, getAllIngredientWithoutFridge, getSingleIngredient, addNewIngredient, updateIngredient, deleteIngredient, getAllIngredientFridge } from '../controller/ingredientController.js';
 
 const routes = [
   {
     method: 'GET',
     url: '/api/ingredients',
     handler: getAllIngredient
+  },
+  {
+    method: 'GET',
+    url: '/api/ingredients/withoutFridge',
+    handler: getAllIngredientWithoutFridge
+  },
+  {
+    method: 'GET',
+    url: '/api/ingredients/withFridge',
+    handler: getAllIngredientFridge
   },
   {
     method: 'GET',

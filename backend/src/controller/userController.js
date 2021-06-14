@@ -28,6 +28,20 @@ const getSingleUser = async (req, res) => {
   }
 };
 
+const getProfile = async (req, res) => {
+  try {
+    const id = req.user.userID;
+    const user = await User.findAll({
+      where: {
+        userID: id
+      }
+    });
+    return user;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
 const addNewUser = async (req, res) => {
   try {
     const plainPassword = req.body.password;
@@ -112,4 +126,4 @@ const login = async (req, res) => {
   }
 };
 
-export { getAllUser, getSingleUser, login, addNewUser, updateUser, deleteUser };
+export { getAllUser, getSingleUser, getProfile, login, addNewUser, updateUser, deleteUser };

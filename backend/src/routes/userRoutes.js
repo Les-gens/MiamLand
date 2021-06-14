@@ -1,4 +1,4 @@
-import { getAllUser, getSingleUser, addNewUser, updateUser, deleteUser, login } from '../controller/userController.js';
+import { getAllUser, getSingleUser, addNewUser, updateUser, deleteUser, login, getProfile } from '../controller/userController.js';
 
 const routes = [
   {
@@ -10,6 +10,11 @@ const routes = [
     method: 'GET',
     url: '/api/users/:id',
     handler: getSingleUser
+  },
+  {
+    method: 'GET',
+    url: '/api/me',
+    handler: getProfile
   },
   {
     method: 'POST',

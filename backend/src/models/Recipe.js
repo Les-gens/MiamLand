@@ -14,8 +14,12 @@ const Recipe = sequelize.define('recipe', {
   description: {
     type: DataTypes.STRING
   },
-  filename: {
-    type: DataTypes.STRING(50)
+  userID: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'users',
+      key: 'userID'
+    }
   }
 }, {
   // Other model options go here
