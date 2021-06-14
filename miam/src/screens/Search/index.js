@@ -26,6 +26,12 @@ const Search = () => {
           <Text style={styles.favoritesLabel}>{t('favorites')}</Text>
         </View>
         {list}
+        {list == [] ? 
+            <View>
+              <Text style={styles.empty}>¯\_(ツ)_/¯</Text>
+              <Text>No recipe found</Text> 
+            </View>
+          : null}
       </ScrollView>
     </>
   )

@@ -44,6 +44,12 @@ const MyRecipes = () => {
         </View>
         <ScrollView>
           {list}
+          {list == [] ? 
+            <View>
+              <Text style={styles.empty}>¯\_(ツ)_/¯</Text>
+              <Text>No recipe found</Text> 
+            </View>
+          : null}
         </ScrollView>
       </>
     )
