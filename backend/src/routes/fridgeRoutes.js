@@ -1,4 +1,5 @@
 import { getAllFridge, getSingleFridgeByID, getSingleFridgeByUser, addNewFridge, updateFridge, deleteFridge } from '../controller/fridgeController.js';
+// import server from '../index.js';
 
 const routes = [
   {

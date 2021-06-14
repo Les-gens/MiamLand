@@ -3,13 +3,14 @@ import sequelize from './config.js';
 import fastifyMultipart from 'fastify-multipart';
 import fastifyJWT from 'fastify-jwt';
 import fs from 'fs';
+import path from 'path';
 import ingredientRoutes from './routes/ingredientRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import fridgeRoutes from './routes/fridgeRoutes.js';
 import recipeRoutes from './routes/recipeRoutes.js';
 import stepRoutes from './routes/stepRoutes.js';
 import fastifyStatic from 'fastify-static';
-import path from 'path';
+
 
 const baseRoutes = [ingredientRoutes, userRoutes, fridgeRoutes, recipeRoutes, stepRoutes];
 const server = fastify({ logger: true });
@@ -20,6 +21,14 @@ server.register(fastifyStatic, { root: path.join(path.resolve(), 'uploads'), pre
 // /!\ Remove force sync when in prod
 const synchronize = async () => await sequelize.sync({ force: true });
 
+server.decorate('authenticate', async function (req, res) {
+  try {
+    await req.jwtVerify();
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 // Default route
 server.get('/', async (req, res) => {
   return { Message: 'Welcome to MiamLand API' };
@@ -29,8 +38,14 @@ server.get('/images/:image', async (req, res) => {
   res.sendFile(req.params.image);
 });
 
+
 baseRoutes.forEach((routes) => {
-  routes.forEach((route) => server.route(route));
+  routes.forEach((route) => {
+    if (route.url !== '/api/signup' && route.url !== '/api/login') { 
+      route.preValidation = [server.authenticate]; 
+    }
+    server.route(route);
+  });
 });
 
 // Run the server
