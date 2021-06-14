@@ -11,10 +11,7 @@ const Settings = ({route}) => {
     const disconnect = (e)=>{
       console.log('disconnecting...')
 
-      signout().then((res)=>{
-        route.params.setUserToken('')
-
-      })
+      
     }
     return(
         <>
@@ -49,7 +46,11 @@ const Settings = ({route}) => {
         </View>
         <View style={styles.order}>
             <Pressable 
-                onPress={(e) => disconnect(e)}
+                onPress={(e) => {
+                  clearToken().then((res)=>{
+                    route.params.setUserToken(res)
+                  })
+                }}
                 style={({ pressed }) => [
                 {
                     backgroundColor: pressed
