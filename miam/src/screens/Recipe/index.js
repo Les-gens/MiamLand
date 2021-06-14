@@ -35,7 +35,8 @@ const Recipe = () => {
             <Text style={styles.textIngredients}>ingrédients ici</Text>
             <Button title={t('stove')} style={styles.buttonStove}   
             color='#D8A600'       
-          onPress = {() => {navigation.navigate('Step')}}>
+          onPress = {() => {navigation.navigate('Step', {id:1});
+          }}>
           <Text>{t('stove')}</Text>
           </Button>
             </View>
