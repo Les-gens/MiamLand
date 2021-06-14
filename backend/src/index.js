@@ -10,6 +10,9 @@ import recipeRoutes from './routes/recipeRoutes.js';
 import stepRoutes from './routes/stepRoutes.js';
 import fastifyStatic from 'fastify-static';
 import fakeData from './models/fakeData.js';
+import options from './swagger.js';
+import fastifySwagger from 'fastify-swagger';
+
 const env = process.env.NODE_ENV || 'devlopment';
 
 const baseRoutes = [ingredientRoutes, userRoutes, fridgeRoutes, recipeRoutes, stepRoutes];
@@ -17,6 +20,7 @@ const server = fastify({ logger: true });
 server.register(fastifyMultipart);
 server.register(fastifyJWT, { secret: (process.env.JWT_SECRET || 'imabanana') });
 server.register(fastifyStatic, { root: path.join(path.resolve(), 'uploads'), prefix: '/uploads/' });
+server.register(fastifySwagger, options);
 
 const synchronize = async () => await sequelize.sync({ force: true });
 const fakeLoad = async () => await fakeData();
@@ -52,6 +56,7 @@ const PORT = 8000 || process.env.PORT;
 const startServer = async () => {
   try {
     await server.listen(PORT);
+    server.swagger();
     if (env === 'devlopment') {
       await synchronize();
       await fakeLoad();
