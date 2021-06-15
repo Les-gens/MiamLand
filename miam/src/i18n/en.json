@@ -14,5 +14,6 @@
     "cta_signin": "I already have an account !",
     "cta_signup": "I haven’t signed up yet !",
     "confirm_password": "Confirm password",
-    "Settings": "Settings"
+    "Settings": "Settings",
+    "step": "Step"
 }
