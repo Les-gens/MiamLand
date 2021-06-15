@@ -76,7 +76,7 @@ const updateIngredient = async (req, res) => {
     },
     {
       where: {
-        IngredientID: req.params.id
+        ingredientID: req.params.id
       }
     });
     return ingredient;
@@ -88,7 +88,7 @@ const updateIngredient = async (req, res) => {
 const deleteIngredient = async (req, res) => {
   try {
     const ingredient = await Ingredient.destroy({
-      IngredientID: req.params.id
+      where: { ingredientID: req.params.id }
     });
     return ingredient;
   } catch (err) {

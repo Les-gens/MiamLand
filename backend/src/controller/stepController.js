@@ -73,7 +73,7 @@ const updateStep = async (req, res) => {
 const deleteStep = async (req, res) => {
   try {
     const step = await Step.destroy({
-      stepID: req.params.id
+      where: { stepID: req.params.id }
     });
     return step;
   } catch (err) {
