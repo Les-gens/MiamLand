@@ -69,6 +69,19 @@ const addNewRecipe = async (req, res) => {
   }
 };
 
+const addNewRecipeUser = async (req, res) => {
+  try {
+    const recipe = await Recipe.create({
+      name: req.body.name,
+      description: req.body.description,
+      userID: req.user.userID
+    });
+    return recipe;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
 const updateRecipe = async (req, res) => {
   try {
     const recipe = await Recipe.update({
@@ -93,4 +106,4 @@ const deleteRecipe = async (req, res) => {
   }
 };
 
-export { getAllRecipe, getRecipesFromUser, getSingleRecipeByID, getSingleRecipeByUser, addNewRecipe, updateRecipe, deleteRecipe };
+export { getAllRecipe, addNewRecipeUser, getRecipesFromUser, getSingleRecipeByID, getSingleRecipeByUser, addNewRecipe, updateRecipe, deleteRecipe };

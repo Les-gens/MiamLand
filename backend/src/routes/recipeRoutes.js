@@ -1,4 +1,4 @@
-import { getAllRecipe, getSingleRecipeByID, getRecipesFromUser, getSingleRecipeByUser, addNewRecipe, updateRecipe, deleteRecipe } from '../controller/recipeController.js';
+import { getAllRecipe, getSingleRecipeByID, getRecipesFromUser, getSingleRecipeByUser, addNewRecipe, updateRecipe, deleteRecipe, addNewRecipeUser } from '../controller/recipeController.js';
 
 const routes = [
   {
@@ -25,6 +25,11 @@ const routes = [
     method: 'POST',
     url: '/api/recipes',
     handler: addNewRecipe
+  },
+  {
+    method: 'POST',
+    url: '/api/recipes/me',
+    handler: addNewRecipeUser
   },
   {
     method: 'PUT',
