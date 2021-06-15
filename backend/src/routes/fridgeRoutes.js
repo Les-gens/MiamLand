@@ -1,4 +1,4 @@
-import { getAllFridge, getSingleFridgeByID, getSingleFridgeByUser, addNewFridge, updateFridge, deleteFridge, getIngredientsFridge } from '../controller/fridgeController.js';
+import { getAllFridge, getSingleFridgeByID, getSingleFridgeByUser, addNewFridge, updateFridge, deleteFridge, getIngredientsFridge, deleteFridgeIngredientUser } from '../controller/fridgeController.js';
 // import server from '../index.js';
 
 const routes = [
@@ -36,6 +36,11 @@ const routes = [
     method: 'DELETE',
     url: '/api/fridges/:id',
     handler: deleteFridge
+  },
+  {
+    method: 'DELETE',
+    url: '/api/fridges/:name/ingredients/me',
+    handler: deleteFridgeIngredientUser
   }
 ];
 

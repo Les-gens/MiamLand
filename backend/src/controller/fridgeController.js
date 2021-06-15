@@ -90,7 +90,7 @@ const updateFridge = async (req, res) => {
 const deleteFridge = async (req, res) => {
   try {
     const fridge = await Fridge.destroy({
-      fridgeID: req.params.id
+      where: { fridgeID: req.params.id }
     });
     return fridge;
   } catch (err) {
@@ -98,4 +98,24 @@ const deleteFridge = async (req, res) => {
   }
 };
 
-export { getAllFridge, getIngredientsFridge, getSingleFridgeByID, getSingleFridgeByUser, addNewFridge, updateFridge, deleteFridge };
+const deleteFridgeIngredientUser = async (req, res) => {
+  try {
+    const userID = req.user.userID;
+    const fridge = await Fridge.findOne({
+      where: {
+        userID
+      }
+    });
+    const ingredient = await Ingredient.destroy({
+      where: {
+        fridgeID: fridge.fridgeID,
+        name: req.params.name
+      }
+    });
+    return ingredient;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
+export { getAllFridge, getIngredientsFridge, getSingleFridgeByID, getSingleFridgeByUser, addNewFridge, updateFridge, deleteFridge, deleteFridgeIngredientUser };
