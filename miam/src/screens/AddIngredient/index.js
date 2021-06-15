@@ -11,38 +11,35 @@ const AddIngredient = () => {
     const toggleSwitch = () => setIsEnabled(previousState => !previousState)
     const [ingredientState, setIngredient] = useState(false)
 
-    const [userId, setUserId] = useState(false)
-
     const getFridgeId = () => {
         console.log("fridge id");
         let fridgeID = -1;
+        let userID = -1;
         //recup id user
-        useEffect(() => {
-            axios.get(`http://10.0.2.2:8000/api/me`)
-                .then(response => {
-                    setUserId(response.data.userID);
-                })
-                .catch(error => {
-                    console.error('There was an error!', error);
-            });
-        },[])
-
+        axios.get(`http://10.0.2.2:8000/api/me`)
+            .then(response => {
+                console.log('step 1: '+response.data[0].userID)
+                userID = response.data[0].userID;
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+        });
         //recup id frigo avec id user
-        useEffect(() => {
-            axios.get(`http://10.0.2.2:8000/api/fridges/` + userId + `/byUser`)
-                .then(response => {
-                    fridgeID = response.data.fridgeID;
-                })
-                .catch(error => {
-                    console.error('There was an error!', error);
-            });
-        },[])
+        axios.get(`http://10.0.2.2:8000/api/fridges/` + userID + `/byUser`)
+            .then(response => {
+                console.log('step 2: '+response.data[0].fridgeID)
+                fridgeID = response.data[0].fridgeID;
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+        });
+        console.log('step 3: '+fridgeID)
         return fridgeID;
     }
 
     const sendIngredient = () => {
         let fId = getFridgeId()
-
+        console.log('step 4: '+fId)
         if(fId < 0){
             console.log('fridgeID not found!');
         }else{
@@ -50,16 +47,13 @@ const AddIngredient = () => {
             {
                 console.log("add")
                 //envoi ingredient
-                useEffect(() => 
-                {
-                    setIngredient(ingredientState.toLowerCase())
-                    const ingredientPost = { name: {ingredientState}, fridgeID: fId };
-                    axios.post('http://10.0.2.2:8000/api/ingredients', ingredientPost)
-                    .then(response => console.log(response.data))
-                    .catch(error => {
-                        console.error('There was an error!', error);
-                    });
-                },[])
+                setIngredient(ingredientState.toLowerCase())
+                const ingredientPost = { name: {ingredientState}, fridgeID: fId };
+                axios.post('http://10.0.2.2:8000/api/ingredients', ingredientPost)
+                .then(response => console.log(response.data[0]))
+                .catch(error => {
+                    console.error('There was an error!', error);
+                });
 
             }else{
                 console.log("delete")
@@ -69,7 +63,7 @@ const AddIngredient = () => {
                 //delete ingredient
                 useEffect(() => {
                     axios.delete('http://10.0.2.2:8000/api/ingredients/' + ingredientId)
-                    .then(() => console.log(response.data))
+                    .then(() => console.log(response.data[0]))
                     .catch(error => {
                         console.error('There was an error!', error);
                     });
