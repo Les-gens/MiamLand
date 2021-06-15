@@ -12,9 +12,7 @@ import axios from 'axios'
 const Search = () => {
   const {t, i18n} = useTranslation()
   const[list, setList] = useState([])
-  useEffect(() => {
-  
-  },[list])
+  useEffect(() => {},[list])
   useEffect( () => {
     axios.get(`http://10.0.2.2:8000/api/recipes`)
             .then(response => {

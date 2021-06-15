@@ -14,6 +14,15 @@ export default StyleSheet.create({
     top: 10,
     position: 'absolute',
   },
+  container: {
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  emptyContainer: {
+    height: '100%',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
   empty: {
     fontSize: 35,
   }

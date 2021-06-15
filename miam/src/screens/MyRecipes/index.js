@@ -15,9 +15,7 @@ const MyRecipes = () => {
   const {t, i18n} = useTranslation()
   const navigation = useNavigation()
   const[list, setList] = useState([])
-  useEffect(() => {
-  
-  },[list])
+  useEffect(() => {},[list])
 
   useEffect( () => {
     axios.get(`http://10.0.2.2:8000/api/recipes/me`)
@@ -42,10 +40,10 @@ const MyRecipes = () => {
           <Plus onPress={()=>{navigation.push('NewRecipe')}} width={25} height={25} fill={colors.textWhite} style={styles.plusButton}/> 
           <Text style={styles.title}>{t('my_recipes')}</Text>
         </View>
-        <ScrollView>
+        <ScrollView contentContainerStyle={styles.container}>
           {list}
-          {list == [] ? 
-            <View>
+          {list.length === 0 ? 
+            <View style={styles.emptyContainer}>
               <Text style={styles.empty}>¯\_(ツ)_/¯</Text>
               <Text>No recipe found</Text> 
             </View>

@@ -10,7 +10,7 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
     borderRadius: 10,
     height: 55,
-    color: colors.grey3,
+    color: colors.textWhite,
   },
   input_container: {
     width: '80%',

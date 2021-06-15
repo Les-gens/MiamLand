@@ -17,9 +17,7 @@ fetch avec l'id déjà réucpérer en param et le stock dans le tableau tab
 const Step = ({route, navigation}) => {
   const {id} = route.params;
   const[tab, setTab] = useState([])
-  useEffect(() => {
-  
-  },[tab])
+  useEffect(() => {},[tab])
 
   useEffect(() => {
 
@@ -38,17 +36,12 @@ const Step = ({route, navigation}) => {
         });
     }
   ,[]) 
-  //token = token._W;
-    
-    
-
 
   const [count, setCount] = useState(0)
   const [title, setTitle] = useState("étape suivante")
   const [disable, setDisable] = useState(true)
   return  (
   <View style={styles.MainContainer}>
-    <Text>token</Text>
     <Pressable
       onPress={()=>navigation.pop()}
       style={styles.containerBackButton}    >
