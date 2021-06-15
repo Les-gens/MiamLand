@@ -98,7 +98,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const user = await User.destroy({
-      userID: req.params.id
+      where: { userID: req.params.id }
     });
     return user;
   } catch (err) {

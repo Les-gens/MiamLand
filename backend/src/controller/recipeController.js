@@ -85,7 +85,7 @@ const updateRecipe = async (req, res) => {
 const deleteRecipe = async (req, res) => {
   try {
     const recipe = await Recipe.destroy({
-      recipeID: req.params.id
+      where: { recipeID: req.params.id }
     });
     return recipe;
   } catch (err) {
