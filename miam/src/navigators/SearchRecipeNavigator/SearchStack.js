@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
 
-import {Search, Recipe} from '../../screens/index'
+import {Search, Recipe, RecipeScreen} from '../../screens/index'
 import {colors} from '../../theme'
 
 const Stack = createStackNavigator()
@@ -14,7 +14,7 @@ export default function SearchStack() {
         cardStyle: {backgroundColor: colors.primaryGrey},
       }}>
       <Stack.Screen name="SearchScreen" component={Search} />
-      <Stack.Screen name="Recipe" component={Recipe} />
+      <Stack.Screen name="Recipe" component={RecipeScreen} />
       {/* <Stack.Screen name="Step" component={StepRecipe} /> */}
     </Stack.Navigator>
   )

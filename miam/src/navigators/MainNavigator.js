@@ -70,7 +70,7 @@ export default function MainNavigator() {
 
   return (
     <NavigationContainer>
-      { userToken != '' && userToken != null ? mainNav() : authNav() }
+      { userToken ? mainNav() : authNav() }
       {/* { mainNav() } */}
     </NavigationContainer>
   )

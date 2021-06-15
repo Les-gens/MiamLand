@@ -14,4 +14,7 @@ export default StyleSheet.create({
     top: 10,
     position: 'absolute',
   },
+  empty: {
+    fontSize: 35,
+  }
 })

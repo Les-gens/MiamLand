@@ -1,24 +1,36 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Text, View, ScrollView, Pressable, Alert} from 'react-native'
 import ingredient from '../../assets/img/ingredient.png'
 import styles from './styles'
 import {Ingredient} from '../../models/Ingredient'
 import {IngredientCard, SearchBar} from '../../components'
 import {useNavigation} from '@react-navigation/native'
+import axios from 'axios'
 
 const Fridge = () => {
     const navigation = useNavigation()
-    let list = []
-    const INGREDIENT = new Ingredient('Jambon', ingredient)
-    for (let i = 0; i < 10; i++) {
-        list.push(<IngredientCard ingredient={INGREDIENT} />)
-    }
+
+    const[list, setList] = useState([])
+    useEffect(() => {},[list])
+    useEffect( () => {
+        axios.get(`http://10.0.2.2:8000/api/me/ingredients/fridge`)
+                .then(response => {
+                    let tab2 = [];
+                    response.data.forEach(e => {
+                        console.log("Ing ME : ",e)
+                        tab2.push(<IngredientCard ingredient={new Ingredient(e.name, ingredient)} />) 
+                    })
+                    setList(tab2);
+                })
+                .catch(error => {
+                    console.error('There was an error!', error);
+            });
+    },[])
     
     return(
         <>
             <View style={styles.center}>
                 <Text style={styles.title}>{'Votre Frigo'}</Text>
-                <SearchBar style={styles.marge}/>
                 <View style={styles.row}>
                     <Pressable style={({ pressed }) => [
                         {

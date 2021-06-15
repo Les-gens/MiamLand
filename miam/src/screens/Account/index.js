@@ -1,38 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Pressable, Text, View, TextInput } from 'react-native'
 import styles from './styles'
 import {useNavigation} from '@react-navigation/native'
-
+import axios from 'axios'
 
 
 const Account = () => {
-    const [count, setCount] = useState(0)
+    const [user, setuser] = useState(0)
 
     const navigation = useNavigation()
+    useEffect( () => {
+        axios.get(`http://10.0.2.2:8000/api/me`)
+                .then(response => {
+                    console.log(response.data);
+                    setuser(response.data[0].userName);
+                })
+                .catch(error => {
+                    console.error('There was an error!', error);
+                });
+    },[])
 
     return(
         <>
             <View style={styles.container}>
-                <Text>Nom d'utilisateur</Text>
-                <TextInput style={styles.textInput} 
-                placeholder="Nom d'utilisateur"
-                placeholderTextColor="#f8f8f8"
-                underlineColorAndroid={'transparent'} />
-
-                <Text>Mot de passe</Text>
-                <TextInput style={styles.textInput} 
-                placeholder="Mot de passe"
-                placeholderTextColor="#f8f8f8"
-                underlineColorAndroid={'transparent'} />
-
-                <Pressable
-                    style={({ pressed }) => [{
-                        backgroundColor: pressed
-                        ? 'darkgrey'
-                        : 'grey'
-                    }, styles.button]}>
-                    <Text style={styles.text}>{'Modifier'}</Text>
-                </Pressable>
+                <Text style={styles.text}>Nom d'utilisateur</Text>
+                <Text>{user}</Text>
             </View>
 
             

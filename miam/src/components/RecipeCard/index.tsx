@@ -16,6 +16,7 @@ interface Props {
 const RecipeCard = ({recipe}: Props) => {
   const {name, notation, totalNotations, duration, image} = recipe
   const navigation = useNavigation()
+  console.log("RECIPE INSIDE CARD ",recipe)
 
   return (
     <TouchableOpacity

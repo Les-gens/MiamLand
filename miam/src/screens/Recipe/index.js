@@ -6,6 +6,7 @@ import {useNavigation} from '@react-navigation/native'
 
 import {ActionButton, DurationIndicator, Notation} from '../../components'
 import jambon from '../../assets/img/jambon.jpg'
+import { Recipe } from '../../models'
 
 
 /*TODO
@@ -17,30 +18,30 @@ import jambon from '../../assets/img/jambon.jpg'
   envoyer l'id aux steps
   */
 
-const title = 'Endives au jambon'
-const Recipe = () => {
+
+const RecipeScreen = ({route}) => {
+  const {recipe} = route.params;
   const {t, i18n} = useTranslation()
   const navigation = useNavigation()
-  
   const start=()=>{
-    navigation.navigate('Step', {id:2})
+    navigation.navigate('Step', {id:recipe.id})
   }
   
   return (
     <View style={styles.container}>
       
-      <Image style={styles.image} source={jambon} />
+      <Image style={styles.image} source={recipe.image} />
 
       <View style={styles.recipeContainer}>
 
         <View style={styles.topElements}>
           <View style={styles.left}>
-            <Text style={styles.title}>{title}</Text>
-            <Notation numberNotation={150} notation={5} />
+            <Text style={styles.title}>{recipe.name}</Text>
+            <Notation numberNotation={recipe.totalNotations} notation={recipe.notation} />
           </View>
 
           <View style={styles.right}>
-            <DurationIndicator duration={10} />
+            <DurationIndicator duration={recipe.duration} />
           </View>
         </View>
 
@@ -62,4 +63,4 @@ const Recipe = () => {
 
 
 
-export default Recipe
+export default RecipeScreen
