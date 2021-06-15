@@ -26,6 +26,7 @@ const Auth = ({route}) => {
 
         route.params.setUserToken(res.data.token)
       }).catch((e)=>{
+        ToastAndroid.show(e.message, ToastAndroid.SHORT)
         console.error(e)
       })
     }else{
@@ -34,6 +35,10 @@ const Auth = ({route}) => {
           console.log('res: ',res)
 
           route.params.setUserToken(res.data.token)
+
+        }).catch(e=>{
+          console.error(e)
+          ToastAndroid.show(e.message, ToastAndroid.SHORT)
 
         })
       } else {

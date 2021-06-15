@@ -6,16 +6,59 @@ import styles from './styles'
 import { colors } from '../../theme'
 import axios from 'axios'
 import {CustomPicker} from './CustomPicker'
+import { useNavigation } from '@react-navigation/native'
 const NewRecipe = () => {
   const {t, i18n} = useTranslation()
-
+  const [ingredients, setIngredients] = useState([])
+  const [selectedIngredient, setSelectedIngredient] = useState('')
   const [recipeIngredients, setRecipeIngredients] = useState([])
   const [recipeSteps, setRecipeSteps] = useState([])
   const [recipeTitle, setRecipeTitle] = useState('')
+  const [recipeDescription, setRecipeDescription] = useState('')
+
+  const navigation = useNavigation()
   useEffect(()=>{
     console.log(recipeSteps)
   },[recipeIngredients, recipeSteps, recipeTitle])
 
+  useEffect(()=>{
+  axios.get(`http://10.0.2.2:8000/api/ingredients/withoutFridge`)
+    .then(response => {
+      console.log(response.data)
+      let tab = []
+      response.data.forEach(ingredient => {
+        tab.push(<Picker.Item label={ingredient.name} value={ingredient.ingredientID} color='black' />)
+      });
+      setIngredients(tab)
+    }).catch(error => {
+      console.error('There was an error!', error);
+    });
+  },[])
+
+  const sendRecipe = async()=>{
+    const config = { headers: {'Content-Type': 'application/json'} }
+    let rID 
+    await axios.post(`http://10.0.2.2:8000/api/recipes/me`, {name: recipeTitle, description: recipeDescription})
+      .then(res=>{
+        console.log('ici',res.data)
+        console.log('la',res.data.recipeID)
+        rID = res.data.recipeID
+      }).catch(error => {
+        console.error('There was an error!', error);
+      });
+    console.log('IDDDDDDDDDDDDDDDDDD',rID)
+
+    recipeSteps.forEach(async (step)=> {
+      await axios.post(`http://10.0.2.2:8000/api/steps`, {action: step, recipeID: rID})
+        .then(res => {
+          console.log(res.data)
+        }).catch(error => {
+          console.error('There was an error!', error);
+        }); 
+    })
+    navigation.navigate('MyRecipes')
+
+  }
 
   const renderSteps = () => {
     let tab = []
@@ -40,30 +83,34 @@ const NewRecipe = () => {
     return tab
   } 
 
-  const renderIngredients = () => {
-    console.log('renderIngredients')
-    let tab = []
-      for(let i = 0; i <= recipeIngredients.length;i++){
-        tab.push(
-          <CustomPicker/>
-        )
-      }
-    return tab
-  }
-
   return(
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.input_container}>
         <Text>{t('title')}</Text>
         <TextInput style={styles.text_input} placeholderTextColor={colors.grey5} placeholder={t('pumpkin_pie')} onChangeText={(value)=>{setRecipeTitle(value)}}></TextInput>
       </View>
+      <View style={styles.input_container}>
+        <Text>{'Description'}</Text>
+        <TextInput style={styles.text_input} placeholderTextColor={colors.grey5} placeholder={t('description')} onChangeText={(value)=>{setRecipeDescription(value)}}></TextInput>
+      </View>
       <View style={styles.container}>
 
       
-      {renderIngredients()}
+      <Picker
+        selectedValue={selectedIngredient}
+        style={{ height: 50, width: 150 }}
+        onValueChange={(itemValue, itemIndex) => {
+          setSelectedIngredient(itemValue)
+        }}
+      >{ingredients ? ingredients : null}</Picker>
       {renderSteps()}
       
       </View>
+      <Pressable
+        onPress={()=>{sendRecipe()}}
+      >
+        <Text>Create</Text>
+      </Pressable>
     </ScrollView>
   )
 }

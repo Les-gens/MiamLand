@@ -18,6 +18,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     height: '100%',
+    width: '40%'
   },
   image: {
     borderRadius: 140,
