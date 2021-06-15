@@ -5,34 +5,19 @@ import { Picker } from '@react-native-community/picker'
 import styles from './styles'
 import { colors } from '../../theme'
 import axios from 'axios'
-
+import {CustomPicker} from './CustomPicker'
 const NewRecipe = () => {
   const {t, i18n} = useTranslation()
 
-  const [selectedIngredient, setSelectedIngredient] = useState('')
-  const [ingredients, setIngredients] = useState([])
   const [recipeIngredients, setRecipeIngredients] = useState([])
   const [recipeSteps, setRecipeSteps] = useState([])
   const [recipeTitle, setRecipeTitle] = useState('')
   useEffect(()=>{
     console.log(recipeSteps)
-  },[ingredients, recipeIngredients, recipeSteps, recipeTitle])
-  useEffect(()=>{
-    axios.get(`http://10.0.2.2:8000/api/ingredients/withoutFridge`)
-      .then(response => {
-        console.log(response.data)
-        let tab = []
-        response.data.forEach(ingredient => {
-          tab.push(<Picker.Item label={ingredient.name} value={ingredient.ingredientID} color='black' />)
-        });
-        setIngredients(tab)
-      }).catch(error => {
-        console.error('There was an error!', error);
-      });
-  },[])
+  },[recipeIngredients, recipeSteps, recipeTitle])
+
 
   const renderSteps = () => {
-    console.log('renderSteps')
     let tab = []
       for(let i = 0; i <= recipeSteps.length;i++){
         tab.push(
@@ -55,6 +40,17 @@ const NewRecipe = () => {
     return tab
   } 
 
+  const renderIngredients = () => {
+    console.log('renderIngredients')
+    let tab = []
+      for(let i = 0; i <= recipeIngredients.length;i++){
+        tab.push(
+          <CustomPicker/>
+        )
+      }
+    return tab
+  }
+
   return(
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.input_container}>
@@ -62,11 +58,9 @@ const NewRecipe = () => {
         <TextInput style={styles.text_input} placeholderTextColor={colors.grey5} placeholder={t('pumpkin_pie')} onChangeText={(value)=>{setRecipeTitle(value)}}></TextInput>
       </View>
       <View style={styles.container}>
-      <Picker
-        selectedValue={selectedIngredient}
-        style={{ height: 50, width: 150 }}
-        onValueChange={(itemValue, itemIndex) => {setSelectedIngredient(itemValue)}}
-      >{ingredients ? ingredients : null}</Picker>
+
+      
+      {renderIngredients()}
       {renderSteps()}
       
       </View>
