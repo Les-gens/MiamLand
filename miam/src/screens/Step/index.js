@@ -95,7 +95,7 @@ const Step = ({route, navigation}) => {
             setCount(count +1)
             setDisable(false)
             if(count+1>=tab.length-1){
-              setTitle("Acceuil")
+              setTitle("Accueil")
             }
             if(count+1>=tab.length){
               navigation.navigate('MyRecipes')
