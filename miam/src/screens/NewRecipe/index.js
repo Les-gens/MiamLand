@@ -28,7 +28,7 @@ const NewRecipe = ({route, navigation}) => {
   },[recipeIngredients, recipeSteps, recipeTitle])
 
   useEffect(()=>{
-  axios.get(`http://10.0.2.2:8000/api/ingredients`)
+  axios.get(`http://10.0.2.2:8000/api/ingredients/withoutFridge`)
     .then(response => {
       console.log('without fridge ! ',response.data)
       let tab = []
