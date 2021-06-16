@@ -14,14 +14,14 @@ interface Props {
 }
 
 const RecipeCard = ({recipe}: Props) => {
-  const {name, notation, totalNotations, duration, image} = recipe
+  const {name, id ,notation, totalNotations, duration, image} = recipe
   const navigation = useNavigation()
   console.log("RECIPE INSIDE CARD ",recipe)
 
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate('Recipe', {recipe: recipe})}>
+      onPress={() => navigation.navigate('Recipe', {recipe})}>
       <View style={styles.informations}>
         <View>
           <Text style={styles.recipeName}>{capitalize(name)}</Text>
