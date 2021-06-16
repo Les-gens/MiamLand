@@ -6,11 +6,15 @@ A cooking app made by fatasses
 
 Please ensure you meet the [android prerequisites](https://reactnative.dev/docs/environment-setup)
 
+
 run `cd backend` then install dependencies with `npm i` and launch backend with  `npm run server`
+(Please note that you will need a postgresql database and change the `.env.example` file to `.env` with your database credentials)
 
 then
 
 run `cd ../miam`
+
+
 
 then install dependencies with `npm i`
 
