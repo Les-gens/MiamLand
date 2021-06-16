@@ -7,7 +7,14 @@ import { colors } from '../../theme'
 import axios from 'axios'
 import {CustomPicker} from './CustomPicker'
 import { useNavigation } from '@react-navigation/native'
-const NewRecipe = () => {
+import { Recipe } from '../../models/'
+import jambon from '../../assets/img/jambon.jpg'
+import { RecipeCard } from '../../components/index'
+
+const NewRecipe = ({route, navigation}) => {
+
+  const {setList} = route.params;
+  const {list} = route.params;
   const {t, i18n} = useTranslation()
   const [ingredients, setIngredients] = useState([])
   const [selectedIngredient, setSelectedIngredient] = useState('')
@@ -16,7 +23,6 @@ const NewRecipe = () => {
   const [recipeTitle, setRecipeTitle] = useState('')
   const [recipeDescription, setRecipeDescription] = useState('')
 
-  const navigation = useNavigation()
   useEffect(()=>{
     console.log(recipeSteps)
   },[recipeIngredients, recipeSteps, recipeTitle])
@@ -52,10 +58,13 @@ const NewRecipe = () => {
       await axios.post(`http://10.0.2.2:8000/api/steps`, {action: step, recipeID: rID})
         .then(res => {
           console.log(res.data)
+          
         }).catch(error => {
           console.error('There was an error!', error);
         }); 
     })
+    setList([...list, <RecipeCard recipe = {new Recipe(recipeTitle, rID ,5
+      , 1,(Math.floor( Math.random() * 20)+1) , jambon)}/>])
     navigation.navigate('MyRecipes')
 
   }
