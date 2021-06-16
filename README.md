@@ -6,13 +6,15 @@ A cooking app made by fatasses
 
 Please ensure you meet the [android prerequisites](https://reactnative.dev/docs/environment-setup)
 
-then
-
-run `cd miam`
+run `cd backend` then install dependencies with `npm i` and launch backend with  `npm run server`
 
 then
 
-`yarn android` or `yarn ios` (only on macOs)
+run `cd ../miam`
+
+then install dependencies with `npm i`
+
+launch application with `yarn android` or `yarn ios` (only on macOs)
 
 ## Credits
 
