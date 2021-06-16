@@ -23,8 +23,11 @@ const MyRecipes = () => {
               let tab2 = [];
               response.data.forEach(e => {
                 console.log("RECIPES ME : ",e)
-                tab2.push(<RecipeCard recipe = {new Recipe(e.name, e.recipeID ,(Math.floor( Math.random() * 5)+1)
-                  , (Math.floor( Math.random() * 20)+1),(Math.floor( Math.random() * 20)+1) , jambon)}/> ) 
+                tab2.push(
+                <View key={ e.recipeID}>
+                <RecipeCard recipe = {new Recipe(e.name, e.recipeID ,(Math.floor( Math.random() * 5)+1)
+                  , (Math.floor( Math.random() * 20)+1),(Math.floor( Math.random() * 20)+1) , jambon)}/>
+                  </View> ) 
             })
             setList(tab2);
           }

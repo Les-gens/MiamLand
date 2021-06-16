@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { ScrollView, View, TextInput, Text, Pressable } from 'react-native'
+import { ScrollView, View, TextInput, Text, Pressable,LogBox } from 'react-native'
 import {useTranslation} from 'react-i18next'
 import { Picker } from '@react-native-community/picker'
 import styles from './styles'
@@ -10,6 +10,10 @@ import { useNavigation } from '@react-navigation/native'
 import { Recipe } from '../../models/'
 import jambon from '../../assets/img/jambon.jpg'
 import { RecipeCard } from '../../components/index'
+
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state',
+]);
 
 const NewRecipe = ({route, navigation}) => {
 
@@ -56,8 +60,9 @@ const NewRecipe = ({route, navigation}) => {
 
     start(rID)
       
-    setList([...list, <RecipeCard recipe = {new Recipe(recipeTitle, rID ,5
-      , 1,(Math.floor( Math.random() * 20)+1) , jambon)}/>])
+    setList([...list, <View key = {rID}><RecipeCard recipe = {new Recipe(recipeTitle, rID ,5
+      , 1,(Math.floor( Math.random() * 20)+1) , jambon)}/>
+      </View>])
     navigation.navigate('MyRecipes')
 
   }

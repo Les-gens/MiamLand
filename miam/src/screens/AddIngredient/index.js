@@ -53,7 +53,7 @@ const AddIngredient = ({ route, navigation }) => {
             .then(response => {
                 console.log(response.data)
                 setList([...list,
-                <View style={{ flexDirection: 'row' }}>
+                <View key={response.data.ingredientID} style={{ flexDirection: 'row' }}>
                     <IngredientCard ingredient={new Ingredient(ingredientPost.name, ingredient, response.data.ingredientID)} />
                     <Pressable onPress={() => { removeIngredient(response.data.ingredientID) }}>
                         <Text style={{ fontSize: 50 }}>-</Text>
@@ -73,27 +73,7 @@ const AddIngredient = ({ route, navigation }) => {
             })
     }
 
-    /*const removeIngredient = (id) => {
-        axios.delete(`http://10.0.2.2:8000/api/ingredients/${id}`)
-            .then(response => {
-                let tab2 = [];
-                response.data.forEach(e => {
-                    tab2.push(
-                        <View style={{flexDirection: 'row'}}>
-                            <IngredientCard ingredient={new Ingredient(e.name, ingredient, e.ingredientID)} />
-                            <Pressable onPress={() => { removeIngredient(e.ingredientID) }}>
-                                <Text style={{ fontSize: 50 }}>-</Text>
-                            </Pressable>
-                        </View>
-
-                    )
-                })
-                setList(tab2);
-            })
-            .catch(error => {
-                console.error('erreur dans get', error);
-            })
-    }*/
+  
 
     const sendIngredient = () => {
         getFridgeId()

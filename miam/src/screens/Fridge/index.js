@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, ScrollView, Pressable, Alert } from 'react-native'
+import { Text, View, ScrollView, Pressable, Alert,LogBox  } from 'react-native'
 import ingredient from '../../assets/img/ingredient.png'
 import styles from './styles'
 import { Ingredient } from '../../models/Ingredient'
 import { IngredientCard, SearchBar } from '../../components'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios'
+
+LogBox.ignoreLogs([
+    'Non-serializable values were found in the navigation state',
+  ]);
 
 const Fridge = () => {
     const navigation = useNavigation()
@@ -18,7 +22,7 @@ const Fridge = () => {
                 let tab2 = [];
                 response.data.forEach(e => {
                     tab2.push(
-                        <View style={{flexDirection: 'row'}}>
+                        <View key={e.ingredientID} style={{flexDirection: 'row'}}>
                             <IngredientCard ingredient={new Ingredient(e.name, ingredient, e.ingredientID)} />
                             <Pressable onPress={() => { removeIngredient(e.ingredientID) }}>
                                 <Text style={{ fontSize: 50 }}>-</Text>
@@ -46,7 +50,7 @@ const Fridge = () => {
                 let tab2 = [];
                 response.data.forEach(e => {
                     tab2.push(
-                        <View style={{flexDirection: 'row'}}>
+                        <View key={e.ingredientID} style={{flexDirection: 'row'}}>
                             <IngredientCard ingredient={new Ingredient(e.name, ingredient, e.ingredientID)} />
                             <Pressable onPress={() => { removeIngredient(e.ingredientID) }}>
                                 <Text style={{ fontSize: 50 }}>-</Text>
