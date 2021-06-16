@@ -2,6 +2,7 @@ import User from '../models/User.js';
 import fastify from '../index.js';
 import pkg from 'boom';
 import pkg2 from 'bcrypt';
+import Fridge from '../models/Fridge.js';
 const boom = pkg;
 const bcrypt = pkg2;
 
@@ -57,6 +58,9 @@ const addNewUser = async (req, res) => {
     const user = await User.create({
       userName: req.body.username,
       password: hashed
+    });
+    await Fridge.create({
+      userID: user.userID
     });
     const payload = { userID: user.userID };
     const token = fastify.jwt.sign(payload);
