@@ -8,10 +8,13 @@ import jambon from '../../assets/img/jambon.jpg'
 import styles from './styles'
 import {colors} from '../../theme'
 import axios from 'axios'
+import { useIsFocused } from '@react-navigation/native'
 
 const Search = () => {
   const {t, i18n} = useTranslation()
-  const[list, setList] = useState([])
+  const[list, setListSearch] = useState([])
+  const isFocused = useIsFocused()
+
   useEffect(() => {},[list])
   useEffect( () => {
     axios.get(`http://10.0.2.2:8000/api/recipes`)
@@ -22,13 +25,13 @@ const Search = () => {
                 tab2.push(<RecipeCard recipe = {new Recipe(e.name, e.recipeID ,(Math.floor( Math.random() * 5)+1)
                   , (Math.floor( Math.random() * 20)+1),(Math.floor( Math.random() * 20)+1) , jambon)}/> ) 
             })
-            setList(tab2);
+            setListSearch(tab2);
           }
             )
             .catch(error => {
                 console.error('There was an error!', error);
         });
-  },[])
+  },[isFocused])
   return (
     <>
       <View style={styles.searchContainer}>

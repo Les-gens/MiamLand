@@ -79,6 +79,12 @@ const Fridge = () => {
             </View>
             <ScrollView contentContainerStyle={styles.container}>
                 {list}
+                {list.length === 0 ? 
+            <View style={styles.emptyContainer}>
+              <Text style={styles.empty}>¯\_(ツ)_/¯</Text>
+              <Text>No ingredients found</Text> 
+            </View>
+          : null}
             </ScrollView>
         </>
     )
