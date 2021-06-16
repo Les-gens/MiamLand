@@ -24,13 +24,13 @@ const NewRecipe = ({route, navigation}) => {
   const [recipeDescription, setRecipeDescription] = useState('')
 
   useEffect(()=>{
-    console.log(recipeSteps)
+    console.log('ici je suppose',recipeSteps)
   },[recipeIngredients, recipeSteps, recipeTitle])
 
   useEffect(()=>{
-  axios.get(`http://10.0.2.2:8000/api/ingredients/withoutFridge`)
+  axios.get(`http://10.0.2.2:8000/api/ingredients`)
     .then(response => {
-      console.log(response.data)
+      console.log('without fridge ! ',response.data)
       let tab = []
       response.data.forEach(ingredient => {
         tab.push(<Picker.Item label={ingredient.name} value={ingredient.ingredientID} color='black' />)
@@ -54,19 +54,34 @@ const NewRecipe = ({route, navigation}) => {
       });
     console.log('IDDDDDDDDDDDDDDDDDD',rID)
 
-    recipeSteps.forEach(async (step)=> {
-      await axios.post(`http://10.0.2.2:8000/api/steps`, {action: step, recipeID: rID})
-        .then(res => {
-          console.log(res.data)
-          
-        }).catch(error => {
-          console.error('There was an error!', error);
-        }); 
-    })
+    start(rID)
+      
     setList([...list, <RecipeCard recipe = {new Recipe(recipeTitle, rID ,5
       , 1,(Math.floor( Math.random() * 20)+1) , jambon)}/>])
     navigation.navigate('MyRecipes')
 
+  }
+
+  const start = async(rID) => {
+    for(let step of recipeSteps){
+      await setStepFor(step,rID).then((
+        res) => {
+          console.log("add step -> ",res.data)
+        }
+      )
+    }
+  }
+
+  const setStepFor = (step,rID) => {
+    return new Promise((resolve, reject) => {
+      axios.post(`http://10.0.2.2:8000/api/steps`, {action: step, recipeID: rID})
+      .then(res => {
+        return resolve(res.data)
+      })
+      .catch(error => {
+        return reject(error.message)
+      })
+    })
   }
 
   const renderSteps = () => {
@@ -77,6 +92,7 @@ const NewRecipe = ({route, navigation}) => {
             <Text>{`${t('step')} ${i+1}`}</Text>
             <TextInput style={styles.text_input} value={recipeSteps[i]} placeholderTextColor={colors.grey5} placeholder={t('pumpkin_pie')} onChangeText={
               (value)=>{
+                
                 let oldSteps = recipeSteps
                 oldSteps[i] = value
                 setRecipeSteps([...oldSteps])
