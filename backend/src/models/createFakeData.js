@@ -6,7 +6,7 @@ import User from './User.js';
 import pkg from 'bcrypt';
 const bcrypt = pkg;
 
-const fakeData = async () => {
+const createFakeData = async () => {
   const plainPassword = 'toto';
   let hashed = '';
   await bcrypt.genSalt(10)
@@ -119,4 +119,4 @@ const fakeData = async () => {
   });
 };
 
-export default fakeData;
+export default createFakeData;

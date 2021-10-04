@@ -9,7 +9,7 @@ import fridgeRoutes from './routes/fridgeRoutes.js';
 import recipeRoutes from './routes/recipeRoutes.js';
 import stepRoutes from './routes/stepRoutes.js';
 import fastifyStatic from 'fastify-static';
-import fakeData from './models/fakeData.js';
+import createFakeData from './models/createFakeData.js';
 import options from './swagger.js';
 import fastifySwagger from 'fastify-swagger';
 
@@ -23,7 +23,7 @@ server.register(fastifyStatic, { root: path.join(path.resolve(), 'uploads'), pre
 server.register(fastifySwagger, options);
 
 const synchronize = async () => await sequelize.sync({ force: true });
-const fakeLoad = async () => await fakeData();
+const fakeLoad = async () => await createFakeData();
 
 server.decorate('authenticate', async function (req, res) {
   try {
