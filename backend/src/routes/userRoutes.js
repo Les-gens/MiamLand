@@ -1,14 +1,14 @@
-import { getAllUser, getSingleUser, addNewUser, updateUser, deleteUser, login, getProfile } from '../controller/userController.js';
+import { getAllUser, getSingleUser, addNewUser, updateUser, deleteUser, login, getProfile } from '../controller/UserController.js';
 
 const routes = [
   {
     method: 'GET',
-    url: '/api/users',
+    url: '/api/user',
     handler: getAllUser
   },
   {
     method: 'GET',
-    url: '/api/users/:id',
+    url: '/api/user/:id',
     handler: getSingleUser
   },
   {
@@ -28,12 +28,12 @@ const routes = [
   },
   {
     method: 'PUT',
-    url: '/api/users/:id',
+    url: '/api/user/:id',
     handler: updateUser
   },
   {
     method: 'DELETE',
-    url: '/api/users/:id',
+    url: '/api/user/:id',
     handler: deleteUser
   }
 ];

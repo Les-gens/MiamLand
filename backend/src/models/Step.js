@@ -3,27 +3,22 @@ import pkg from 'sequelize';
 const { DataTypes } = pkg;
 
 const Step = sequelize.define('step', {
-  stepID: {
+  stepId: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
   },
-  ingredientID: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    references: {
-      model: 'ingredients',
-      key: 'ingredientID'
-    }
+  description: {
+    type: DataTypes.STRING(100)
   },
-  action: {
-    type: DataTypes.STRING
+  numberStep: {
+    type: DataTypes.INTEGER
   },
-  recipeID: {
+  recetteIdFk: {
     type: DataTypes.INTEGER,
     references: {
       model: 'recipes',
-      key: 'recipeID'
+      key: 'recipeId'
     }
   }
 }, {

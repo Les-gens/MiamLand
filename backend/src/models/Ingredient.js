@@ -3,21 +3,18 @@ import pkg from 'sequelize';
 const { DataTypes } = pkg;
 
 const Ingredient = sequelize.define('ingredient', {
-  ingredientID: {
+  ingredientId: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
   },
   name: {
-    type: DataTypes.STRING(50)
+    type: DataTypes.STRING(50),
+    unique: true
   },
-  fridgeID: {
+  category: {
     type: DataTypes.INTEGER,
-    allowNull: true,
-    references: {
-      model: 'fridges',
-      key: 'fridgeID'
-    }
+    allowNull: true
   }
 }, {
   // Other model options go here

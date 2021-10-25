@@ -1,44 +1,29 @@
-import { getAllRecipe, getSingleRecipeByID, getRecipesFromUser, getSingleRecipeByUser, addNewRecipe, updateRecipe, deleteRecipe, addNewRecipeUser } from '../controller/recipeController.js';
+import { getAllRecipe, getSingleRecipe, addNewRecipe, updateRecipe, deleteRecipe } from '../controller/RecipeController.js';
 
 const routes = [
   {
     method: 'GET',
-    url: '/api/recipes',
+    url: '/api/recipe',
     handler: getAllRecipe
   },
   {
     method: 'GET',
-    url: '/api/recipes/:id/',
-    handler: getSingleRecipeByID
-  },
-  {
-    method: 'GET',
-    url: '/api/recipes/:id/byUser',
-    handler: getSingleRecipeByUser
-  },
-  {
-    method: 'GET',
-    url: '/api/recipes/me',
-    handler: getRecipesFromUser
+    url: '/api/recipe/:name',
+    handler: getSingleRecipe
   },
   {
     method: 'POST',
-    url: '/api/recipes',
+    url: '/api/recipe',
     handler: addNewRecipe
   },
   {
-    method: 'POST',
-    url: '/api/recipes/me',
-    handler: addNewRecipeUser
-  },
-  {
     method: 'PUT',
-    url: '/api/recipes/:id',
+    url: '/api/recipe/:id',
     handler: updateRecipe
   },
   {
     method: 'DELETE',
-    url: '/api/recipes/:id',
+    url: '/api/recipe/:id',
     handler: deleteRecipe
   }
 ];

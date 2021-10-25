@@ -3,7 +3,7 @@ import pkg from 'sequelize';
 const { DataTypes } = pkg;
 
 const Recipe = sequelize.define('recipe', {
-  recipeID: {
+  recipeId: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
@@ -12,13 +12,16 @@ const Recipe = sequelize.define('recipe', {
     type: DataTypes.STRING(50)
   },
   description: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING(100)
   },
-  userID: {
+  maxStep: {
+    type: DataTypes.INTEGER
+  },
+  userIdFk: {
     type: DataTypes.INTEGER,
     references: {
       model: 'users',
-      key: 'userID'
+      key: 'userId'
     }
   }
 }, {

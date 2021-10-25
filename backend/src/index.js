@@ -3,19 +3,23 @@ import sequelize from './config.js';
 import fastifyMultipart from 'fastify-multipart';
 import fastifyJWT from 'fastify-jwt';
 import path from 'path';
-import ingredientRoutes from './routes/ingredientRoutes.js';
-import userRoutes from './routes/userRoutes.js';
-import fridgeRoutes from './routes/fridgeRoutes.js';
-import recipeRoutes from './routes/recipeRoutes.js';
-import stepRoutes from './routes/stepRoutes.js';
+
+import userRoutes from './routes/UserRoutes.js';
+import ingredientRoutes from './routes/IngredientRoutes.js';
+import recipeRoutes from './routes/RecipeRoutes.js';
+import userIngredientRoutes from './routes/UserIngredientRoutes.js';
+import quantityRoutes from './routes/QuantityRoutes.js';
+import ratingRoutes from './routes/RatingRoutes.js';
+import stepRoutes from './routes/StepRoutes.js';
+
 import fastifyStatic from 'fastify-static';
-import createFakeData from './models/createFakeData.js';
+import createFakeData from './data/CreateFakeData.js';
 import options from './swagger.js';
 import fastifySwagger from 'fastify-swagger';
 
 const env = process.env.NODE_ENV || 'devlopment';
 
-const baseRoutes = [ingredientRoutes, userRoutes, fridgeRoutes, recipeRoutes, stepRoutes];
+const baseRoutes = [userRoutes, ingredientRoutes, recipeRoutes, userIngredientRoutes, stepRoutes, ratingRoutes, quantityRoutes];
 const server = fastify({ logger: true });
 server.register(fastifyMultipart);
 server.register(fastifyJWT, { secret: (process.env.JWT_SECRET || 'imabanana') });

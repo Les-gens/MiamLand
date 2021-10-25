@@ -11,26 +11,11 @@ const getAllStep = async (req, res) => {
   }
 };
 
-const getSingleStepByID = async (req, res) => {
+const getSingleStep = async (req, res) => {
   try {
-    const id = req.params.id;
     const step = await Step.findAll({
       where: {
-        stepID: id
-      }
-    });
-    return step;
-  } catch (err) {
-    throw boom.boomify(err);
-  }
-};
-
-const getSingleStepByRecipe = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const step = await Step.findAll({
-      where: {
-        recipeID: id
+        stepId: req.params.id
       }
     });
     return step;
@@ -41,10 +26,10 @@ const getSingleStepByRecipe = async (req, res) => {
 
 const addNewStep = async (req, res) => {
   try {
-    const step = await Step.create({
-      recipeID: req.body.recipeID,
-      action: req.body.action,
-      IngredientID: req.body.IngredientID
+    const step = Step.create({
+      description: req.body.description,
+      numberStep: req.body.numberStep,
+      recetteIdFk: req.body.recetteIdFk
     });
     return step;
   } catch (err) {
@@ -55,13 +40,12 @@ const addNewStep = async (req, res) => {
 const updateStep = async (req, res) => {
   try {
     const step = await Step.update({
-      recipeID: req.body?.recipeID,
-      action: req.body?.action,
-      IngredientID: req.body?.IngredientID
+      name: req.body?.name,
+      category: req.body?.category
     },
     {
       where: {
-        stepID: req.params.id
+        stepId: req.params.id
       }
     });
     return step;
@@ -73,7 +57,7 @@ const updateStep = async (req, res) => {
 const deleteStep = async (req, res) => {
   try {
     const step = await Step.destroy({
-      where: { stepID: req.params.id }
+      where: { stepId: req.params.id }
     });
     return step;
   } catch (err) {
@@ -81,4 +65,4 @@ const deleteStep = async (req, res) => {
   }
 };
 
-export { getAllStep, getSingleStepByID, getSingleStepByRecipe, addNewStep, updateStep, deleteStep };
+export { getAllStep, getSingleStep, addNewStep, updateStep, deleteStep };

@@ -2,7 +2,6 @@ import User from '../models/User.js';
 import fastify from '../index.js';
 import pkg from 'boom';
 import pkg2 from 'bcrypt';
-import Fridge from '../models/Fridge.js';
 const boom = pkg;
 const bcrypt = pkg2;
 
@@ -20,7 +19,7 @@ const getSingleUser = async (req, res) => {
     const id = req.params.id;
     const user = await User.findAll({
       where: {
-        userID: id
+        userId: id
       }
     });
     return user;
@@ -31,10 +30,10 @@ const getSingleUser = async (req, res) => {
 
 const getProfile = async (req, res) => {
   try {
-    const id = req.user.userID;
+    const id = req.user.userId;
     const user = await User.findAll({
       where: {
-        userID: id
+        userId: id
       }
     });
     return user;
@@ -59,10 +58,7 @@ const addNewUser = async (req, res) => {
       userName: req.body.username,
       password: hashed
     });
-    await Fridge.create({
-      userID: user.userID
-    });
-    const payload = { userID: user.userID };
+    const payload = { userId: user.userId };
     const token = fastify.jwt.sign(payload);
     return { token };
   } catch (err) {
@@ -92,7 +88,7 @@ const updateUser = async (req, res) => {
         userName: req.body?.username
       };
     }
-    const user = await User.update(userObject, { where: { userID: req.params.id } });
+    const user = await User.update(userObject, { where: { userId: req.params.id } });
     return user;
   } catch (err) {
     throw boom.boomify(err);
@@ -102,7 +98,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const user = await User.destroy({
-      where: { userID: req.params.id }
+      where: { userId: req.params.id }
     });
     return user;
   } catch (err) {
@@ -122,7 +118,7 @@ const login = async (req, res) => {
 
     if (!isMatching) return boom.unauthorized('Wrong credentials');
 
-    const payload = { userID: user.userID };
+    const payload = { userId: user.userId };
     const token = fastify.jwt.sign(payload);
     return { token };
   } catch (err) {

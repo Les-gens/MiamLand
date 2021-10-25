@@ -1,10 +1,5 @@
 import Recipe from '../models/Recipe.js';
 import pkg from 'boom';
-// import fs from 'fs';
-// import { v4 as uuidv4 } from 'uuid';
-// import { pipeline } from 'stream';
-// import util from 'util';
-// const pump = util.promisify(pipeline);
 const boom = pkg;
 
 const getAllRecipe = async (req, res) => {
@@ -16,38 +11,11 @@ const getAllRecipe = async (req, res) => {
   }
 };
 
-const getSingleRecipeByID = async (req, res) => {
+const getSingleRecipe = async (req, res) => {
   try {
     const recipe = await Recipe.findAll({
       where: {
-        recipeID: req.params.id
-      }
-    });
-    return recipe;
-  } catch (err) {
-    throw boom.boomify(err);
-  }
-};
-
-const getRecipesFromUser = async (req, res) => {
-  try {
-    const userID = req.user.userID;
-    const recipes = await Recipe.findAll({
-      where: {
-        userID
-      }
-    });
-    return recipes;
-  } catch (err) {
-    throw boom.boomify(err);
-  }
-};
-
-const getSingleRecipeByUser = async (req, res) => {
-  try {
-    const recipe = await Recipe.findAll({
-      where: {
-        userID: req.params.id
+        recipeId: req.params.id
       }
     });
     return recipe;
@@ -58,23 +26,11 @@ const getSingleRecipeByUser = async (req, res) => {
 
 const addNewRecipe = async (req, res) => {
   try {
-    const recipe = await Recipe.create({
+    const recipe = Recipe.create({
       name: req.body.name,
+      maxStep: req.body.maxStep,
       description: req.body.description,
-      userID: req.body.userID
-    });
-    return recipe;
-  } catch (err) {
-    throw boom.boomify(err);
-  }
-};
-
-const addNewRecipeUser = async (req, res) => {
-  try {
-    const recipe = await Recipe.create({
-      name: req.body.name,
-      description: req.body.description,
-      userID: req.user.userID
+      userIdFk: req.body.userId
     });
     return recipe;
   } catch (err) {
@@ -85,9 +41,15 @@ const addNewRecipeUser = async (req, res) => {
 const updateRecipe = async (req, res) => {
   try {
     const recipe = await Recipe.update({
-      name: req.body.name,
-      description: req.body.description,
-      userID: req.body.userID
+      name: req.body?.name,
+      maxStep: req.body?.maxStep,
+      description: req.body?.description,
+      userIdFk: req.body?.userId
+    },
+    {
+      where: {
+        recipeId: req.params.id
+      }
     });
     return recipe;
   } catch (err) {
@@ -98,7 +60,7 @@ const updateRecipe = async (req, res) => {
 const deleteRecipe = async (req, res) => {
   try {
     const recipe = await Recipe.destroy({
-      where: { recipeID: req.params.id }
+      where: { recipeId: req.params.id }
     });
     return recipe;
   } catch (err) {
@@ -106,4 +68,4 @@ const deleteRecipe = async (req, res) => {
   }
 };
 
-export { getAllRecipe, addNewRecipeUser, getRecipesFromUser, getSingleRecipeByID, getSingleRecipeByUser, addNewRecipe, updateRecipe, deleteRecipe };
+export { getAllRecipe, getSingleRecipe, addNewRecipe, updateRecipe, deleteRecipe };

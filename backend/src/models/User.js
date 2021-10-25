@@ -3,7 +3,7 @@ import pkg from 'sequelize';
 const { DataTypes } = pkg;
 
 const User = sequelize.define('user', {
-  userID: {
+  userId: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true

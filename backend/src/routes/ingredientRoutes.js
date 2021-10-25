@@ -1,39 +1,29 @@
-import { getAllIngredient, getAllIngredientWithoutFridge, getSingleIngredient, addNewIngredient, updateIngredient, deleteIngredient, getAllIngredientFridge } from '../controller/ingredientController.js';
+import { getAllIngredient, getSingleIngredient, addNewIngredient, updateIngredient, deleteIngredient } from '../controller/IngredientController.js';
 
 const routes = [
   {
     method: 'GET',
-    url: '/api/ingredients',
+    url: '/api/ingredient',
     handler: getAllIngredient
   },
   {
     method: 'GET',
-    url: '/api/ingredients/withoutFridge',
-    handler: getAllIngredientWithoutFridge
-  },
-  {
-    method: 'GET',
-    url: '/api/ingredients/withFridge',
-    handler: getAllIngredientFridge
-  },
-  {
-    method: 'GET',
-    url: '/api/ingredients/:name',
+    url: '/api/ingredient/:name',
     handler: getSingleIngredient
   },
   {
     method: 'POST',
-    url: '/api/ingredients',
+    url: '/api/ingredient',
     handler: addNewIngredient
   },
   {
     method: 'PUT',
-    url: '/api/ingredients/:id',
+    url: '/api/ingredient/:id',
     handler: updateIngredient
   },
   {
     method: 'DELETE',
-    url: '/api/ingredients/:id',
+    url: '/api/ingredient/:id',
     handler: deleteIngredient
   }
 ];

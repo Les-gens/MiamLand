@@ -1,34 +1,29 @@
-import { getAllStep, getSingleStepByID, getSingleStepByRecipe, addNewStep, updateStep, deleteStep } from '../controller/stepController.js';
+import { getAllStep, getSingleStep, addNewStep, updateStep, deleteStep } from '../controller/StepController.js';
 
 const routes = [
   {
     method: 'GET',
-    url: '/api/steps',
+    url: '/api/step',
     handler: getAllStep
   },
   {
     method: 'GET',
-    url: '/api/steps/:id',
-    handler: getSingleStepByID
-  },
-  {
-    method: 'GET',
-    url: '/api/steps/:id/byRecipe',
-    handler: getSingleStepByRecipe
+    url: '/api/step/:name',
+    handler: getSingleStep
   },
   {
     method: 'POST',
-    url: '/api/steps',
+    url: '/api/step',
     handler: addNewStep
   },
   {
     method: 'PUT',
-    url: '/api/steps/:id',
+    url: '/api/step/:id',
     handler: updateStep
   },
   {
     method: 'DELETE',
-    url: '/api/steps/:id',
+    url: '/api/step/:id',
     handler: deleteStep
   }
 ];
