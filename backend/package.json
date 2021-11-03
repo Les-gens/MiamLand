@@ -7,7 +7,8 @@
     "server": "node src/index.js",
     "dev": "nodemon src/index.js",
     "lint": "eslint src",
-    "lint:fix": "eslint --fix src"
+    "lint:fix": "eslint --fix src",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.6.2",
+    "supertest": "^6.1.6",
     "uuid": "^8.3.2"
   },
   "type": "module",
