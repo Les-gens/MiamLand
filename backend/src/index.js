@@ -60,7 +60,7 @@ const startServer = async () => {
       await fakeLoad();
     }
     await server.listen(PORT);
-    server.swagger();
+    await server.swagger();
     console.log(`Server running on 127.0.0.1:${PORT}`);
   } catch (err) {
     server.log.error(err);
