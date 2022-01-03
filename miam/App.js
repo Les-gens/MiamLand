@@ -1,8 +1,18 @@
-import React from 'react'
-import MainNavigator from './src/navigators/MainNavigator'
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import LoginScreen from './src/screens/LoginScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
 
-const App = () => {
-    return <MainNavigator/>
-}
+const AppNavigator = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Login: LoginScreen,
+    CreateAccount: SignUpScreen,
+  },
+  {
+    initialRouteName: 'Login',
+  },
+);
 
-export default App
+export default createAppContainer(AppNavigator);

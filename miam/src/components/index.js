@@ -1,7 +1,0 @@
-export {default as DurationIndicator} from './DurationIndicator'
-export {default as RecipeCard} from './RecipeCard'
-export {default as SearchBar} from './SearchBar'
-export {default as ActionButton} from './ActionButton'
-export {default as Notation} from './Notation'
-export {default as IngredientCard} from './IngredientCard'
-export {default as TextIpt} from './TextIpt'

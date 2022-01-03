@@ -21,7 +21,7 @@ const createFakeData = async () => {
     })
     .catch(err => console.error(err.message));
   const user = await User.create({
-    mailAddress: 'toto@toto.fr',
+    userName: 'toto',
     password: hashed
   });
   // Ingredient
