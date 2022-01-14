@@ -3,12 +3,12 @@ import { getAllStep, getSingleStep, addNewStep, updateStep, deleteStep } from '.
 const routes = [
   {
     method: 'GET',
-    url: '/api/step',
+    url: '/api/steps',
     handler: getAllStep
   },
   {
     method: 'GET',
-    url: '/api/step/:name',
+    url: '/api/step/:id',
     handler: getSingleStep
   },
   {

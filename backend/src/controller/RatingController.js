@@ -15,8 +15,8 @@ const getSingleRating = async (req, res) => {
   try {
     const rating = await Rating.findAll({
       where: {
-        recipeIdFk: req.params.recipeId,
-        userIdFk: req.params.userId
+        recipeidfk: req.query.recipeid,
+        useridfk: req.query.userid
       }
     });
     return rating;
@@ -28,8 +28,8 @@ const getSingleRating = async (req, res) => {
 const addNewRating = async (req, res) => {
   try {
     const rating = Rating.create({
-      recipeIdFk: req.body.recipeId,
-      userIdFk: req.body.userId,
+      recipeidfk: req.body.recipeid,
+      useridfk: req.body.userid,
       name: req.body.grade
     });
     return rating;
@@ -45,8 +45,8 @@ const updateRating = async (req, res) => {
     },
     {
       where: {
-        recipeIdFk: req.params.recipeId,
-        userIdFk: req.params.userId
+        recipeidfk: req.query.recipeid,
+        useridfk: req.query.userid
       }
     });
     return rating;
@@ -59,8 +59,8 @@ const deleteRating = async (req, res) => {
   try {
     const rating = await Rating.destroy({
       where: { 
-        recipeIdFk: req.params.recipeId,
-        userIdFk: req.params.userId
+        recipeidfk: req.query.recipeid,
+        useridfk: req.query.userid
       }
     });
     return rating;
@@ -69,4 +69,22 @@ const deleteRating = async (req, res) => {
   }
 };
 
-export { getAllRating, getSingleRating, addNewRating, updateRating, deleteRating };
+const getRatingForOneRecipe = async (req, res) => {
+  try {
+    const ratings = await Rating.findAll({
+      where: {
+        recipeidfk: req.params.recipeid
+      }
+    });
+    var average = 0;
+    for (var i = 0; i < ratings.length; i++){
+      average += ratings[i].grade;
+    }
+    average = average/ratings.length;
+    return average;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
+export { getAllRating, getSingleRating, addNewRating, updateRating, deleteRating, getRatingForOneRecipe };

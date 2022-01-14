@@ -3,12 +3,12 @@ import { getAllQuantity, getSingleQuantity, addNewQuantity, updateQuantity, dele
 const routes = [
   {
     method: 'GET',
-    url: '/api/quantity',
+    url: '/api/quantities',
     handler: getAllQuantity
   },
   {
     method: 'GET',
-    url: '/api/quantity/:name',
+    url: '/api/quantity/:id',
     handler: getSingleQuantity
   },
   {

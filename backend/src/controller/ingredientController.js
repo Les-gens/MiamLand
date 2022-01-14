@@ -1,4 +1,6 @@
 import Ingredient from '../models/Ingredient.js';
+import UserIngredient from '../models/UserIngredient.js';
+import Quantity from '../models/Quantity.js';
 import pkg from 'boom';
 const boom = pkg;
 
@@ -15,7 +17,7 @@ const getSingleIngredient = async (req, res) => {
   try {
     const ingredient = await Ingredient.findAll({
       where: {
-        ingredientId: req.params.id
+        ingredientid: req.params.id
       }
     });
     return ingredient;
@@ -44,7 +46,7 @@ const updateIngredient = async (req, res) => {
     },
     {
       where: {
-        ingredientId: req.params.id
+        ingredientid: req.params.id
       }
     });
     return ingredient;
@@ -55,8 +57,22 @@ const updateIngredient = async (req, res) => {
 
 const deleteIngredient = async (req, res) => {
   try {
+    await UserIngredient.destroy({
+      where: { ingredientidfk: req.params.id }
+    });
+    await Quantity.update({
+      ingredientidfk: null
+    },
+    {
+      where: {
+        ingredientidfk: req.params.id
+      }
+    });
+    const quantity = await Quantity.destroy({
+      where: { quantityid: req.params.id }
+    });
     const ingredient = await Ingredient.destroy({
-      where: { ingredientId: req.params.id }
+      where: { ingredientid: req.params.id }
     });
     return ingredient;
   } catch (err) {

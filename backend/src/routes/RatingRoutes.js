@@ -1,14 +1,20 @@
-import { getAllRating, getSingleRating, addNewRating, updateRating, deleteRating } from '../controller/RatingController.js';
+import { getAllRating, getSingleRating, addNewRating, updateRating, deleteRating, getRatingForOneRecipe } from '../controller/RatingController.js';
 
 const routes = [
   {
     method: 'GET',
-    url: '/api/rating',
+    url: '/api/ratings',
     handler: getAllRating
   },
   {
     method: 'GET',
-    url: '/api/rating/:name',
+    url: '/api/rating',
+    schema: {
+      querystring: {
+        recipeid: { type: 'integer' },
+        userid: { type: 'integer' }
+      }
+    },
     handler: getSingleRating
   },
   {
@@ -18,14 +24,31 @@ const routes = [
   },
   {
     method: 'PUT',
-    url: '/api/rating/:id',
+    url: '/api/rating',
+    schema: {
+      querystring: {
+        recipeid: { type: 'integer' },
+        userid: { type: 'integer' }
+      }
+    },
     handler: updateRating
   },
   {
     method: 'DELETE',
-    url: '/api/rating/:id',
+    url: '/api/rating',
+    schema: {
+      querystring: {
+        recipeid: { type: 'integer' },
+        userid: { type: 'integer' }
+      }
+    },     
     handler: deleteRating
-  }
+  },
+  {
+    method: 'GET',
+    url: '/api/ratings/:recipeid',
+    handler: getRatingForOneRecipe
+  },
 ];
 
 export default routes;

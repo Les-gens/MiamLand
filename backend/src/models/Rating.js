@@ -3,20 +3,20 @@ import pkg from 'sequelize';
 const { DataTypes } = pkg;
 
 const Rating = sequelize.define('rating', {
-  recipeIdFk: {
+  recipeidfk: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     references: {
       model: 'recipes',
-      key: 'recipeId'
+      key: 'recipeid'
     }
   },
-  userIdFk: {
+  useridfk: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     references: {
       model: 'users',
-      key: 'userId'
+      key: 'userid'
     }
   },
   grade: {

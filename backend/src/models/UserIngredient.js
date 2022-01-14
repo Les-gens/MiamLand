@@ -3,20 +3,20 @@ import pkg from 'sequelize';
 const { DataTypes } = pkg;
 
 const UserIngredient = sequelize.define('userIngredient', {
-  ingredientIdFk: {
+  ingredientidfk: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     references: {
       model: 'ingredients',
-      key: 'ingredientId'
+      key: 'ingredientid'
     }
   },
-  userIdFk: {
+  useridfk: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     references: {
       model: 'users',
-      key: 'userId'
+      key: 'userid'
     }
   }
 }, {

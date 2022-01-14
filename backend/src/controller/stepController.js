@@ -1,4 +1,5 @@
 import Step from '../models/Step.js';
+import Quantity from '../models/Quantity.js';
 import pkg from 'boom';
 const boom = pkg;
 
@@ -15,7 +16,7 @@ const getSingleStep = async (req, res) => {
   try {
     const step = await Step.findAll({
       where: {
-        stepId: req.params.id
+        stepid: req.params.id
       }
     });
     return step;
@@ -28,8 +29,8 @@ const addNewStep = async (req, res) => {
   try {
     const step = Step.create({
       description: req.body.description,
-      numberStep: req.body.numberStep,
-      recetteIdFk: req.body.recetteIdFk
+      numberstep: req.body.numberstep,
+      recipeidfk: req.body.recipeidfk
     });
     return step;
   } catch (err) {
@@ -45,7 +46,7 @@ const updateStep = async (req, res) => {
     },
     {
       where: {
-        stepId: req.params.id
+        stepid: req.params.id
       }
     });
     return step;
@@ -56,8 +57,11 @@ const updateStep = async (req, res) => {
 
 const deleteStep = async (req, res) => {
   try {
+    await Quantity.destroy({
+      where: { stepidfk: req.params.id }
+    });
     const step = await Step.destroy({
-      where: { stepId: req.params.id }
+      where: { stepid: req.params.id }
     });
     return step;
   } catch (err) {

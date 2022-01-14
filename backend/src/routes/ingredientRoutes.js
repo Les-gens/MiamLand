@@ -3,12 +3,12 @@ import { getAllIngredient, getSingleIngredient, addNewIngredient, updateIngredie
 const routes = [
   {
     method: 'GET',
-    url: '/api/ingredient',
+    url: '/api/ingredients',
     handler: getAllIngredient
   },
   {
     method: 'GET',
-    url: '/api/ingredient/:name',
+    url: '/api/ingredient/:id',
     handler: getSingleIngredient
   },
   {

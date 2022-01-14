@@ -3,7 +3,7 @@ import pkg from 'sequelize';
 const { DataTypes } = pkg;
 
 const Ingredient = sequelize.define('ingredient', {
-  ingredientId: {
+  ingredientid: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true

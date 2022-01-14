@@ -21,7 +21,7 @@ const createFakeData = async () => {
     })
     .catch(err => console.error(err.message));
   const user = await User.create({
-    userName: 'toto',
+    username: 'toto',
     password: hashed
   });
   // Ingredient
@@ -39,58 +39,58 @@ const createFakeData = async () => {
   });
   // Frigo
   await UserIngredient.create({
-    ingredientIdFk: endives.ingredientId,
-    userIdFk: user.userId
+    ingredientidfk: endives.ingredientid,
+    useridfk: user.userid
   });
   await UserIngredient.create({
-    ingredientIdFk: jambon.ingredientId,
-    userIdFk: user.userId
+    ingredientidfk: jambon.ingredientid,
+    useridfk: user.userid
   });
   await UserIngredient.create({
-    ingredientIdFk: chocolat.ingredientId,
-    userIdFk: user.userId
+    ingredientidfk: chocolat.ingredientid,
+    useridfk: user.userid
   });
   // Recettes
   const recipeEndive = await Recipe.create({
     name: 'Endives au jambon',
-    maxStep: '2',
+    maxstep: '2',
     description: "Endive au jambon de la plus grande banalité",
-    userIdFk: user.userId});
+    useridfk: user.userid});
   // Evaluation
   await Rating.create({
-    recipeIdFk: recipeEndive.recipeId,
-    userIdFk: user.userId,
+    recipeidfk: recipeEndive.recipeid,
+    useridfk: user.userid,
     grade: 4
   });
   // Steps endives au jambon
   const step1 = await Step.create({
     description: 'ouvrir les endives',
-    numberStep: 1,
-    recetteIdFk: recipeEndive.recipeId
+    numberstep: 1,
+    recipeidfk: recipeEndive.recipeid
   });
   const step2 = await Step.create({
     description: 'mettre le jambon dans les endives',
-    numberStep: 2,
-    recetteIdFk: recipeEndive.recipeId
+    numberstep: 2,
+    recipeidfk: recipeEndive.recipeid
   });
   // Quantite
   await Quantity.create({
     number: 1,
     unit: 1,
-    ingredientIdFk: endives.ingredientId,
-    stepIdFk: step1.stepId
+    ingredientidfk: endives.ingredientid,
+    stepidfk: step1.stepid
   });
   await Quantity.create({
     number: 1,
     unit: 1,
-    ingredientIdFk: endives.ingredientId,
-    stepIdFk: step2.stepId
+    ingredientidfk: endives.ingredientid,
+    stepidfk: step2.stepid
   });
   await Quantity.create({
     number: 1,
     unit: 1,
-    ingredientIdFk: chocolat.ingredientId,
-    stepIdFk: step2.stepId
+    ingredientidfk: chocolat.ingredientid,
+    stepidfk: step2.stepid
   });
 };
 

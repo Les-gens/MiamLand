@@ -15,7 +15,7 @@ const getSingleQuantity = async (req, res) => {
   try {
     const quantity = await Quantity.findAll({
       where: {
-        quantityId: req.params.id
+        quantityid: req.params.id
       }
     });
     return quantity;
@@ -29,8 +29,8 @@ const addNewQuantity = async (req, res) => {
     const quantity = Quantity.create({
       number: req.body.number,
       unit: req.body.unit,
-      ingredientIdFk: req.body.ingredientIdFk,
-      stepIdFk: req.body.stepIdFk
+      ingredientidfk: req.body.ingredientidfk,
+      stepidfk: req.body.stepidfk
     });
     return quantity;
   } catch (err) {
@@ -43,12 +43,12 @@ const updateQuantity = async (req, res) => {
     const quantity = await Quantity.update({
       number: req.body?.number,
       unit: req.body?.unit,
-      ingredientIdFk: req.body?.ingredientIdFk,
-      stepIdFk: req.body?.stepIdFk
+      ingredientidfk: req.body?.ingredientidfk,
+      stepidfk: req.body?.stepidfk
     },
     {
       where: {
-        quantityId: req.params.id
+        quantityid: req.params.id
       }
     });
     return quantity;
@@ -60,7 +60,7 @@ const updateQuantity = async (req, res) => {
 const deleteQuantity = async (req, res) => {
   try {
     const quantity = await Quantity.destroy({
-      where: { quantityId: req.params.id }
+      where: { quantityid: req.params.id }
     });
     return quantity;
   } catch (err) {

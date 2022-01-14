@@ -3,7 +3,7 @@ import { getAllUserIngredient, getSingleUserIngredient, addNewUserIngredient, de
 const routes = [
   {
     method: 'GET',
-    url: '/api/userIngredient',
+    url: '/api/userIngredients',
     handler: getAllUserIngredient
   },
   {

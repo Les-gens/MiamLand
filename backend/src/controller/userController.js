@@ -19,7 +19,7 @@ const getSingleUser = async (req, res) => {
     const id = req.params.id;
     const user = await User.findAll({
       where: {
-        userId: id
+        userid: id
       }
     });
     return user;
@@ -30,10 +30,10 @@ const getSingleUser = async (req, res) => {
 
 const getProfile = async (req, res) => {
   try {
-    const id = req.user.userId;
+    const id = req.user.userid;
     const user = await User.findAll({
       where: {
-        userId: id
+        userid: id
       }
     });
     return user;
@@ -55,10 +55,10 @@ const addNewUser = async (req, res) => {
       })
       .catch(err => console.error(err.message));
     const user = await User.create({
-      userName: req.body.username,
+      username: req.body.username,
       password: hashed
     });
-    const payload = { userId: user.userId };
+    const payload = { userid: user.userid };
     const token = fastify.jwt.sign(payload);
     return { token };
   } catch (err) {
@@ -80,15 +80,15 @@ const updateUser = async (req, res) => {
         })
         .catch(err => console.error(err.message));
       userObject = {
-        userName: req.body?.username,
-        password: hashed // TODO: Change for crypt
+        username: req.body?.username,
+        password: hashed
       };
     } else {
       userObject = {
-        userName: req.body?.username
+        username: req.body?.username
       };
     }
-    const user = await User.update(userObject, { where: { userId: req.params.id } });
+    const user = await User.update(userObject, { where: { userid: req.params.id } });
     return user;
   } catch (err) {
     throw boom.boomify(err);
@@ -98,7 +98,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const user = await User.destroy({
-      where: { userId: req.params.id }
+      where: { userid: req.params.id }
     });
     return user;
   } catch (err) {
@@ -108,17 +108,17 @@ const deleteUser = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const userName = req.body.username;
+    const username = req.body.username;
     const password = req.body.password;
 
-    const user = await User.findOne({ where: { userName } });
+    const user = await User.findOne({ where: { username } });
     if (!user) return boom.unauthorized('Wrong credentials');
 
     const isMatching = await bcrypt.compare(password, user.getDataValue('password'));
 
     if (!isMatching) return boom.unauthorized('Wrong credentials');
 
-    const payload = { userId: user.userId };
+    const payload = { userid: user.userid };
     const token = fastify.jwt.sign(payload);
     return { token };
   } catch (err) {

@@ -1,4 +1,7 @@
 import Recipe from '../models/Recipe.js';
+import Rating from '../models/Rating.js';
+import Step from '../models/Step.js';
+import Quantity from '../models/Quantity.js';
 import pkg from 'boom';
 const boom = pkg;
 
@@ -15,7 +18,7 @@ const getSingleRecipe = async (req, res) => {
   try {
     const recipe = await Recipe.findAll({
       where: {
-        recipeId: req.params.id
+        recipeid: req.params.id
       }
     });
     return recipe;
@@ -28,9 +31,9 @@ const addNewRecipe = async (req, res) => {
   try {
     const recipe = Recipe.create({
       name: req.body.name,
-      maxStep: req.body.maxStep,
+      maxstep: req.body.maxstep,
       description: req.body.description,
-      userIdFk: req.body.userId
+      useridfk: req.body.userid
     });
     return recipe;
   } catch (err) {
@@ -42,13 +45,13 @@ const updateRecipe = async (req, res) => {
   try {
     const recipe = await Recipe.update({
       name: req.body?.name,
-      maxStep: req.body?.maxStep,
+      maxstep: req.body?.maxstep,
       description: req.body?.description,
-      userIdFk: req.body?.userId
+      useridfk: req.body?.userid
     },
     {
       where: {
-        recipeId: req.params.id
+        recipeid: req.params.id
       }
     });
     return recipe;
@@ -57,10 +60,31 @@ const updateRecipe = async (req, res) => {
   }
 };
 
-const deleteRecipe = async (req, res) => {
+const deleteRecipe = async (req, res) => {//TODO check
   try {
+    await Rating.destroy({
+      where: { 
+        recipeidfk: req.params.id
+      }
+    });
+    const steps = await Step.findAll({
+      where: {
+        recipeidfk: req.params.id
+      }
+    });
+    steps.forEach(async (step) => {
+      await Quantity.destroy({
+        where: { stepidfk: step.stepid }
+      });
+    });
+    //On rapelle Quantity, car sinon il ne sait pas que des données ont été supprimé
+    await Quantity.findAll();
+    await Step.destroy({
+      where: { recipeidfk: req.params.id }
+    });
+
     const recipe = await Recipe.destroy({
-      where: { recipeId: req.params.id }
+      where: { recipeid: req.params.id }
     });
     return recipe;
   } catch (err) {

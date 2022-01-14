@@ -3,7 +3,7 @@ import pkg from 'sequelize';
 const { DataTypes } = pkg;
 
 const Quantity = sequelize.define('quantity', {
-  quantityId: {
+  quantityid: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
@@ -14,18 +14,18 @@ const Quantity = sequelize.define('quantity', {
   unit: {
     type: DataTypes.INTEGER
   },
-  ingredientIdFk: {
+  ingredientidfk: {
     type: DataTypes.INTEGER,
     references: {
       model: 'ingredients',
-      key: 'ingredientId'
+      key: 'ingredientid'
     }
   },
-  stepIdFk: {
+  stepidfk: {
     type: DataTypes.INTEGER,
     references: {
       model: 'steps',
-      key: 'stepId'
+      key: 'stepid'
     }
   }
 }, {

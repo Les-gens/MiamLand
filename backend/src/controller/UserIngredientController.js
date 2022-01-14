@@ -15,8 +15,8 @@ const getSingleUserIngredient = async (req, res) => {
   try {
     const userIngredient = await UserIngredient.findAll({
       where: {
-        ingredientIdFk: req.params.ingredientId,
-        userIdFk: req.params.userId
+        ingredientidfk: req.params.ingredientid,
+        useridfk: req.params.userid
       }
     });
     return userIngredient;
@@ -28,8 +28,8 @@ const getSingleUserIngredient = async (req, res) => {
 const addNewUserIngredient = async (req, res) => {
   try {
     const userIngredient = UserIngredient.create({
-      ingredientIdFk: req.body.ingredientId,
-      userIdFk: req.body.userId
+      ingredientidfk: req.body.ingredientid,
+      useridfk: req.body.userid
     });
     return userIngredient;
   } catch (err) {
@@ -41,8 +41,8 @@ const deleteUserIngredient = async (req, res) => {
   try {
     const userIngredient = await UserIngredient.destroy({
       where: { 
-        ingredientIdFk: req.params.ingredientId,
-        userIdFk: req.params.userId
+        ingredientidfk: req.params.ingredientid,
+        useridfk: req.params.userid
       }
     });
     return userIngredient;

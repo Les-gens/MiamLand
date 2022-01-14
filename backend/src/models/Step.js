@@ -3,7 +3,7 @@ import pkg from 'sequelize';
 const { DataTypes } = pkg;
 
 const Step = sequelize.define('step', {
-  stepId: {
+  stepid: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
@@ -11,14 +11,14 @@ const Step = sequelize.define('step', {
   description: {
     type: DataTypes.STRING(100)
   },
-  numberStep: {
+  numberstep: {
     type: DataTypes.INTEGER
   },
-  recetteIdFk: {
+  recipeidfk: {
     type: DataTypes.INTEGER,
     references: {
       model: 'recipes',
-      key: 'recipeId'
+      key: 'recipeid'
     }
   }
 }, {

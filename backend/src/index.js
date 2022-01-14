@@ -4,13 +4,13 @@ import fastifyMultipart from 'fastify-multipart';
 import fastifyJWT from 'fastify-jwt';
 import path from 'path';
 
-import userRoutes from './routes/userRoutes.js';
-import ingredientRoutes from './routes/ingredientRoutes.js';
-import recipeRoutes from './routes/recipeRoutes.js';
+import userRoutes from './routes/UserRoutes.js';
+import ingredientRoutes from './routes/IngredientRoutes.js';
+import recipeRoutes from './routes/RecipeRoutes.js';
 import userIngredientRoutes from './routes/UserIngredientRoutes.js';
 import quantityRoutes from './routes/QuantityRoutes.js';
 import ratingRoutes from './routes/RatingRoutes.js';
-import stepRoutes from './routes/stepRoutes.js';
+import stepRoutes from './routes/StepRoutes.js';
 
 import fastifyStatic from 'fastify-static';
 import createFakeData from './data/CreateFakeData.js';

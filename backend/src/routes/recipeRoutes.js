@@ -3,12 +3,12 @@ import { getAllRecipe, getSingleRecipe, addNewRecipe, updateRecipe, deleteRecipe
 const routes = [
   {
     method: 'GET',
-    url: '/api/recipe',
+    url: '/api/recipes',
     handler: getAllRecipe
   },
   {
     method: 'GET',
-    url: '/api/recipe/:name',
+    url: '/api/recipe/:id',
     handler: getSingleRecipe
   },
   {

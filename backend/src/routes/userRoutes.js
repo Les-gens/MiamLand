@@ -3,7 +3,7 @@ import { getAllUser, getSingleUser, addNewUser, updateUser, deleteUser, login, g
 const routes = [
   {
     method: 'GET',
-    url: '/api/user',
+    url: '/api/users',
     handler: getAllUser
   },
   {
