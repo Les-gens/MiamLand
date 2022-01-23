@@ -10,7 +10,7 @@ const AuthForm = ({ buttonText, onSubmit, children, onAuthentication }) => {
   const submit = () => {
     onSubmit(username, password)
       .then(async (res) => {
-        await setToken(res.auth_token);
+        await setToken(res.token);
         // Clear fields on success
         onChangeUsername('')
         onChangePassword('')
@@ -28,19 +28,21 @@ const AuthForm = ({ buttonText, onSubmit, children, onAuthentication }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <Text>Username</Text>
       <TextInput
         style={styles.input}
         onChangeText={(text) => onChangeUsername(text)}
         value={username}
       />
+      <Text>Password</Text>
       <TextInput
         style={styles.input}
         onChangeText={(text) => onChangePassword(text)}
         value={password}
         secureTextEntry
       />
-      <Button title={buttonText} onPress={submit} />
       {errorMessage ? <Text>{errorMessage}</Text> : null}
+      <Button title={buttonText} onPress={submit} />
       {children}
     </ScrollView>
   );
@@ -51,13 +53,17 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    alignContent: 'space-between',
   },
   input: {
     height: 40,
     width: 300,
     borderColor: 'gray',
     borderWidth: 1,
-    marginTop: 20,
+    marginVertical: 20,
+  },
+  children: {
+    marginVertical: 10,
   },
 });
 
