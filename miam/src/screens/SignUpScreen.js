@@ -10,10 +10,10 @@ const SignUpScreen = ({navigation}) => {
       onSubmit={signUp}
       onAuthentication={() => navigation.navigate('Home')}
     >
-      <Button
+    <Button
         title="Login"
         onPress={() => navigation.navigate('Login')}
-      />
+    />
     </AuthForm>
   )
 };
