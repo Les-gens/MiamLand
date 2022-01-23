@@ -10,9 +10,9 @@ const getHeaders = async () => {
   }
 
   if (token) {
-    headers.Authorization = `Bearer ${token};`
+    headers.Authorization = `Bearer ${token}`;
   }
-
+  
   return headers;
 }
 
@@ -38,7 +38,7 @@ export const GET = async (dest) => {
   const headers = await getHeaders();
 
   const res = await fetch(new URL(dest, API_URL).href, {
-    method: 'POST',
+    method: 'GET',
     headers,
   });
 
