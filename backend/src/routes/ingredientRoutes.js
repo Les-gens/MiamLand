@@ -1,4 +1,4 @@
-import { getAllIngredient, getSingleIngredient, addNewIngredient, updateIngredient, deleteIngredient } from '../controller/ingredientController.js';
+import { getAllIngredient, getSingleIngredient, addNewIngredient, updateIngredient, deleteIngredient } from '../controller/IngredientController.js';
 
 const routes = [
   {
