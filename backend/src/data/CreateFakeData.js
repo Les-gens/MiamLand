@@ -1,10 +1,8 @@
-import Ingredient from '../models/Ingredient.js';
-import User from '../models/User.js';
 import Quantity from '../models/Quantity.js';
 import Recipe from '../models/Recipe.js';
 import Step from '../models/Step.js';
 import Rating from '../models/Rating.js';
-import UserIngredient from '../models/UserIngredient.js';
+import {UserIngredient, User, Ingredient} from '../models/UserIngredient.js';
 
 import pkg from 'bcrypt';
 const bcrypt = pkg;

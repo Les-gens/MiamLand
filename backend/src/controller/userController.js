@@ -1,4 +1,4 @@
-import User from '../models/User.js';
+import {User} from '../models/UserIngredient.js';
 import fastify from '../index.js';
 import pkg from 'boom';
 import pkg2 from 'bcrypt';

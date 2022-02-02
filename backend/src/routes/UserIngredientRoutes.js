@@ -1,4 +1,4 @@
-import { getAllUserIngredient, getSingleUserIngredient, addNewUserIngredient, deleteUserIngredient } from '../controller/UserIngredientController.js';
+import { getAllUserIngredient, getSingleUserIngredient, addNewUserIngredient, deleteUserIngredient, getIngredientsByUser } from '../controller/UserIngredientController.js';
 
 const routes = [
   {
@@ -20,6 +20,11 @@ const routes = [
     method: 'DELETE',
     url: '/api/userIngredient/:id',
     handler: deleteUserIngredient
+  },
+  {
+    method: 'GET',
+    url: '/api/fridge',
+    handler: getIngredientsByUser
   }
 ];
 
