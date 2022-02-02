@@ -27,9 +27,55 @@ const getSingleUserIngredient = async (req, res) => {
 
 const addNewUserIngredient = async (req, res) => {
   try {
-    const userIngredient = UserIngredient.create({
-      ingredientidfk: req.body.ingredientid,
+    var ingId;
+    if(req.body.ingredientid == null || req.body.ingredientid == undefined){
+      var ingredient = await Ingredient.findOne({
+        where: {
+          name: req.body.ingredient.name
+        }
+      });
+      if(ingredient == null){
+        ingredient = await Ingredient.create({
+          name: req.body.ingredient.name,
+          category: req.body.ingredient.category
+        });
+      }
+      ingId = ingredient.ingredientid;
+    }else{
+      ingId = req.body.ingredientid;
+    }
+    const userIngredient = await UserIngredient.create({
+      ingredientidfk: ingId,
       useridfk: req.body.userid
+    });
+    return userIngredient;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
+const addNewUserIngredientCurrentUser = async (req, res) => {
+  try {
+    var ingId;
+    if(req.body.ingredientid == null || req.body.ingredientid == undefined){
+      var ingredient = await Ingredient.findOne({
+        where: {
+          name: req.body.ingredient.name
+        }
+      });
+      if(ingredient == null){
+        ingredient = await Ingredient.create({
+          name: req.body.ingredient.name,
+          category: req.body.ingredient.category
+        });
+      }
+      ingId = ingredient.ingredientid;
+    }else{
+      ingId = req.body.ingredientid;
+    }
+    const userIngredient = await UserIngredient.create({
+      ingredientidfk: ingId,
+      useridfk: req.user.userid
     });
     return userIngredient;
   } catch (err) {
@@ -73,4 +119,4 @@ const getIngredientsByUser = async (req, res) => {
   }
 };
 
-export { getAllUserIngredient, getSingleUserIngredient, addNewUserIngredient, deleteUserIngredient, getIngredientsByUser };
+export { getAllUserIngredient, getSingleUserIngredient, addNewUserIngredient, deleteUserIngredient, getIngredientsByUser, addNewUserIngredientCurrentUser };

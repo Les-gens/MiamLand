@@ -1,4 +1,4 @@
-import { getAllUserIngredient, getSingleUserIngredient, addNewUserIngredient, deleteUserIngredient, getIngredientsByUser } from '../controller/UserIngredientController.js';
+import { getAllUserIngredient, getSingleUserIngredient, addNewUserIngredient, deleteUserIngredient, getIngredientsByUser, addNewUserIngredientCurrentUser } from '../controller/UserIngredientController.js';
 
 const routes = [
   {
@@ -15,6 +15,11 @@ const routes = [
     method: 'POST',
     url: '/api/userIngredient',
     handler: addNewUserIngredient
+  },
+  {
+    method: 'POST',
+    url: '/api/userIngredient/me',
+    handler: addNewUserIngredientCurrentUser
   },
   {
     method: 'DELETE',
