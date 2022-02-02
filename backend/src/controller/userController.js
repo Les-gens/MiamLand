@@ -8,7 +8,14 @@ const bcrypt = pkg2;
 const getAllUser = async (req, res) => {
   try {
     const users = await User.findAll();
-    return users;
+    return users.map((user) => {
+      return {
+        userid: user.userid,
+        username: user.username,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt
+      }
+    });
   } catch (err) {
     throw boom.boomify(err);
   }
@@ -17,12 +24,17 @@ const getAllUser = async (req, res) => {
 const getSingleUser = async (req, res) => {
   try {
     const id = req.params.id;
-    const user = await User.findAll({
+    const user = await User.findOne({
       where: {
         userid: id
       }
     });
-    return user;
+    return JSON.stringify({
+      userid: user.userid,
+      username: user.username,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt
+    });
   } catch (err) {
     throw boom.boomify(err);
   }
