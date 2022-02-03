@@ -142,4 +142,49 @@ Rating.belongsTo(Recipe, {
 
 console.log(Rating === sequelize.models.Rating);
 
-export {Ingredient, User, UserIngredient, Recipe, Rating};
+const Step = sequelize.define('step', {
+  stepid: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  description: {
+    type: DataTypes.STRING(100)
+  },
+  numberstep: {
+    type: DataTypes.INTEGER
+  },
+}, {
+  // Other model options go here
+});
+
+console.log(Step === sequelize.models.Step);
+
+Step.belongsTo(Recipe, { foreignKey: 'recipeidfk' });
+Recipe.hasMany( Step, { foreignKey: 'recipeidfk' } );
+
+const Quantity = sequelize.define('quantity', {
+  quantityid: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  number: {
+    type: DataTypes.INTEGER
+  },
+  unit: {
+    type: DataTypes.INTEGER
+  }
+}, {
+  // Other model options go here
+});
+
+Quantity.belongsTo(Step, { foreignKey: 'stepidfk' });
+Step.hasMany( Quantity, { foreignKey: 'stepidfk' } );
+
+Quantity.belongsTo(Ingredient, { foreignKey: 'ingredientidfk' });
+Ingredient.hasOne( Quantity, { foreignKey: 'ingredientidfk' } );
+
+console.log(Quantity === sequelize.models.Quantity);
+
+export {Ingredient, User, UserIngredient, Recipe, Rating, Step, Quantity};

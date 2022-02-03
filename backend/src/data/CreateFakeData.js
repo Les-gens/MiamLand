@@ -1,6 +1,4 @@
-import Quantity from '../models/Quantity.js';
-import Step from '../models/Step.js';
-import { UserIngredient, User, Ingredient, Rating, Recipe } from '../models/UserIngredient.js';
+import { UserIngredient, User, Ingredient, Rating, Recipe, Quantity, Step } from '../models/Models.js';
 
 import pkg from 'bcrypt';
 const bcrypt = pkg;
@@ -54,7 +52,7 @@ const createFakeData = async () => {
     useridfk: user.userid});
   // Evaluation
   await Rating.create({
-    recipeidfk: recipeEmpty.recipeid,
+    recipeidfk: recipeEndive.recipeid,
     useridfk: user.userid,
     grade: 2
   });
@@ -85,7 +83,7 @@ const createFakeData = async () => {
   await Quantity.create({
     number: 1,
     unit: 1,
-    ingredientidfk: chocolat.ingredientid,
+    ingredientidfk: jambon.ingredientid,
     stepidfk: step2.stepid
   });
 };

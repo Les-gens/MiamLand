@@ -1,4 +1,4 @@
-import {UserIngredient, Ingredient, User} from '../models/UserIngredient.js';
+import {UserIngredient, Ingredient, User} from '../models/Models.js';
 import pkg from 'boom';
 const boom = pkg;
 

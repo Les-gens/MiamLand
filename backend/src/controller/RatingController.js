@@ -1,5 +1,5 @@
 import pkg from 'boom';
-import { User, Rating, Recipe } from '../models/UserIngredient.js';
+import { User, Rating, Recipe } from '../models/Models.js';
 const boom = pkg;
 
 const getAllRating = async (req, res) => {
@@ -99,10 +99,6 @@ const getProfil = async (req, res) => {
         where: {userid: req.user.userid}
       }]  
     });
-    /*const ratingsUser = await Rating.findAll({
-      where: {useridfk: req.user.userid},
-      attributes: ['recipeidfk', 'grade', 'updatedAt'] 
-    });*/
     const test = await Rating.findAll({
       raw: true,
       where: {useridfk: req.user.userid},
@@ -110,7 +106,7 @@ const getProfil = async (req, res) => {
       attributes: ['recipeidfk', 'grade', 'recipe.name', 'updatedAt'] 
     });
 
-    const profil = {
+    return {
       user: currentuser,
       recipes: recipesUser.map((recipe) => {
         return {
@@ -122,7 +118,6 @@ const getProfil = async (req, res) => {
       }),
       ratings: test
     }
-    return profil;
   } catch (err) {
     throw boom.boomify(err);
   }

@@ -1,4 +1,4 @@
-import Quantity from '../models/Quantity.js';
+import {Quantity} from '../models/Models.js';
 import pkg from 'boom';
 const boom = pkg;
 

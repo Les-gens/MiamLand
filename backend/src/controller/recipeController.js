@@ -1,6 +1,4 @@
-import { Recipe, Rating } from '../models/UserIngredient.js';
-import Step from '../models/Step.js';
-import Quantity from '../models/Quantity.js';
+import { Recipe, Rating, Quantity, Step, Ingredient } from '../models/Models.js';
 import pkg from 'boom';
 const boom = pkg;
 
@@ -15,12 +13,36 @@ const getAllRecipe = async (req, res) => {
 
 const getSingleRecipe = async (req, res) => {
   try {
-    const recipe = await Recipe.findAll({
+    const recipeId = await Recipe.findOne({
       where: {
         recipeid: req.params.id
+      },
+      include: [{
+        model: Step,
+        include: [{
+          model: Quantity,
+          include: [{
+            model: Ingredient
+          }]
+        }]
+      }]
+    });
+
+    const ratings = await Rating.findAll({
+      where: {
+        recipeidfk: req.params.id
       }
     });
-    return recipe;
+    var average = 0;
+    for (var i = 0; i < ratings.length; i++){
+      average += ratings[i].grade;
+    }
+    average = average/ratings.length;
+
+    return {
+      recipe: recipeId,
+      rating: average
+    };
   } catch (err) {
     throw boom.boomify(err);
   }

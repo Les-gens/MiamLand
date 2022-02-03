@@ -1,5 +1,4 @@
-import Step from '../models/Step.js';
-import Quantity from '../models/Quantity.js';
+import {Quantity, Step} from '../models/Models.js';
 import pkg from 'boom';
 const boom = pkg;
 
