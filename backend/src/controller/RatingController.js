@@ -1,5 +1,5 @@
-import Rating from '../models/Rating.js';
 import pkg from 'boom';
+import { User, Rating, Recipe } from '../models/UserIngredient.js';
 const boom = pkg;
 
 const getAllRating = async (req, res) => {
@@ -87,4 +87,45 @@ const getRatingForOneRecipe = async (req, res) => {
   }
 };
 
-export { getAllRating, getSingleRating, addNewRating, updateRating, deleteRating, getRatingForOneRecipe };
+const getProfil = async (req, res) => {
+  try {
+    const currentuser = await User.findOne({
+      attributes: ['userid', 'username', 'createdAt', 'updatedAt'],
+      where: {userid: req.user.userid}
+    });
+    const recipesUser = await Recipe.findAll({
+      include: [{
+        model: User,
+        where: {userid: req.user.userid}
+      }]  
+    });
+    /*const ratingsUser = await Rating.findAll({
+      where: {useridfk: req.user.userid},
+      attributes: ['recipeidfk', 'grade', 'updatedAt'] 
+    });*/
+    const test = await Rating.findAll({
+      raw: true,
+      where: {useridfk: req.user.userid},
+      include: [Recipe],
+      attributes: ['recipeidfk', 'grade', 'name', 'updatedAt'] 
+    });
+
+    const profil = {
+      user: currentuser,
+      recipes: recipesUser.map((recipe) => {
+        return {
+          recipeid: recipe.recipeid,
+          name: recipe.name,
+          createdAt: recipe.createdAt,
+          updatedAt: recipe.updatedAt
+        }
+      }),
+      ratings: test
+    }
+    return profil;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
+export { getAllRating, getSingleRating, addNewRating, updateRating, deleteRating, getRatingForOneRecipe, getProfil };

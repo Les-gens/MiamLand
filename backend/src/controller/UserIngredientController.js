@@ -99,7 +99,7 @@ const deleteUserIngredient = async (req, res) => {
 
 const getIngredientsByUser = async (req, res) => {
   try {
-    const f = await Ingredient.findAll({
+    const fridge = await Ingredient.findAll({
       include: [{
         model: User,
         where: {userid: req.user.userid},
@@ -107,7 +107,7 @@ const getIngredientsByUser = async (req, res) => {
       }],
     });   
 
-    return f.map((ingredient) => {
+    return fridge.map((ingredient) => {
       return {
         ingredientid: ingredient.ingredientid,
         name: ingredient.name,

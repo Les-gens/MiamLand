@@ -1,4 +1,4 @@
-import { getAllRating, getSingleRating, addNewRating, updateRating, deleteRating, getRatingForOneRecipe } from '../controller/RatingController.js';
+import { getAllRating, getSingleRating, addNewRating, updateRating, deleteRating, getRatingForOneRecipe, getProfil } from '../controller/RatingController.js';
 
 const routes = [
   {
@@ -49,6 +49,11 @@ const routes = [
     url: '/api/ratings/:recipeid',
     handler: getRatingForOneRecipe
   },
+  {
+    method: 'GET',
+    url: '/api/profil',
+    handler: getProfil
+  }
 ];
 
 export default routes;

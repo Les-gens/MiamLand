@@ -70,4 +70,76 @@ User.belongsToMany(Ingredient, {
 
 console.log(UserIngredient === sequelize.models.UserIngredient);
 
-export {Ingredient, User, UserIngredient};
+const Recipe = sequelize.define('recipe', {
+  recipeid: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  name: {
+    type: DataTypes.STRING(50)
+  },
+  description: {
+    type: DataTypes.STRING(100)
+  },
+  maxstep: {
+    type: DataTypes.INTEGER
+  },
+  useridfk: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'users',
+      key: 'userid'
+    }
+  }
+}, {
+  // Other model options go here
+});
+
+console.log(Recipe === sequelize.models.Recipe);
+
+const Rating = sequelize.define('rating', {
+  recipeidfk: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    references: {
+      model: 'recipes',
+      key: 'recipeid'
+    }
+  },
+  useridfk: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    references: {
+      model: 'users',
+      key: 'userid'
+    }
+  },
+  grade: {
+    type: DataTypes.INTEGER
+  }
+}, {
+  // Other model options go here
+});
+
+Recipe.belongsToMany(User, {
+  through: Rating,
+  foreignKey: 'recipeidfk'
+});
+User.belongsToMany(Recipe, {
+  through: Rating,
+  foreignKey: 'useridfk'
+});
+
+Rating.belongsTo(User, {
+  through: Rating,
+  foreignKey: 'useridfk'
+});
+Rating.belongsTo(Recipe, {
+  through: Rating,
+  foreignKey: 'recipeidfk'
+});
+
+console.log(Rating === sequelize.models.Rating);
+
+export {Ingredient, User, UserIngredient, Recipe, Rating};

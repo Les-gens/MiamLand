@@ -1,5 +1,4 @@
-import Recipe from '../models/Recipe.js';
-import Rating from '../models/Rating.js';
+import { Recipe, Rating } from '../models/UserIngredient.js';
 import Step from '../models/Step.js';
 import Quantity from '../models/Quantity.js';
 import pkg from 'boom';

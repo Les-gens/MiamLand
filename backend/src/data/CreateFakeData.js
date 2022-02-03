@@ -1,8 +1,6 @@
 import Quantity from '../models/Quantity.js';
-import Recipe from '../models/Recipe.js';
 import Step from '../models/Step.js';
-import Rating from '../models/Rating.js';
-import {UserIngredient, User, Ingredient} from '../models/UserIngredient.js';
+import { UserIngredient, User, Ingredient, Rating, Recipe } from '../models/UserIngredient.js';
 
 import pkg from 'bcrypt';
 const bcrypt = pkg;
@@ -54,6 +52,11 @@ const createFakeData = async () => {
     maxstep: '2',
     description: "Endive au jambon de la plus grande banalité",
     useridfk: user.userid});
+  const recipeEmpty = await Recipe.create({
+    name: 'Vide',
+    maxstep: '0',
+    description: "pas de recettes",
+    useridfk: null});
   // Evaluation
   await Rating.create({
     recipeidfk: recipeEndive.recipeid,
