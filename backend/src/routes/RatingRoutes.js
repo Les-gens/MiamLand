@@ -1,4 +1,4 @@
-import { getAllRating, getSingleRating, addNewRating, updateRating, deleteRating, getRatingForOneRecipe, getProfil } from '../controller/RatingController.js';
+import { getAllRating, getSingleRating, addNewRating, updateRating, deleteRating, getRatingForOneRecipe, getProfile } from '../controller/RatingController.js';
 
 const routes = [
   {
@@ -51,8 +51,8 @@ const routes = [
   },
   {
     method: 'GET',
-    url: '/api/profil',
-    handler: getProfil
+    url: '/api/profile',
+    handler: getProfile
   }
 ];
 

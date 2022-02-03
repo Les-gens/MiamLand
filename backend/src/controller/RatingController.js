@@ -87,7 +87,7 @@ const getRatingForOneRecipe = async (req, res) => {
   }
 };
 
-const getProfil = async (req, res) => {
+const getProfile = async (req, res) => {
   try {
     const currentuser = await User.findOne({
       attributes: ['userid', 'username', 'createdAt', 'updatedAt'],
@@ -123,4 +123,4 @@ const getProfil = async (req, res) => {
   }
 };
 
-export { getAllRating, getSingleRating, addNewRating, updateRating, deleteRating, getRatingForOneRecipe, getProfil };
+export { getAllRating, getSingleRating, addNewRating, updateRating, deleteRating, getRatingForOneRecipe, getProfile };
