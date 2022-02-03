@@ -107,7 +107,7 @@ const getProfil = async (req, res) => {
       raw: true,
       where: {useridfk: req.user.userid},
       include: [Recipe],
-      attributes: ['recipeidfk', 'grade', 'name', 'updatedAt'] 
+      attributes: ['recipeidfk', 'grade', 'recipe.name', 'updatedAt'] 
     });
 
     const profil = {

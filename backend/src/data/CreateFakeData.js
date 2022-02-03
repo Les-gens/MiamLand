@@ -52,16 +52,11 @@ const createFakeData = async () => {
     maxstep: '2',
     description: "Endive au jambon de la plus grande banalité",
     useridfk: user.userid});
-  const recipeEmpty = await Recipe.create({
-    name: 'Vide',
-    maxstep: '0',
-    description: "pas de recettes",
-    useridfk: null});
   // Evaluation
   await Rating.create({
-    recipeidfk: recipeEndive.recipeid,
+    recipeidfk: recipeEmpty.recipeid,
     useridfk: user.userid,
-    grade: 4
+    grade: 2
   });
   // Steps endives au jambon
   const step1 = await Step.create({
