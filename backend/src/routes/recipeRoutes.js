@@ -1,4 +1,4 @@
-import { getAllRecipe, getSingleRecipe, addNewRecipe, updateRecipe, deleteRecipe } from '../controller/RecipeController.js';
+import { getAllRecipe, getSingleRecipe, addNewRecipe, updateRecipe, deleteRecipe } from '../controller/recipeController.js';
 
 const routes = [
   {

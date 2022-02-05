@@ -1,4 +1,4 @@
-import { getAllStep, getSingleStep, addNewStep, updateStep, deleteStep } from '../controller/StepController.js';
+import { getAllStep, getSingleStep, addNewStep, updateStep, deleteStep } from '../controller/stepController.js';
 
 const routes = [
   {
