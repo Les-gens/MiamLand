@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, Button, StyleSheet } from 'react-native';
 import { setToken } from '../api/token.js';
 import { getAllRecipes } from '../api/recipes.js';
-import { Card, Paragraph, Title } from 'react-native-paper';
+import { BottomNavigation, Card, Paragraph, Title } from 'react-native-paper';
+import ProfileScreen from './ProfileScreen.js';
 
-const HomeScreen = ({navigation}) => {
-
+const HomeRoute = () => {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
@@ -16,10 +16,6 @@ const HomeScreen = ({navigation}) => {
     fetchRecipes();
   }, []);
 
-  const logOut = async () => {
-    await setToken('');
-    navigation.navigate('Login');
-  };
 
   return(
     <View style={styles.container}>
@@ -32,8 +28,37 @@ const HomeScreen = ({navigation}) => {
           </Card.Content>
         </Card>
       ))}
-      <Button title="Sign out" onPress={logOut}/>
     </View>
+  )
+}
+
+const LogOutRoute = (navigation) => {
+  setToken('');
+  navigation.navigate('Login');
+  return null;
+};
+
+const HomeScreen = ({navigation}) => {
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'Home', title: 'Home', icon: 'home'},
+    { key: 'Profile', title: 'Profile', icon: 'account' },
+    { key: 'LogOut', title: 'Log Out', icon: 'logout' },
+
+  ]);
+  
+  const renderScene = BottomNavigation.SceneMap({
+    Home: HomeRoute,
+    Profile: ProfileScreen,
+    LogOut: () => LogOutRoute(navigation),
+  });
+
+  return(
+      <BottomNavigation
+        navigationState={{ index, routes }}
+        onIndexChange={setIndex}
+        renderScene={renderScene}
+      />
   )
 };
 
