@@ -1,4 +1,4 @@
-import { getAllUser, getSingleUser, addNewUser, updateUser, deleteUser, login, getProfile } from '../controller/userController.js';
+import { getAllUser, getSingleUser, addNewUser, updateUser, deleteUser, login, getProfile } from '../controller/UserController.js';
 
 const routes = [
   {

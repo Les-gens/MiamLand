@@ -4,7 +4,7 @@ import fastifyMultipart from 'fastify-multipart';
 import fastifyJWT from 'fastify-jwt';
 import path from 'path';
 
-import userRoutes from './routes/userRoutes.js';
+import userRoutes from './routes/UserRoutes.js';
 import ingredientRoutes from './routes/ingredientRoutes.js';
 import recipeRoutes from './routes/recipeRoutes.js';
 import userIngredientRoutes from './routes/UserIngredientRoutes.js';
