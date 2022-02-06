@@ -1,7 +1,7 @@
-import {User} from '../models/Models.js';
-import fastify from '../index.js';
-import pkg from 'boom';
-import pkg2 from 'bcrypt';
+import { User } from "../models/Models.js";
+import fastify from "../index.js";
+import pkg from "boom";
+import pkg2 from "bcrypt";
 const boom = pkg;
 const bcrypt = pkg2;
 
@@ -13,8 +13,8 @@ const getAllUser = async (req, res) => {
         userid: user.userid,
         username: user.username,
         createdAt: user.createdAt,
-        updatedAt: user.updatedAt
-      }
+        updatedAt: user.updatedAt,
+      };
     });
   } catch (err) {
     throw boom.boomify(err);
@@ -26,14 +26,14 @@ const getSingleUser = async (req, res) => {
     const id = req.params.id;
     const user = await User.findOne({
       where: {
-        userid: id
-      }
+        userid: id,
+      },
     });
     return JSON.stringify({
       userid: user.userid,
       username: user.username,
       createdAt: user.createdAt,
-      updatedAt: user.updatedAt
+      updatedAt: user.updatedAt,
     });
   } catch (err) {
     throw boom.boomify(err);
@@ -45,8 +45,8 @@ const getProfile = async (req, res) => {
     const id = req.user.userid;
     const user = await User.findAll({
       where: {
-        userid: id
-      }
+        userid: id,
+      },
     });
     return user;
   } catch (err) {
@@ -57,18 +57,19 @@ const getProfile = async (req, res) => {
 const addNewUser = async (req, res) => {
   try {
     const plainPassword = req.body.password;
-    let hashed = '';
-    await bcrypt.genSalt(10)
-      .then(salt => {
+    let hashed = "";
+    await bcrypt
+      .genSalt(10)
+      .then((salt) => {
         return bcrypt.hash(plainPassword, salt);
       })
-      .then(hash => {
+      .then((hash) => {
         hashed = hash;
       })
-      .catch(err => console.error(err.message));
+      .catch((err) => console.error(err.message));
     const user = await User.create({
       username: req.body.username,
-      password: hashed
+      password: hashed,
     });
     const payload = { userid: user.userid };
     const token = fastify.jwt.sign(payload);
@@ -80,27 +81,30 @@ const addNewUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    let hashed = '';
+    let hashed = "";
     let userObject = {};
     if (req.body.password) {
-      await bcrypt.genSalt(10)
-        .then(salt => {
+      await bcrypt
+        .genSalt(10)
+        .then((salt) => {
           return bcrypt.hash(req.body.password, salt);
         })
-        .then(hash => {
+        .then((hash) => {
           hashed = hash;
         })
-        .catch(err => console.error(err.message));
+        .catch((err) => console.error(err.message));
       userObject = {
         username: req.body?.username,
-        password: hashed
+        password: hashed,
       };
     } else {
       userObject = {
-        username: req.body?.username
+        username: req.body?.username,
       };
     }
-    const user = await User.update(userObject, { where: { userid: req.params.id } });
+    const user = await User.update(userObject, {
+      where: { userid: req.params.id },
+    });
     return user;
   } catch (err) {
     throw boom.boomify(err);
@@ -110,7 +114,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const user = await User.destroy({
-      where: { userid: req.params.id }
+      where: { userid: req.params.id },
     });
     return user;
   } catch (err) {
@@ -124,11 +128,14 @@ const login = async (req, res) => {
     const password = req.body.password;
 
     const user = await User.findOne({ where: { username } });
-    if (!user) return boom.unauthorized('Wrong credentials');
+    if (!user) return boom.unauthorized("Wrong credentials");
 
-    const isMatching = await bcrypt.compare(password, user.getDataValue('password'));
+    const isMatching = await bcrypt.compare(
+      password,
+      user.getDataValue("password")
+    );
 
-    if (!isMatching) return boom.unauthorized('Wrong credentials');
+    if (!isMatching) return boom.unauthorized("Wrong credentials");
 
     const payload = { userid: user.userid };
     const token = fastify.jwt.sign(payload);
@@ -138,4 +145,12 @@ const login = async (req, res) => {
   }
 };
 
-export { getAllUser, getSingleUser, getProfile, login, addNewUser, updateUser, deleteUser };
+export {
+  getAllUser,
+  getSingleUser,
+  getProfile,
+  login,
+  addNewUser,
+  updateUser,
+  deleteUser,
+};
