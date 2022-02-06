@@ -117,7 +117,7 @@ const updateRecipe = async (req, res) => {
   }
 };
 
-const deleteRecipe = async (req, res) => {//TODO check
+const deleteRecipe = async (req, res) => {
   try {
     await Rating.destroy({
       where: { 
@@ -149,4 +149,22 @@ const deleteRecipe = async (req, res) => {//TODO check
   }
 };
 
-export { getAllRecipe, getSingleRecipe, addNewRecipe, updateRecipe, deleteRecipe };
+const getRecipeSearch = async (req, res) => {
+  try {
+    var keyword = req.query.keyword.toLowerCase();
+    var list = [];
+    const recipes = await Recipe.findAll();
+    recipes.forEach(recipe => {
+      var namelower = recipe.name.toLowerCase().substring(0, keyword.length);
+      if(keyword == namelower){
+        list.push(recipe);
+      }
+    });
+
+    return list;
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
+export { getAllRecipe, getSingleRecipe, addNewRecipe, updateRecipe, deleteRecipe, getRecipeSearch };

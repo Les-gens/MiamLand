@@ -99,11 +99,11 @@ const getProfile = async (req, res) => {
         where: {userid: req.user.userid}
       }]  
     });
-    const test = await Rating.findAll({
+    const ratings = await Rating.findAll({
       raw: true,
       where: {useridfk: req.user.userid},
       include: [Recipe],
-      attributes: ['recipeidfk', 'grade', 'recipe.name', 'updatedAt'] 
+      attributes: ['recipeidfk', 'grade', 'recipe.name', 'updatedAt', 'recipe.description'] 
     });
 
     return {
@@ -112,11 +112,20 @@ const getProfile = async (req, res) => {
         return {
           recipeid: recipe.recipeid,
           name: recipe.name,
+          description: recipe.description,
           createdAt: recipe.createdAt,
           updatedAt: recipe.updatedAt
         }
       }),
-      ratings: test
+      ratings: ratings.map((rating) => {
+        return {
+          recipeid: rating.recipeidfk,
+          grade: rating.grade,
+          recipename: rating.name,
+          updatedAt: rating.updatedAt,
+          recipedescription: rating.description
+        }
+      })
     }
   } catch (err) {
     throw boom.boomify(err);
