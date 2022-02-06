@@ -1,11 +1,11 @@
-import { GET } from './fetch.js';
-import { getToken } from './token.js';
+import {GET} from './fetch.js';
+import {getToken} from './token.js';
 
 export const getAllRecipes = async () => {
   return await GET('/api/recipes');
 };
 
-export const getRecipeById = async (recipeId) => {
+export const getRecipeById = async recipeId => {
   return await GET(`/api/recipe/${recipeId}`);
 };
 
@@ -30,10 +30,3 @@ export const updateRecipe = async (name, maxstep, description) => {
 // export const deleteRecipe = async (recipeId) => {
 //   return await DELETE(`/api/recipes/${recipeId}`);
 // };
-
-
-
-
-
-
-

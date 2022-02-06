@@ -1,4 +1,4 @@
-import { GET } from './fetch.js';
+import {GET} from './fetch.js';
 
 export const getFridgeIngredient = async () => {
   return await GET('/api/fridge');
@@ -6,11 +6,4 @@ export const getFridgeIngredient = async () => {
 
 export const getProfileInformation = async () => {
   return await GET('/api/profile');
-}
-
-
-
-
-
-
-
+};

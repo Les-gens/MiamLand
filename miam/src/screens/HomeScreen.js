@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { View, Button, StyleSheet } from 'react-native';
-import { setToken } from '../api/token.js';
-import { getAllRecipes } from '../api/recipes.js';
-import { BottomNavigation, Card, Paragraph, Title } from 'react-native-paper';
+import React, {useEffect, useState} from 'react';
+import {View, Button, StyleSheet} from 'react-native';
+import {setToken} from '../api/token.js';
+import {getAllRecipes} from '../api/recipes.js';
+import {BottomNavigation, Card, Paragraph, Title} from 'react-native-paper';
 import ProfileScreen from './ProfileScreen.js';
 
 const HomeRoute = () => {
@@ -16,11 +16,10 @@ const HomeRoute = () => {
     fetchRecipes();
   }, []);
 
-
-  return(
+  return (
     <View style={styles.container}>
       <Title>Recipes</Title>
-      {recipes.map((recipe) =>(
+      {recipes.map(recipe => (
         <Card style={styles.card}>
           <Card.Title title={recipe.name} />
           <Card.Content>
@@ -29,10 +28,10 @@ const HomeRoute = () => {
         </Card>
       ))}
     </View>
-  )
-}
+  );
+};
 
-const LogOutRoute = (navigation) => {
+const LogOutRoute = navigation => {
   setToken('');
   navigation.navigate('Login');
   return null;
@@ -41,25 +40,24 @@ const LogOutRoute = (navigation) => {
 const HomeScreen = ({navigation}) => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'Home', title: 'Home', icon: 'home'},
-    { key: 'Profile', title: 'Profile', icon: 'account' },
-    { key: 'LogOut', title: 'Log Out', icon: 'logout' },
-
+    {key: 'Home', title: 'Home', icon: 'home'},
+    {key: 'Profile', title: 'Profile', icon: 'account'},
+    {key: 'LogOut', title: 'Log Out', icon: 'logout'},
   ]);
-  
+
   const renderScene = BottomNavigation.SceneMap({
     Home: HomeRoute,
     Profile: ProfileScreen,
     LogOut: () => LogOutRoute(navigation),
   });
 
-  return(
-      <BottomNavigation
-        navigationState={{ index, routes }}
-        onIndexChange={setIndex}
-        renderScene={renderScene}
-      />
-  )
+  return (
+    <BottomNavigation
+      navigationState={{index, routes}}
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+    />
+  );
 };
 
 const styles = StyleSheet.create({
@@ -69,7 +67,7 @@ const styles = StyleSheet.create({
   card: {
     marginTop: 10,
     marginBottom: 10,
-  }
+  },
 });
 
 export default HomeScreen;
