@@ -38,6 +38,7 @@ const LogOutRoute = navigation => {
 };
 
 const HomeScreen = ({navigation}) => {
+
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {key: 'Home', title: 'Home', icon: 'home'},
@@ -47,7 +48,7 @@ const HomeScreen = ({navigation}) => {
 
   const renderScene = BottomNavigation.SceneMap({
     Home: HomeRoute,
-    Profile: ProfileScreen,
+    Profile: () => ProfileScreen(navigation),
     LogOut: () => LogOutRoute(navigation),
   });
 
