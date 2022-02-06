@@ -4,6 +4,7 @@ import {setToken} from '../api/token.js';
 import {getAllRecipes} from '../api/recipes.js';
 import {BottomNavigation, Card, Paragraph, Title, Button} from 'react-native-paper';
 import ProfileScreen from './ProfileScreen.js';
+import SearchScreen from './SearchScreen.js';
 
 const HomeRoute = navigation => {
   const [recipes, setRecipes] = useState([]);
@@ -45,12 +46,14 @@ const HomeScreen = ({navigation}) => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {key: 'Home', title: 'Home', icon: 'home'},
+    {key: 'Search', title: 'Search', icon: 'feature-search-outline'},
     {key: 'Profile', title: 'Profile', icon: 'account'},
     {key: 'LogOut', title: 'Log Out', icon: 'logout'},
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
     Home: () => HomeRoute(navigation),
+    Search: () => SearchScreen(navigation),
     Profile: () => ProfileScreen(navigation),
     LogOut: () => LogOutRoute(navigation),
   });

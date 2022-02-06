@@ -1,4 +1,4 @@
-import {GET} from './fetch.js';
+import {GET, POST} from './fetch.js';
 import {getToken} from './token.js';
 
 export const getAllRecipes = async () => {
@@ -25,6 +25,10 @@ export const updateRecipe = async (name, maxstep, description) => {
     description,
     //useridfk TODO: ask to be automated in the backend
   });
+};
+
+export const research = async keyword => {
+  return await GET(`/api/recipe/search?keyword=${keyword}`);
 };
 
 // export const deleteRecipe = async (recipeId) => {
