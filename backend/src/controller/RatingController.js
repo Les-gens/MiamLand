@@ -112,6 +112,7 @@ const getProfile = async (req, res) => {
         return {
           recipeid: recipe.recipeid,
           name: recipe.name,
+          description: recipe.description,
           createdAt: recipe.createdAt,
           updatedAt: recipe.updatedAt
         }
