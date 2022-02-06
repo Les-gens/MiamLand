@@ -3,9 +3,9 @@ import React from 'react';
 
 import HomeScreen from './src/screens/HomeScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from 'react-navigation-stack';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import RecipesScreen from './src/screens/RecipesScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 
 const Stack = createNativeStackNavigator();
@@ -17,6 +17,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="CreateAccount" component={SignUpScreen} />
+        <Stack.Screen name="Recipes" component={RecipesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

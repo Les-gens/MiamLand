@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {View, Button, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {setToken} from '../api/token.js';
 import {getAllRecipes} from '../api/recipes.js';
-import {BottomNavigation, Card, Paragraph, Title} from 'react-native-paper';
+import {BottomNavigation, Card, Paragraph, Title, Button} from 'react-native-paper';
 import ProfileScreen from './ProfileScreen.js';
 
-const HomeRoute = () => {
+const HomeRoute = navigation => {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
@@ -25,6 +25,9 @@ const HomeRoute = () => {
           <Card.Content>
             <Paragraph>{recipe.description}</Paragraph>
           </Card.Content>
+          <Card.Actions>
+            <Button onPress={() => {navigation.navigate('Recipes', {recipeId: recipe.recipeid})}}>View</Button>
+          </Card.Actions>
         </Card>
       ))}
     </View>
@@ -46,7 +49,7 @@ const HomeScreen = ({navigation}) => {
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
-    Home: HomeRoute,
+    Home: () => HomeRoute(navigation),
     Profile: ProfileScreen,
     LogOut: () => LogOutRoute(navigation),
   });
