@@ -17,11 +17,15 @@ const RecipeForm = ({buttonText, onSubmit, onSuccess}) => {
     const refIngredientInputs = useRef ([ingredientTextValue]);
 
     const submit = () => {
-        onSubmit(recipeName, recipeDesc)
+        onSubmit(recipeName, recipeDesc, refStepInputs, refIngredientInputs)
             .then(async res => {
                 // Clear fields on success
                 onChangeRecipeName('');
                 onChangeRecipeDesc('');
+                setIngredientNumInputs(1);
+                setStepNumInputs(1);
+                setStepTextValue('');
+                setIngredientTextValue('');
                 setErrorMessage('');
                 onSuccess();
             })
@@ -143,18 +147,8 @@ const RecipeForm = ({buttonText, onSubmit, onSuccess}) => {
             <Button mode="outlined" onPress={addInput} style={styles.addButton}>
                 <Text style={styles.inputStep}>Add a new step</Text>
             </Button>
-            <View style={{ marginTop: 25 }}>
-                <Text>Ingredients:</Text>
-                {refIngredientInputs.current.map((value, i) => {
-                    return <Text key={i} style={styles.answer}>{`${i+ 1} - ${value}`}</Text>
-                })}
-                <Text>Steps:</Text>
-                {refStepInputs.current.map((value, i) => {
-                    return <Text key={i} style={styles.answer}>{`${i+ 1} - ${value}`}</Text>
-                })}
-            </View>
-            <Button mode="contained" onPress={console.log('test')}>{buttonText}</Button>
             {errorMessage ? <Text>{errorMessage}</Text> : null}
+            <Button mode="contained" onPress={() => submit()}>{buttonText}</Button>
         </ScrollView>
 
     );

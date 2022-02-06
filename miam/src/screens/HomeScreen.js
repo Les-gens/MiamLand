@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import {setToken} from '../api/token.js';
 import {getAllRecipes} from '../api/recipes.js';
 import {BottomNavigation, Card, Paragraph, Title, Button, IconButton} from 'react-native-paper';
@@ -18,7 +18,7 @@ const HomeRoute = navigation => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Title>Recipes</Title>
       <View style={styles.containerAddRecipe}>
         <Text style={styles.title}>Add a recipe</Text>
@@ -38,7 +38,7 @@ const HomeRoute = navigation => {
           </Card.Actions>
         </Card>
       ))}
-    </View>
+    </ScrollView>
   );
 };
 

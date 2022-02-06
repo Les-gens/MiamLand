@@ -9,12 +9,40 @@ export const getRecipeById = async recipeId => {
   return await GET(`/api/recipe/${recipeId}`);
 };
 
-export const addRecipe = async (name, maxstep, description) => {
-  return await POST('/api/recips', {
+export const addRecipe = async (name, description, steps, ingredients) => {
+  console.log('ADDRECIPE', name, description, steps, ingredients);
+  const formatedSteps = steps.current.map( (value, index) => {
+    if (value == null) return ;
+    return {
+      description: value,
+      numberStep: index,
+      quantities: index === 0 ? [
+          ...ingredients.current.map( (ingredient, index) => {
+            if (value == null) return ;
+            return {
+              number: 0,
+              unit: 0,
+              ingredient: {
+                name: ingredient,
+                category: 0,
+              }
+            }
+          })]: [{
+        number: 0,
+        unit: 0,
+        ingredient: {
+          name: `noIngredient-${index}`,
+          category: 0,
+        }
+      }]
+    }
+  })
+  console.log(formatedSteps);
+  return await POST('/api/recipe', {
     name,
-    maxstep,
+    maxstep: steps.length,
     description,
-    //useridfk TODO: ask to be automated in the backend
+    steps: formatedSteps
   });
 };
 
