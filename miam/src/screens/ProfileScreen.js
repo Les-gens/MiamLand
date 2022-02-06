@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {getFridgeIngredient, getProfileInformation} from '../api/profile.js';
-import {Card, IconButton, Paragraph} from 'react-native-paper';
+import { Button, Card, IconButton, Paragraph } from 'react-native-paper';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {List} from 'react-native-paper';
 import {AirbnbRating} from 'react-native-elements';
@@ -30,13 +30,16 @@ const ProfileScreen = (navigation) => {
           <Card.Content>
             <Paragraph>{recipe.description}</Paragraph>
           </Card.Content>
+          <Card.Actions>
+            <Button onPress={() => {navigation.navigate('Recipes', {recipeId: recipe.recipeid})}}>View</Button>
+          </Card.Actions>
         </Card>
       ))}
       <Text style={styles.title}>Rated recipes</Text>
       {profileInformation?.ratings?.map(recipeRating => (
         <Card style={styles.card}>
           <Card.Title
-            title={recipeRating['recipe.name']}
+            title={recipeRating.recipename}
             subtitle={
               <AirbnbRating
                 style={styles.rating}
@@ -48,8 +51,11 @@ const ProfileScreen = (navigation) => {
             }
           />
           <Card.Content>
-            <Paragraph>{recipeRating['recipe.description']}</Paragraph>
+            <Paragraph>{recipeRating.recipedescription}</Paragraph>
           </Card.Content>
+          <Card.Actions>
+            <Button onPress={() => {navigation.navigate('Recipes', {recipeId: recipeRating.recipeid})}}>View</Button>
+          </Card.Actions>
         </Card>
       ))}
       <View style={styles.container}>
