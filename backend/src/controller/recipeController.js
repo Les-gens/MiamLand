@@ -34,10 +34,12 @@ const getSingleRecipe = async (req, res) => {
       }
     });
     var average = 0;
-    for (var i = 0; i < ratings.length; i++){
-      average += ratings[i].grade;
+    if(ratings.length>0){
+      for (var i = 0; i < ratings.length; i++){
+        average += ratings[i].grade;
+      }
+      average = average/ratings.length;
     }
-    average = average/ratings.length;
 
     return {
       recipe: recipeId,
@@ -50,11 +52,45 @@ const getSingleRecipe = async (req, res) => {
 
 const addNewRecipe = async (req, res) => {
   try {
-    const recipe = Recipe.create({
+    const recipe = await Recipe.create({
       name: req.body.name,
       maxstep: req.body.maxstep,
       description: req.body.description,
       useridfk: req.body.userid
+    });
+    req.body.steps.forEach(async (steptmp) => {
+      const step = await Step.create({
+        description: steptmp.description,
+        numberstep: steptmp.numberstep,
+        recipeidfk: recipe.recipeid
+      });
+      
+      steptmp.quantities.forEach(async (quantitytmp) => {
+        var ingId;
+        if(quantitytmp.ingredient.ingredientid == null || quantitytmp.ingredient.ingredientid == undefined){
+          var ingredient = await Ingredient.findOne({
+            where: {
+              name: quantitytmp.ingredient.name
+            }
+          });
+          if(ingredient == null){
+            ingredient = await Ingredient.create({
+              name: quantitytmp.ingredient.name,
+              category: quantitytmp.ingredient.category
+            });
+          }
+          ingId = ingredient.ingredientid;
+        }else{
+          ingId = quantitytmp.ingredient.ingredientid;
+        }
+
+        const quantity = await Quantity.create({
+          number: quantitytmp.number,
+          unit: quantitytmp.unit,
+          ingredientidfk: ingId,
+          stepidfk: step.stepid
+        });
+      });
     });
     return recipe;
   } catch (err) {
