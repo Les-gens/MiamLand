@@ -17,7 +17,7 @@ import createFakeData from './data/CreateFakeData.js';
 import options from './swagger.js';
 import fastifySwagger from 'fastify-swagger';
 
-const env = process.env.NODE_ENV || 'devlopment';
+const env = process.env.NODE_ENV || 'development';
 
 const baseRoutes = [userRoutes, ingredientRoutes, recipeRoutes, userIngredientRoutes, stepRoutes, ratingRoutes, quantityRoutes];
 const server = fastify({ logger: true });
@@ -59,12 +59,12 @@ baseRoutes.forEach((routes) => {
 const PORT = 8000 || process.env.PORT;
 const startServer = async () => {
   try {
-    await server.listen(PORT);
-    server.swagger();
-    if (env === 'devlopment') {
+    if (env === 'development') {
       await synchronize();
       await fakeLoad();
     }
+    await server.listen(PORT);
+    await server.swagger();
     console.log(`Server running on 127.0.0.1:${PORT}`);
   } catch (err) {
     server.log.error(err);
@@ -72,6 +72,6 @@ const startServer = async () => {
   }
 };
 
-export default server;
+await startServer();
 
-startServer();
+export default server;
