@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import {setToken} from '../api/token.js';
 import {getAllRecipes} from '../api/recipes.js';
-import {BottomNavigation, Card, Paragraph, Title, Button} from 'react-native-paper';
+import {BottomNavigation, Card, Paragraph, Title, Button, IconButton} from 'react-native-paper';
 import ProfileScreen from './ProfileScreen.js';
 import SearchScreen from './SearchScreen.js';
 
@@ -20,6 +20,13 @@ const HomeRoute = navigation => {
   return (
     <View style={styles.container}>
       <Title>Recipes</Title>
+      <View style={styles.containerAddRecipe}>
+        <Text style={styles.title}>Add a recipe</Text>
+        <IconButton
+            icon="plus-box"
+            onPress={() => navigation.navigate('AddRecipe')}
+        />
+      </View>
       {recipes.map(recipe => (
         <Card style={styles.card}>
           <Card.Title title={recipe.name} />
@@ -70,10 +77,21 @@ const HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+
+  },
+  containerAddRecipe: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   card: {
     marginTop: 10,
     marginBottom: 10,
+  },
+  title: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 25,
   },
 });
 
