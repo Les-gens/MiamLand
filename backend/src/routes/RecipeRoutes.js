@@ -1,4 +1,4 @@
-import { getAllRecipe, getSingleRecipe, addNewRecipe, updateRecipe, deleteRecipe, getRecipeSearch } from '../controller/RecipeController.js';
+import { getAllRecipe, getSingleRecipe, addNewRecipe, updateRecipe, deleteRecipe, getRecipeSearch, getRecipeByFridge } from '../controller/RecipeController.js';
 
 const routes = [
   {
@@ -36,6 +36,16 @@ const routes = [
     },
     handler: getRecipeSearch
   },
+  {
+    method: 'GET',
+    url: '/api/fridge/recipes',
+    schema: {
+      querystring: {
+        keyword: { type: 'string' }
+      }
+    },
+    handler: getRecipeByFridge
+  }  
 ];
 
 export default routes;

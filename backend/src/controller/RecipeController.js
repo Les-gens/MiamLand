@@ -1,5 +1,6 @@
-import { Recipe, Rating, Quantity, Step, Ingredient } from '../models/Models.js';
+import { Recipe, Rating, Quantity, Step, Ingredient, UserIngredient, User } from '../models/Models.js';
 import pkg from 'boom';
+import { Console } from 'console';
 const boom = pkg;
 
 const getAllRecipe = async (req, res) => {
@@ -158,6 +159,60 @@ const getRecipeSearch = async (req, res) => {
   }
 };
 
+const getRecipeByFridge = async (req, res) => {
+  try {
+    var fridge = [];
+    var tmp = await UserIngredient.findAll(
+      {
+        where: { useridfk: req.user.userid }
+      }
+    );
+    tmp.forEach((f) => {
+      fridge.push(f.ingredientidfk);
+    });
+
+    const recipes = await Recipe.findAll({
+      include: [{
+        model: Step,
+        include: [{
+          model: Quantity,
+          include: [{
+            model: Ingredient
+          }]
+        }]
+      }]
+    });
+    //return recipes;
+    var response = [];
+    recipes.forEach(recipe => {
+      var test = containsIngredient(recipe, fridge);
+      console.log("\nRecipe "+recipe.name+" est "+test+"\n");
+      if(test){
+        response.push(recipe);
+      }
+    });
+
+    response = response.map((recipe) => {
+      return {
+        recipeid: recipe.recipeid,
+        name: recipe.name,
+        description: recipe.description,
+        maxstep: recipe.maxstep,
+        useridfk: recipe.useridfk,
+        createdAt: recipe.createdAt,
+        updatedAt: recipe.updatedAt
+      }
+    });
+
+    if(req.query.keyword == null || req.query.keyword == undefined){
+      return response;
+    }
+    return research(response, req.query.keyword);
+  } catch (err) {
+    throw boom.boomify(err);
+  }
+};
+
 //private
 const research = (list, word) => {
   var keyword = word.toLowerCase();
@@ -172,4 +227,16 @@ const research = (list, word) => {
   return response;
 };
 
-export { getAllRecipe, getSingleRecipe, addNewRecipe, updateRecipe, deleteRecipe, getRecipeSearch };
+const containsIngredient = (recipe, fridge) => {
+  var isContains = false;
+  recipe.steps.forEach(step => {
+    step.quantities.forEach(quantity => {
+      if(fridge.includes(quantity.ingredient.ingredientid)){
+        isContains = true;
+      }
+    });
+  });
+  return isContains;
+};
+
+export { getAllRecipe, getSingleRecipe, addNewRecipe, updateRecipe, deleteRecipe, getRecipeSearch, getRecipeByFridge };
