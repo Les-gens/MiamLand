@@ -151,20 +151,25 @@ const deleteRecipe = async (req, res) => {
 
 const getRecipeSearch = async (req, res) => {
   try {
-    var keyword = req.query.keyword.toLowerCase();
-    var list = [];
     const recipes = await Recipe.findAll();
-    recipes.forEach(recipe => {
-      var namelower = recipe.name.toLowerCase().substring(0, keyword.length);
-      if(keyword == namelower){
-        list.push(recipe);
-      }
-    });
-
-    return list;
+    return research(recipes, req.query.keyword);
   } catch (err) {
     throw boom.boomify(err);
   }
+};
+
+//private
+const research = (list, word) => {
+  var keyword = word.toLowerCase();
+  var response = [];
+  list.forEach(recipe => {
+    var namelower = recipe.name.toLowerCase().substring(0, keyword.length);
+    if(keyword == namelower){
+      response.push(recipe);
+    }
+  });
+
+  return response;
 };
 
 export { getAllRecipe, getSingleRecipe, addNewRecipe, updateRecipe, deleteRecipe, getRecipeSearch };
