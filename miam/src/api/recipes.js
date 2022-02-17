@@ -59,6 +59,10 @@ export const research = async keyword => {
   return await GET(`/api/recipe/search?keyword=${keyword}`);
 };
 
+export const researchFridge = async keyword => {
+  return await GET(`/api/fridge/recipes?keyword=${keyword}`);
+};
+
 // export const deleteRecipe = async (recipeId) => {
 //   return await DELETE(`/api/recipes/${recipeId}`);
 // };
