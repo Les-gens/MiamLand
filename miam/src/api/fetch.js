@@ -1,4 +1,4 @@
-import { getToken } from './token.js';
+import {getToken} from './token.js';
 
 const API_URL = new URL('http://localhost:8000/');
 
@@ -7,17 +7,16 @@ const getHeaders = async () => {
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-  }
+  };
 
   if (token) {
     headers.Authorization = `Bearer ${token}`;
   }
 
   return headers;
-}
+};
 
 export const POST = async (dest, body) => {
-
   const headers = await getHeaders();
   console.log(new URL(dest, API_URL).href);
   const res = await fetch(new URL(dest, API_URL).href, {
@@ -28,13 +27,13 @@ export const POST = async (dest, body) => {
 
   console.log('POST RESULT', res);
 
-  if(res.ok) {
+  if (res.ok) {
     return await res.json();
   }
-  throw { error: res.statusText };
-}
+  throw {error: res.statusText};
+};
 
-export const GET = async (dest) => {
+export const GET = async dest => {
   const headers = await getHeaders();
 
   const res = await fetch(new URL(dest, API_URL).href, {
@@ -44,8 +43,8 @@ export const GET = async (dest) => {
 
   console.log('GET RESULT', res);
 
-  if(res.ok) {
+  if (res.ok) {
     return await res.json();
   }
-  throw { error: res.statusText };
-}
+  throw {error: res.statusText};
+};

@@ -2,20 +2,17 @@ import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, TextInput, Button, Text} from 'react-native';
 import {setToken} from '../api/token';
 
-const AuthForm = ({buttonText, onSubmit, children, onAuthentication}) => {
-  const [username, onChangeUsername] = useState('');
-  const [password, onChangePassword] = useState('');
+const IngredientForm = ({buttonText, onSubmit, onSuccess}) => {
+  const [ingredient, onChangeIngredient] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const submit = () => {
-    onSubmit(username, password)
+    onSubmit(ingredient)
       .then(async res => {
-        await setToken(res.token);
         // Clear fields on success
-        onChangeUsername('');
-        onChangePassword('');
+        onChangeIngredient('');
         setErrorMessage('');
-        onAuthentication();
+        onSuccess();
       })
       .catch(res => {
         if (res && res.error) {
@@ -28,22 +25,14 @@ const AuthForm = ({buttonText, onSubmit, children, onAuthentication}) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text>Username</Text>
+      <Text>Ingredient</Text>
       <TextInput
         style={styles.input}
-        onChangeText={text => onChangeUsername(text)}
-        value={username}
-      />
-      <Text>Password</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={text => onChangePassword(text)}
-        value={password}
-        secureTextEntry
+        onChangeText={text => onChangeIngredient(text)}
+        value={ingredient}
       />
       {errorMessage ? <Text>{errorMessage}</Text> : null}
       <Button title={buttonText} onPress={submit} />
-      {children}
     </ScrollView>
   );
 };
@@ -67,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AuthForm;
+export default IngredientForm;
